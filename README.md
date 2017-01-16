@@ -9,19 +9,14 @@
 
 ###:
 
-**enc-streaming-benchmarks** directory should be under the same directory as **phestorm** directory
+**Team 14** 
 
-
+### README
+### Google Drive
+### Slack
+...
 ###Important files
 
-	./streaming-bench.sh
-		added feature
-			sh streaming-bench ENCRYPT_TEST
-			sh streaming-bench START_ENCRYPT_LOAD		
-
-	./data/src/setup/core.clj
-		creating json messgage tuples to send to kafka
-		connecting benchmark with encryption classes
 
 
 
