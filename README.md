@@ -1,10 +1,10 @@
 # CS408-Team-14
-# 
+#
 <!--
 
 -->
 
-**Team 14** 
+**Team 14**
 
 
 #### Google Drive
@@ -20,13 +20,13 @@ cs408skwad.slack.com
 Contributor          | Info
 -------------------- | -------------
 Kate Wang            | [email]
-	             | 
-Dominic Valentine    | 
-		     | 
+	                   |
+Dominic Valentine    |
+		                 |
 Wilson E Husin       |
                      |                 
 Jiho Choi            | jihochoi1993@gmail.com
-		     |                     
+		                |                     
 Kyle Leaf            |
                      |
 
@@ -39,7 +39,7 @@ Kyle Leaf            |
 
 
 
-                     
+
 <!--
 	Jiho Choi
 		Email	:	jihochoi1993@gmail.com
