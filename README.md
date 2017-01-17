@@ -23,19 +23,19 @@ https://cs408skwad.slack.com/messages/general/
 
 
 #### Contributors
-Name                 | Info
--------------------- | -------------
-Kate Wang            | [email]
-	             |
-Dominic Valentine    |
-		     |
-Wilson E Husin       |
-                     |                 
-Jiho Choi            | choi296@purdue.edu or jihochoi1993@gmail.com
-		     |                     
-Kyle Leaf            |
-                     |
-
+| Name               | Phone Number   | Email              | Info            |
+|--------------------|----------------|--------------------|-----------------|
+| Kate Wang          | [number]       | [email]            |                 |
+|                    |                |                    |                 |
+| Dominic Valentine  |                |                    |                 |
+|                    |                |                    |                 |
+| Wilson E Husin     |                |                    |                 |
+|                    |                |                    |                 |
+| Jiho Choi          | 765-430-5585   | choi296@purdue.edu |                 |
+|                    |                |                    |                 |
+| Kyle Leaf          |                |                    |                 |
+|                    |                |                    |                 |
+		  
 
 
 #### Important files
