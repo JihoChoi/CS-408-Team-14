@@ -31,7 +31,7 @@ Dominic Valentine    |
 		     |
 Wilson E Husin       |
                      |                 
-Jiho Choi            | choi296@purdue.edu
+Jiho Choi            | choi296@purdue.edu | jihochoi1993@gmail.com
 		     |                     
 Kyle Leaf            |
                      |
