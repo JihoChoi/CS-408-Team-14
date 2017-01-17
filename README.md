@@ -26,13 +26,13 @@ cs408skwad.slack.com
 Contributor          | Info
 -------------------- | -------------
 Kate Wang            | [email]
-	                   |
+	             |
 Dominic Valentine    |
-		                 |
+		     |
 Wilson E Husin       |
                      |                 
-Jiho Choi            | jihochoi1993@gmail.com
-		                |                     
+Jiho Choi            | jihochoi1993@gmail.com choi296@purdue.edu
+		     |                     
 Kyle Leaf            |
                      |
 
