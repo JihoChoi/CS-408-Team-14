@@ -23,7 +23,7 @@ https://cs408skwad.slack.com/messages/general/
 
 
 #### Contributors
-| Name               | Phone Number   | Email              | Info            |
+| Name               | Phone          | Email              | Info            |
 |--------------------|----------------|--------------------|-----------------|
 | Kate Wang          | [number]       | [email]            |                 |
 |                    |                |                    |                 |
@@ -31,7 +31,7 @@ https://cs408skwad.slack.com/messages/general/
 |                    |                |                    |                 |
 | Wilson E Husin     |                |                    |                 |
 |                    |                |                    |                 |
-| Jiho Choi          | 765-430-5585   | choi296@purdue.edu |                 |
+| Jiho Choi          | 765-430-5585   | choi296@purdue.edu jihochoi1993@gmail.com |                 |
 |                    |                |                    |                 |
 | Kyle Leaf          |                |                    |                 |
 |                    |                |                    |                 |
