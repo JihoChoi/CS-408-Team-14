@@ -8,20 +8,7 @@
 
 ### README
 
-
-### Google Drive
-https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs
-
-### Slack
-cs408skwad.slack.com
-
-...
-###Important files
-
-
-
-
-###Expansion Contributors
+### Contributors
 
 Contributor          | Info
 -------------------- | -------------
@@ -35,6 +22,24 @@ Jiho Choi            | jihochoi1993@gmail.com
 		     |                     
 Kyle Leaf            |
                      |
+
+
+
+### Google Drive
+https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs
+...
+<br />
+
+### Slack
+cs408skwad.slack.com
+...
+
+### Important files
+...
+<br />
+
+
+
                      
 <!--
 	Jiho Choi
@@ -61,6 +66,7 @@ Kyle Leaf            |
 
 
 
+###References
 
 
 
@@ -68,8 +74,6 @@ Kyle Leaf            |
 
 
 
-
-<br />
 <br />
 <br />
 <br />
