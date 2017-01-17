@@ -4,16 +4,17 @@
 
 -->
 
-
-
-
-###:
-
 **Team 14** 
 
 ### README
+
+
 ### Google Drive
+https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs
+
 ### Slack
+cs408skwad.slack.com
+
 ...
 ###Important files
 
@@ -25,15 +26,15 @@
 Contributor          | Info
 -------------------- | -------------
 Kate Wang            | [email]
-										 | 
+	             | 
 Dominic Valentine    | 
-					 					 | 
+		     | 
 Wilson E Husin       |
                      |                 
 Jiho Choi            | jihochoi1993@gmail.com
-					 					 |                     
+		     |                     
 Kyle Leaf            |
-					 					 |
+                     |
                      
 <!--
 	Jiho Choi
