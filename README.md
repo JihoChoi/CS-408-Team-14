@@ -31,7 +31,7 @@ https://cs408skwad.slack.com/messages/general/
 |                    |                |                    |                 |
 | Wilson E Husin     |                |                    |                 |
 |                    |                |                    |                 |
-| Jiho Choi          | 765-430-5585   | choi296@purdue.edu jihochoi1993@gmail.com |                 |
+| Jiho Choi          | 765-430-5585   | choi296@purdue.edu | jihochoi1993@gmail.com |                 |
 |                    |                |                    |                 |
 | Kyle Leaf          |                |                    |                 |
 |                    |                |                    |                 |
