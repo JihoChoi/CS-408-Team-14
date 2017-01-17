@@ -1,12 +1,20 @@
 # CS408-Team-14
-#
 <!--
 
 -->
 
 **Team 14**
+<!--
+Atom
+	1. cmd + shift + p
+	2. Markdown Preview
+-->
+>>>>>>> 5e982f95a987a5e881d5ed32c8183d9d1ea5f166
 
 
+**Team 14**
+
+#
 #### Google Drive
 https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs
 <br />
