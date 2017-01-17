@@ -23,18 +23,18 @@ https://cs408skwad.slack.com/messages/general/
 
 
 #### Contributors
-| Name               | Phone          | Email              | Info            |
-|--------------------|----------------|--------------------|-----------------|
-| Kate Wang          | [number]       | [email]            |                 |
-|                    |                |                    |                 |
-| Dominic Valentine  |                |                    |                 |
-|                    |                |                    |                 |
-| Wilson E Husin     |                |                    |                 |
-|                    |                |                    |                 |
-| Jiho Choi          | 765-430-5585   | choi296@purdue.edu jihochoi1993@gmail.com  |                 |
-|                    |                |                    |                 |
-| Kyle Leaf          |                |                    |                 |
-|                    |                |                    |                 |
+| Name               | Email                  | Phone          | Info            |
+|--------------------|------------------------|----------------|-----------------|
+| Kate Wang          | [email]                | [number]       |                 |
+|                    |                        |                |                 |
+| Dominic Valentine  |                        |                |                 |
+|                    |                        |                |                 |
+| Wilson E Husin     |                        |                |                 |
+|                    |                        |                |                 |
+| Jiho Choi          | choi296@purdue.edu or jihochoi1993@gmail.com | 765 430 5585  |                 |
+|                    |                        |                |                 |
+| Kyle Leaf          |                        |                |                 |
+|                    |                        |                |                 |
 		  
 
 
@@ -48,8 +48,8 @@ https://cs408skwad.slack.com/messages/general/
 
 <!--
 	Jiho Choi
-		Email	:	jihochoi1993@gmail.com
-		Web		:	http://web.ics.purdue.edu/~choi296/
+		Email	: jihochoi1993@gmail.com
+		Web	: http://web.ics.purdue.edu/~choi296/
 -->
 
 
