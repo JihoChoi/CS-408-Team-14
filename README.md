@@ -13,9 +13,10 @@ Atom
 
 #
 
-#### Google Drive
-https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs
+#### Google Drive (view only)
+https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs?usp=sharing
 <br />
+
 #### Slack
 https://cs408skwad.slack.com/messages/general/
 <br />
