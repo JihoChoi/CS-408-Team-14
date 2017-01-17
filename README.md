@@ -17,7 +17,7 @@ Atom
 https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs
 <br />
 #### Slack
-cs408skwad.slack.com
+https://cs408skwad.slack.com/messages/general/
 <br />
 
 
