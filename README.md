@@ -11,16 +11,16 @@ Atom
 	2. Markdown Preview
 -->
 
-#
+
 
 #### Google Drive (view only)
 https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs?usp=sharing
 <br />
 
+
 #### Slack
 https://cs408skwad.slack.com/messages/general/
 <br />
-
 
 
 #### Contributors
@@ -36,15 +36,11 @@ https://cs408skwad.slack.com/messages/general/
 |                    |                        |                |                 |
 | Kyle Leaf          |                        |                |                 |
 |                    |                        |                |                 |
-		  
 
 
 #### Important files
-...
-...
+
 <br />
-
-
 
 
 <!--
@@ -54,8 +50,7 @@ https://cs408skwad.slack.com/messages/general/
 -->
 
 
-
-####TODO LIST
+#### TODO LIST
 
 	1.
 	2.
@@ -64,34 +59,21 @@ https://cs408skwad.slack.com/messages/general/
 	5.
 
 
-
-
-
-####References 
+#### References 
 
    (TODO Remove if not needed)
-   
+
    Dashboard References
 
       Open Source Bootstrap Framework
-         Dashboard  https://startbootstrap.com/template-overviews/sb-admin-2/
-      
+			https://startbootstrap.com/template-overviews/sb-admin-2/
+
       Sample Bootstrap Dashboard
-         http://skarla.webkom.co/start/projects.html
+			http://skarla.webkom.co/start/projects.html
 
 
 
 >> etc.
-
-
-
-
-
-
-<br />
-<br />
-<br />
-<br />
 
 <!--
  Copyright 2017, Purdue Univ.
