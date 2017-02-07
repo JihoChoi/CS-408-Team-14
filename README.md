@@ -32,7 +32,7 @@ https://cs408skwad.slack.com/messages/general/
 |                    |                        |                |                 |
 | Wilson E Husin     |                        |                |                 |
 |                    |                        |                |                 |
-| Jiho Choi          | choi296@purdue.edu or jihochoi1993@gmail.com | 765 430 5585  |                 |
+| Jiho Choi          | choi296@purdue.edu     | 765 430 5585   |                 |
 |                    |                        |                |                 |
 | Kyle Leaf          |                        |                |                 |
 |                    |                        |                |                 |
@@ -67,12 +67,21 @@ https://cs408skwad.slack.com/messages/general/
 
 
 
-####References
+####References 
+
+   (TODO Remove if not needed)
+   
+   Dashboard References
+
+      Open Source Bootstrap Framework
+         Dashboard  https://startbootstrap.com/template-overviews/sb-admin-2/
+      
+      Sample Bootstrap Dashboard
+         http://skarla.webkom.co/start/projects.html
 
 
 
-
->>etc.
+>> etc.
 
 
 
