@@ -1,10 +1,10 @@
 {
   "name": "coconut-watr",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "CoconutWatr",
-  "main": "app.js",
+  "main": "start.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node start.js"
   },
   "author": {
     "name": "CoconutWatr"
