@@ -1,0 +1,14 @@
+{
+  "name": "coconut-watr",
+  "version": "0.0.0",
+  "description": "CoconutWatr",
+  "main": "app.js",
+  "author": {
+    "name": "KateW"
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  }
+}
