@@ -11,6 +11,10 @@
   },
   "repository": "git@github.com/JihoChoi/CS408-Team-14.git",
   "dependencies": {
+    "express": "*",
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "multer": "*",
     "colors": "1.1.2",
     "passport-google-oauth20": "1.0.0"
   }
