@@ -3,8 +3,11 @@
   "version": "0.0.0",
   "description": "CoconutWatr",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "author": {
-    "name": "KateW"
+    "name": "CoconutWatr"
   },
   "dependencies": {
     "express": "3.4.4",
