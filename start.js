@@ -11,15 +11,18 @@ http.createServer( function (request, response) {
    console.log("Request for " + pathname + " received.");
    
    // Read the requested file content from file system
-   fs.readFile(pathname.substr(1), function (err, data) {
+   fs.readFile("./public/html" + pathname, function (err, data) {
       if (err) {
          console.log(err);
-         // HTTP Status: 404 : NOT FOUND
+         // HTTP Status: 404 [NOT FOUND]
          // Content Type: text/plain
          response.writeHead(404, {'Content-Type': 'text/html'});
-      }else {	
-         //Page found	  
-         // HTTP Status: 200 : OK
+
+         // Write the 404 template
+         response.write(fs.readFile("./public/notfound.html").toString());
+      } else {
+         console.log("Access to " + pathname + " granted.");
+         // HTTP Status: 200 [OK]
          // Content Type: text/plain
          response.writeHead(200, {'Content-Type': 'text/html'});	
          
