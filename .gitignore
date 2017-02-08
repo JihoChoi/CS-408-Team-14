@@ -1,0 +1,6 @@
+# OS junk
+.DS_Store
+[Tt]humbs.db
+
+# Swap files
+.*.swp
