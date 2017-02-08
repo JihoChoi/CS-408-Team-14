@@ -4,7 +4,7 @@
   "description": "CoconutWatr",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "npm install; node app.js"
   },
   "author": {
     "name": "CoconutWatr"
