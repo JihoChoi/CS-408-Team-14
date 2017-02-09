@@ -10,10 +10,7 @@ app.use(express.static(prepath));
 
 app.get('/', function(request, response) {
 	console.log("200".green + " requested page (/) granted.");
-<<<<<<< HEAD
 	// response.sendFile(prepath + "/html/index.html");
-=======
->>>>>>> f1dc9735c7fc20d2d3d6a42fdab1811c2341f954
 	response.sendFile(prepath + "/html/pages/dashboard.html");
 })
 
