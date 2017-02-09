@@ -7,7 +7,8 @@ var port = 8080;
 
 app.get('/', function(request, response) {
 	console.log("200".green + " requested page (/) granted.");
-	response.sendFile(prepath + "/html/index.html");
+	// response.sendFile(prepath + "/html/index.html");
+	response.sendFile(prepath + "/html/pages/dashboard.html");
 })
 
 var server = app.listen(port, host);
