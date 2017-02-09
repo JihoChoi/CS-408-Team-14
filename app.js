@@ -17,10 +17,10 @@ app.engine('handlebars', hand({
 app.set('view engine', 'handlebars');
 app.use('/vendor', express.static(prepath + "/vendor"));
 
-app.get('/', function(request, response) {
+app.get('/', function(req, res) {
 	console.log("200".green + " requested page (/) granted.");
-	response.status(200);
-    response.sendFile(prepath + "/pages/dashboard.html");
+	res.status(200);
+    res.sendFile(prepath + "/pages/dashboard.html");
 });
 
 // Add new pages here
@@ -28,14 +28,14 @@ app.get('/', function(request, response) {
 app.get(/^(.+)$/, function(req, res) { 
     console.log("200".green + " static file request : " + req.params);
     res.status(200);
-    res.sendFile( __dirname + req.params[0]); 
+    res.sendFile(prepath + req.params[0]); 
  });
 
 // If nothing matches, go 404
-app.get('*', function(request, response) {
+app.get('*', function(req, res) {
     console.log("404".red + " requested page not found.");
-    response.status(404);
-    response.sendFile(prepath + "/notfound.html");
+    res.status(404);
+    res.sendFile(prepath + "/notfound.html");
 });
 
 app.listen(app.get('port'), function() {
