@@ -2,9 +2,9 @@
   "name": "coconut-watr",
   "version": "0.0.1",
   "description": "CoconutWatr",
-  "main": "app.js",
+  "main": "start.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node start.js"
   },
   "author": {
     "name": "CoconutWatr"
@@ -12,6 +12,7 @@
   "repository": "git@github.com/JihoChoi/CS408-Team-14.git",
   "dependencies": {
     "express": "*",
+    "express-handlebars": "*",
     "body-parser": "*",
     "cookie-parser": "*",
     "multer": "*",
