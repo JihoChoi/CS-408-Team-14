@@ -10,7 +10,7 @@ app.use(express.static(prepath));
 
 app.get('/', function(request, response) {
 	console.log("200".green + " requested page (/) granted.");
-	response.sendFile(prepath + "/html/index.html");
+	response.sendFile(prepath + "/html/pages/dashboard.html");
 })
 
 app.listen(app.get('port'), function() {
