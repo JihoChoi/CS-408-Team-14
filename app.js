@@ -10,11 +10,7 @@ app.set('port', (process.env.PORT || port));
 app.use(express.static(prepath));
 
 app.set('views', prepath + "/pages");
-app.engine('handlebars', hand({
-    layoutsDir: prepath + "/pages/",
-    defaultLayout: "dashboard"
-}));
-app.set('view engine', 'handlebars');
+
 app.use('/vendor', express.static(prepath + "/vendor"));
 
 app.get('/', function(req, res) {
