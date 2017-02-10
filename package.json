@@ -12,6 +12,7 @@
   "repository": "git@github.com/JihoChoi/CS408-Team-14.git",
   "dependencies": {
     "express": "*",
+    "express-stormpath": "*",
     "body-parser": "*",
     "cookie-parser": "*",
     "multer": "*",
