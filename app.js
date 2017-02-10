@@ -28,15 +28,16 @@ app.use(stormpath.init(app, {
     website: true
 }));
 
+// DIRECTORY HAS TO BE REOGRANIZED
 
+// Landing page
 app.get('/', function(req, res) {
 	console.log("200".green + " requested page (/) granted.");
 	res.status(200);
     res.sendFile(prepath + "/pages/dashboard.html");
 });
 
-// Add new pages here
-
+// Everything else
 app.get(/^(.+)$/, function(req, res) { 
     console.log("200".green + " static file request : " + req.params);
     res.status(200);
@@ -50,6 +51,7 @@ app.get('*', function(req, res) {
     res.sendFile(prepath + "/notfound.html");
 });
 
+// Listen for requests
 app.on('stormpath.ready', function() {
     app.listen(app.get('port'), function() {
         console.log("LISTENING".magenta + " on port " + app.get('port'));
