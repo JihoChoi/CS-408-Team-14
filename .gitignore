@@ -10,3 +10,6 @@ npm-debug.log
 
 # IDE files
 .idea/*
+
+# node_modules to keep things clean
+node_modules/
