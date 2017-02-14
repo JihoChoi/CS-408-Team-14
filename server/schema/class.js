@@ -1,12 +1,17 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var user = import(user.js);
+var models = import(user.js);
+var User = mongoose.model("User");
 
-var class = new Schema({
+var Class1 = new Schema({
 	name: String,
 	subject: String,
 	courseNumber: Number,
-	students: [type: user],
+	students: [type: User],
 	numberOfStudents: Number
 
 });
+
+
+var Class = mongoose.model('Class', Class1);
+module.exports = Class;
