@@ -38,11 +38,13 @@ app.get('/', function(req, res) {
 });
 
 // Everything else
+/*
 app.get(/^(.+)$/, function(req, res) { 
     console.log("200".green + " static file request : " + req.params);
     res.status(200);
     res.sendFile(prepath + req.params[0]); 
  });
+*/
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
