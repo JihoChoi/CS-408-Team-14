@@ -44,7 +44,7 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
-        console.log("200".green + " requested page " + req.url + " granted.");
+        console.log("200 ".green + req.user.email + " requested page " + req.url + " granted.");
         res.status(200);
         res.sendFile(prepath + "/pages/dashboard.html");
     } else {
