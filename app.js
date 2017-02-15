@@ -38,7 +38,7 @@ app.use(stormpath.init(app, {
 
 // Favicon.ico
 app.get('/favicon.ico', function(req, res) {
-    res.sendFile(prepath + "/icons/favicon.ico");
+    res.sendFile(__dirname + "/public/icons/favicon.ico");
 })
 
 // Landing page
