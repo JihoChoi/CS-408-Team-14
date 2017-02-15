@@ -7,7 +7,7 @@ var stormpath = require('express-stormpath');
 // Variables
 var prepath = __dirname + "/public/html";
 var host = "127.0.0.1";
-var port = 5000;
+var port = 3000;
 
 // Set stuff for basic configurations
 app.set('port', (process.env.PORT || port));
@@ -29,21 +29,28 @@ app.use(stormpath.init(app, {
         logout: {
             enabled: true
         }
-    },
-    postLogoutHandler: function (account, req, res, next) {
-        console.log('User', account.email, 'just logged out!');
-        res.redirect(302, '/').end();
-    },
-    website: true
+    }
 }));
 
 // DIRECTORY HAS TO BE REOGRANIZED
 
 // Landing page
-app.get('/', function(req, res) {
-	console.log("200".green + " requested page (/) granted.");
-	res.status(200);
-    res.sendFile(prepath + "/index.html");
+app.get('/', stormpath.getUser, function(req, res) {
+    console.log("Incoming request made by user: " + req.user.email);
+	if (req.user) {
+        console.log("200".green + " requested page " + req.url + " granted.");
+        res.status(200);
+        res.sendFile(prepath + "/pages/dashboard.html");
+    } else {
+        console.log("200".green + " requested page " + req.url + " granted.");
+        res.status(200);
+        res.sendFile(prepath + "/index.html");
+    }
+});
+
+app.get('/secret', stormpath.authenticationRequired, function (req, res) {
+  console.log("Secret page requested.");
+  res.json(req.user);
 });
 
 // Account authentication
@@ -66,7 +73,7 @@ app.get(/^(.+)$/, function(req, res) {
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
-    console.log("404".red + " requested page not found.");
+    console.log("404".red + " requested page " + req.url + " not found.");
     res.status(404);
     res.sendFile(prepath + "/notfound.html");
 });

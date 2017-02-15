@@ -4,7 +4,7 @@
   "description": "CoconutWatr",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "nodemon app.js"
   },
   "author": {
     "name": "CoconutWatr"
@@ -13,6 +13,7 @@
   "dependencies": {
     "colors": "1.1.2",
     "express": "*",
-    "express-stormpath": "*"
+    "express-stormpath": "*",
+    "nodemon": "^1.11.0"
   }
 }
