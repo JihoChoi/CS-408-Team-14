@@ -32,7 +32,14 @@ app.use(stormpath.init(app, {
     }
 }));
 
-// DIRECTORY HAS TO BE REOGRANIZED
+
+
+// Directories
+
+// Favicon.ico
+app.get('/favicon.ico', function(req, res) {
+    res.sendFile(prepath + "/icons/favicon.ico");
+})
 
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
@@ -47,28 +54,16 @@ app.get('/', stormpath.getUser, function(req, res) {
     }
 });
 
+// Testing user session
 app.get('/secret', stormpath.authenticationRequired, function (req, res) {
   console.log("Secret page requested.");
   res.json(req.user);
 });
 
-// Account authentication
-/*
-app.get('/auth/google', function(req, res) {
-    // Some stuff
+// Quick fix of deprecated morris-data.js
+app.get('/data/morris-data.js', function(req, res) {
+    ;
 });
-app.get('/auth/google/callback', function(req, res) {
-    // Some stuff
-});
-*/
-// Everything else
-/*
-app.get(/^(.+)$/, function(req, res) { 
-    console.log("200".green + " static file request : " + req.params);
-    res.status(200);
-    res.sendFile(prepath + req.params[0]); 
- });
-*/
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
@@ -76,6 +71,8 @@ app.get('*', function(req, res) {
     res.status(404);
     res.sendFile(prepath + "/notfound.html");
 });
+
+
 
 // Listen for requests
 app.on('stormpath.ready', function() {
