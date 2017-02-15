@@ -12,7 +12,7 @@ var port = 3000;
 // Set stuff for basic configurations
 app.set('port', (process.env.PORT || port));
 app.use(express.static(prepath));
-app.set('views', prepath + "/pages");
+// app.set('views', prepath + "/pages");
 app.use('/vendor', express.static(prepath + "/vendor"));
 
 // Stormpath stuff
@@ -36,7 +36,6 @@ app.use(stormpath.init(app, {
 
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
-    console.log("Incoming request made by user: " + req.user.email);
 	if (req.user) {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
@@ -44,7 +43,7 @@ app.get('/', stormpath.getUser, function(req, res) {
     } else {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
-        res.sendFile(prepath + "/index.html");
+        res.sendFile(prepath + "/pages/index.html");
     }
 });
 
