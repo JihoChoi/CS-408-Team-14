@@ -25,6 +25,11 @@ app.use(stormpath.init(app, {
     application: {
         href: "https://api.stormpath.com/v1/applications/4sasSt9CuuGAi6LjYR5KZQ"
     },
+    web: {
+        register: {
+            nextUri: '/'
+        }
+    },
     website: true
 }));
 
@@ -37,6 +42,15 @@ app.get('/', function(req, res) {
     res.sendFile(prepath + "/pages/dashboard.html");
 });
 
+// Account authentication
+/*
+app.get('/auth/google', function(req, res) {
+    // Some stuff
+});
+app.get('/auth/google/callback', function(req, res) {
+    // Some stuff
+});
+*/
 // Everything else
 /*
 app.get(/^(.+)$/, function(req, res) { 
