@@ -26,9 +26,13 @@ app.use(stormpath.init(app, {
         href: "https://api.stormpath.com/v1/applications/4sasSt9CuuGAi6LjYR5KZQ"
     },
     web: {
-        register: {
-            nextUri: '/'
+        logout: {
+            enabled: true
         }
+    },
+    postLogoutHandler: function (account, req, res, next) {
+        console.log('User', account.email, 'just logged out!');
+        res.redirect(302, '/').end();
     },
     website: true
 }));
@@ -39,7 +43,7 @@ app.use(stormpath.init(app, {
 app.get('/', function(req, res) {
 	console.log("200".green + " requested page (/) granted.");
 	res.status(200);
-    res.sendFile(prepath + "/pages/dashboard.html");
+    res.sendFile(prepath + "/index.html");
 });
 
 // Account authentication
