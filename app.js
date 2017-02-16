@@ -17,6 +17,7 @@ app.use('/vendor', express.static(prepath + "/vendor"));
 
 // Stormpath stuff
 app.use(stormpath.init(app, {
+    enableGoogle: true,
     client: {
         apiKey: {
             file: __dirname + "/config/stormpath/apikey.properties"
@@ -38,6 +39,7 @@ app.use(stormpath.init(app, {
 
 // Favicon.ico
 app.get('/favicon.ico', function(req, res) {
+    console.log("Sending favicon.ico as a file.");
     res.sendFile(__dirname + "/public/icons/favicon.ico");
 })
 
@@ -69,7 +71,7 @@ app.get('/data/morris-data.js', function(req, res) {
 app.get('*', function(req, res) {
     console.log("404".red + " requested page " + req.url + " not found.");
     res.status(404);
-    res.sendFile(prepath + "/notfound.html");
+    res.sendFile(prepath + "/pages/notfound.html");
 });
 
 
