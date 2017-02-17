@@ -5,7 +5,7 @@ var colors = require('colors');
 var stormpath = require('express-stormpath');
 
 // Variables
-var prepath = __dirname + "/public/html/pages";
+var prepath = __dirname + "/public/html";
 var host = "127.0.0.1";
 var port = 3000;
 
@@ -13,6 +13,7 @@ var port = 3000;
 app.set('port', (process.env.PORT || port));
 app.use(express.static(prepath));
 app.set('view engine', "jade");
+app.set('views', prepath + '/pages')
 app.use('/vendor', express.static(prepath + "/vendor"));
 
 // Stormpath stuff
@@ -48,13 +49,13 @@ app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
         console.log("200 ".green + req.user.email + " requested page " + req.url + " granted.");
         res.status(200);
-        res.render(prepath + "/pages/dashboard", {
+        res.render("dashboard", {
                 user: req.user
             });
     } else {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
-        res.render(prepath + "/pages/index");
+        res.render(prepath + "/index");
     }
 });
 
@@ -73,7 +74,7 @@ app.get('/data/morris-data.js', function(req, res) {
 app.get('*', function(req, res) {
     console.log("404".red + " requested page " + req.url + " not found.");
     res.status(404);
-    res.render(prepath + "/pages/notfound");
+    res.render(prepath + "/notfound");
 });
 
 
