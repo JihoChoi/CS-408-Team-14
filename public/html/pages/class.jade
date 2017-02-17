@@ -1,0 +1,328 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+        title Coconut Watr
+        // Bootstrap Core CSS
+        link(href='../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+        // MetisMenu CSS
+        link(href='../vendor/metisMenu/metisMenu.min.css', rel='stylesheet')
+        // Custom CSS
+        link(href='../css/style.css', rel='stylesheet')
+        // Morris Charts CSS
+        link(href='../vendor/morrisjs/morris.css', rel='stylesheet')
+        // Custom Fonts
+        link(href='../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+        // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        // WARNING: Respond.js doesn't work if you view the page via file://
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+          script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body
+        #wrapper
+            // Navigation
+            nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+                .navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='index.html') Coconut Watr
+                // /.navbar-header
+                ul.nav.navbar-top-links.navbar-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-bell.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-alerts
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-comment.fa-fw
+                                        |  New Comment
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-twitter.fa-fw
+                                        |  3 New Followers
+                                        span.pull-right.text-muted.small 12 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-envelope.fa-fw
+                                        |  Message Sent
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-tasks.fa-fw
+                                        |  New Task
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-upload.fa-fw
+                                        |  Server Rebooted
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a.text-center(href='#')
+                                    strong See All Alerts
+                                    i.fa.fa-angle-right
+                        // /.dropdown-alerts
+                    // /.dropdown
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-user.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-user
+                            li
+                                a(href='#')
+                                    i.fa.fa-user.fa-fw
+                                    |  User Profile
+                            li
+                                a(href='#')
+                                    i.fa.fa-gear.fa-fw
+                                    |  Settings
+                            li.divider
+                            li
+                                a(href='login.html')
+                                    i.fa.fa-sign-out.fa-fw
+                                    |  Logout
+                        // /.dropdown-user
+                    // /.dropdown
+                // /.navbar-top-links
+                .navbar-default.sidebar(role='navigation')
+                    .sidebar-nav.navbar-collapse
+                        ul#side-menu.nav
+                            li
+                                a(href='dashboard.html')
+                                    i.fa.fa-dashboard.fa-fw
+                                    |  Dashboard
+                            // <li>
+                            // <a href="tables.html"><i class="fa fa-table fa-fw"></i> Calendar</a>
+                            // </li>
+                            li
+                                a(href='#')
+                                    i.fa.fa-sitemap.fa-fw
+                                    |  Courses
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li
+                                        a(href='#') CS180
+                                    li
+                                        a(href='#') CS240
+                                    li
+                                        a(href='#') MA251
+                                    li
+                                        a(href='#') HIST101
+                                // /.nav-second-level
+                    // /.sidebar-collapse
+                // /.navbar-static-side
+            #page-wrapper
+                .row
+                    .col-lg-12
+                        h1.page-header CS180
+                    // /.col-lg-12
+                // /.row
+                .row
+                    .col-lg-6
+                        .panel.panel-default
+                            .panel-heading
+                                | CS180 Problem Solving and Object-Oriented Programming
+                            // /.panel-heading
+                            .panel-body(style='height:240px;overflow:auto;>\
+              <!-- Nav tabs -->\
+              <ul class=', nav='')
+                                // Tab panes
+                                .tab-content
+                                    #home.tab-pane.fade.in.active
+                                        h4 Discription
+                                        p
+                                            | Problem solving and algorithms, implementation of algorithms in a high level programming
+                                            | language, conditionals, the iterative approach and debugging, collections of data,
+                                            | searching and sorting, solving problems by decomposition, the object-oriented approach,
+                                            | subclasses of existing classes, handling exceptions that occur when the program is running,
+                                            | graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
+                                            | topics from other CS courses.
+                                        p
+                                            | Problem solving and algorithms, implementation of algorithms in a high level programming
+                                            | language, conditionals, the iterative approach and debugging, collections of data,
+                                            | searching and sorting, solving problems by decomposition, the object-oriented approach,
+                                            | subclasses of existing classes, handling exceptions that occur when the program is running,
+                                            | graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
+                                            | topics from other CS courses.
+                                        p
+                                            | Problem solving and algorithms, implementation of algorithms in a high level programming
+                                            | language, conditionals, the iterative approach and debugging, collections of data,
+                                            | searching and sorting, solving problems by decomposition, the object-oriented approach,
+                                            | subclasses of existing classes, handling exceptions that occur when the program is running,
+                                            | graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
+                                            | topics from other CS courses.
+                                    #Links.tab-pane.fade
+                                        h4 Helpful Links
+                                        p http://courses.cs.purdue.edu/spring17:start#
+                                        p http://courses.cs.purdue.edu/cs18000:spring16:start
+                                        p https://www.helpguide.org/articles/depression/dealing-with-depression.htm
+                            // /.panel-body
+                        // /.panel
+                    .col-lg-6
+                        .panel.panel-default
+                            .panel-heading
+                                | Classmates
+                            // /.panel-heading
+                            .panel-body(style='height:240px;overflow:auto;')
+                                .table-responsive
+                                    table.table
+                                        thead
+                                            tr
+                                                th #
+                                                th First Name
+                                                th Last Name
+                                                th Username
+                                        tbody
+                                            tr.success
+                                                td 1
+                                                td Kyle
+                                                td Korver
+                                                td @3sss4days
+                                            tr.info
+                                                td 2
+                                                td J. R.
+                                                td Smith
+                                                td @failure
+                                            tr.warning
+                                                td 3
+                                                td Kyrie
+                                                td Irving
+                                                td @irvingKyrie
+                                            tr.danger
+                                                td 4
+                                                td LeBron
+                                                td James
+                                                td @therealLeBron
+                                            tr.success
+                                                td 5
+                                                td Kevin
+                                                td Love
+                                                td @bigman
+                                            tr.success
+                                                td 5
+                                                td Kevin
+                                                td Love
+                                                td @bigman
+                                            tr.success
+                                                td 5
+                                                td Kevin
+                                                td Love
+                                                td @bigman
+                                            tr.success
+                                                td 5
+                                                td Kevin
+                                                td Love
+                                                td @bigman
+                                // /.table-responsive
+                            // /.panel-body
+                        // /.panel
+                .row
+                    .col-lg-8
+                        .panel.panel-default
+                            .panel-heading
+                                i.fa.fa-bar-chart-o.fa-fw
+                                |  Summary
+                            // /.panel-heading
+                            .panel-body(style='height:500px;overflow:auto;')
+                                .well.well-sm
+                                    h4 Small Well
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                                .well.well-sm
+                                    h4 Small Well
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                                .well.well-sm
+                                    h4 Small Well
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                                .well.well-sm
+                                    h4 Small Well
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                                .well.well-sm
+                                    h4 Small Well
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                                .well.well-sm
+                                    h4 Small Well
+                                    p
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+                                // /.row
+                            // /.panel-body
+                            .panel-footer
+                                .input-group
+                                    input#btn-input.form-control.input-sm(type='text', placeholder='Type your message here...')
+                                    span.input-group-btn
+                                        button#btn-chat.btn.btn-warning.btn-sm
+                                            | Post
+                        // /.panel
+                    .col-lg-4
+                        .panel.panel-default
+                            .panel-heading
+                                i.fa.fa-bell.fa-fw
+                                |  Events
+                                span.pull-right(type='button', onclick="alert('Under Construction Yo')") Create Event
+                            // /.panel-heading
+                            .panel-body(style='height:200px;overflow:auto;')
+                                a.list-group-item(href='#')
+                                    i.fa.fa-tasks.fa-fw
+                                    |  Study Session
+                                    span.pull-right.text-muted.small
+                                        em Tuesday 6:00 P.M.
+                                a.list-group-item(href='#')
+                                    i.fa.fa-bolt.fa-fw
+                                    |  Second Exam
+                                    span.pull-right.text-muted.small
+                                        em Wednesday 8:30 P.M.
+                                a.list-group-item(href='#')
+                                    i.fa.fa-comment.fa-fw
+                                    |  Group Meeting
+                                    span.pull-right.text-muted.small
+                                        em 3/13 10:00 P.M.
+                                a.list-group-item(href='#')
+                                    i.fa.fa-comment.fa-fw
+                                    |  Group Meeting
+                                    span.pull-right.text-muted.small
+                                        em 3/20 10:00 P.M.
+                                a.list-group-item(href='#')
+                                    i.fa.fa-comment.fa-fw
+                                    |  Group Meeting
+                                    span.pull-right.text-muted.small
+                                        em 3/20 10:00 P.M.
+                                a.list-group-item(href='#')
+                                    i.fa.fa-comment.fa-fw
+                                    |  Group Meeting
+                                    span.pull-right.text-muted.small
+                                        em 3/20 10:00 P.M.
+                    // /.panel-body
+                // jQuery
+                script(src='../vendor/jquery/jquery.min.js')
+                // Bootstrap Core JavaScript
+                script(src='../vendor/bootstrap/js/bootstrap.min.js')
+                // Metis Menu Plugin JavaScript
+                script(src='../vendor/metisMenu/metisMenu.min.js')
+                // Morris Charts JavaScript
+                script(src='../vendor/raphael/raphael.min.js')
+                script(src='../vendor/morrisjs/morris.min.js')
+                script(src='../data/morris-data.js')
+                // Custom Theme JavaScript
+                script(src='../js/main.js')
