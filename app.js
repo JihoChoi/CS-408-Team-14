@@ -55,7 +55,7 @@ app.get('/', stormpath.getUser, function(req, res) {
     } else {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
-        res.render(prepath + "/index");
+        res.render("index");
     }
 });
 
@@ -74,7 +74,7 @@ app.get('/data/morris-data.js', function(req, res) {
 app.get('*', function(req, res) {
     console.log("404".red + " requested page " + req.url + " not found.");
     res.status(404);
-    res.render(prepath + "/notfound");
+    res.render("notfound");
 });
 
 
