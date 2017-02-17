@@ -3,8 +3,6 @@ var express = require('express');
 var app = express();
 var colors = require('colors');
 var stormpath = require('express-stormpath');
-var mongoose = require('mongoose');
-var course = require('./server/schema/class.js');
 
 // Variables
 var prepath = __dirname + "/public/html";
@@ -12,11 +10,6 @@ var host = "127.0.0.1";
 var port = 3000;
 
 // Set stuff for basic configurations
-mongoose.connect('mongodb://application:coconutWatr@ds153179.mlab.com:53179/coconutwatr');
-var userCourse = new course({
-    name: 'someone',
-    semester: '1'
-});
 app.set('port', (process.env.PORT || port));
 app.use(express.static(prepath));
 app.set('view engine', "jade");
@@ -49,7 +42,7 @@ app.use(stormpath.init(app, {
 app.get('/favicon.ico', function(req, res) {
     console.log("Sending favicon.ico as a file.");
     res.sendFile(__dirname + "/public/icons/favicon.ico");
-})
+});
 
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
