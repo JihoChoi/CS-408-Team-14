@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var models = require('./schema');
 var Class = mongoose.model("Class");
 var User = mongoose.model("User");
 
 var GroupSchema = new Schema({
 	name: String,
-	class: Class,
+	className: Class,
 	students: [type: User],
 
 });
