@@ -252,9 +252,24 @@ html(lang='en')
               li.divider
               |                         
               li
-                a(href='login.html')
-                  i.fa.fa-sign-out.fa-fw
-                  |  Logout
+                form#logout(name='logout', method='post', action='/logout')
+                  input(type='hidden', name='perform_logout', value='1')
+                  | &#x9;&#x9;
+                  input#perform_logout_button(type='submit', value='Logout')
+                  | &#x9;&#x9;
+                  a#logout_link(href='/logout', style='display:none;')
+                    i.fa.fa-sign-out.fa-fw
+                    | Logout
+                | &#x9;
+                | &#x9;
+                | &#x9;
+                script(type='text/javascript').
+                  // Assuming you're using jQuery...
+                  $('#perform_logout_button').hide();
+                  $('#logout_link').click(function () {
+                    document.logout_form.submit();
+                    return false;
+                  });
             // /.dropdown-user
           // /.dropdown
         // /.navbar-top-links
