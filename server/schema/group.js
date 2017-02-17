@@ -1,13 +1,12 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var models = require('./schema');
-var Class = mongoose.model("Class");
-var User = mongoose.model("User");
+var Class = require("./class.js");
+var User = require("./user.js");
 
 var GroupSchema = new Schema({
 	name: String,
-	className: Class,
-	students: [type: User],
+	className: {type: mongoose.Schema.Types.ObjectId, ref:'Class'},
+	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'User'}]
 
 });
 
