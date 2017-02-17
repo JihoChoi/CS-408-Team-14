@@ -13,7 +13,7 @@ var Class1 = new Schema({
 	students: [type: User],
 	events: [type: Event],
 	posts: [type: Post],
-	subgroups: [type Group]
+	subgroups: [type: Group]
 
 });
 
