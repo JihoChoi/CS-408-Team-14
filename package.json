@@ -2,21 +2,19 @@
   "name": "coconut-watr",
   "version": "0.0.1",
   "description": "CoconutWatr",
-  "main": "start.js",
+  "main": "app.js",
   "scripts": {
-    "start": "node start.js"
+    "start": "nodemon app.js"
   },
   "author": {
     "name": "CoconutWatr"
   },
   "repository": "git@github.com/JihoChoi/CS408-Team-14.git",
   "dependencies": {
-    "express": "*",
-    "express-handlebars": "*",
-    "body-parser": "*",
-    "cookie-parser": "*",
-    "multer": "*",
     "colors": "1.1.2",
-    "passport-google-oauth20": "1.0.0"
+    "express": "*",
+    "express-stormpath": "*",
+    "mongoose": "^4.8.3",
+    "nodemon": "^1.11.0"
   }
 }

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Coconut Watr</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/style.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<div id="wrapper">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">Coconut Watr</a>
+        </div>
+        <!-- /.navbar-header -->
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-bell fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-alerts">
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-comment fa-fw"></i> New Comment
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-twitter fa-fw"></i> 3 New Followers
+                                <span class="pull-right text-muted small">12 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-envelope fa-fw"></i> Message Sent
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-tasks fa-fw"></i> New Task
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="#">
+                            <div>
+                                <i class="fa fa-upload fa-fw"></i> Server Rebooted
+                                <span class="pull-right text-muted small">4 minutes ago</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a class="text-center" href="#">
+                            <strong>See All Alerts</strong>
+                            <i class="fa fa-angle-right"></i>
+                        </a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-alerts -->
+            </li>
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                    </li>
+                    <!--<li>-->
+                    <!--<a href="tables.html"><i class="fa fa-table fa-fw"></i> Calendar</a>-->
+                    <!--</li>-->
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap fa-fw"></i> Courses<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="#">CS180</a>
+                            </li>
+                            <li>
+                                <a href="#">CS240</a>
+                            </li>
+                            <li>
+                                <a href="#">MA251</a>
+                            </li>
+                            <li>
+                                <a href="#">HIST101</a>
+                            </li>
+                        </ul>
+                        <!-- /.nav-second-level -->
+                    </li>
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">CS180</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+
+
+
+
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        CS180 Problem Solving and Object-Oriented Programming
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body" style="height:240px;overflow:auto;>
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="home">
+                            <h4>Discription</h4>
+                            <p>Problem solving and algorithms, implementation of algorithms in a high level programming
+                                language, conditionals, the iterative approach and debugging, collections of data,
+                                searching and sorting, solving problems by decomposition, the object-oriented approach,
+                                subclasses of existing classes, handling exceptions that occur when the program is running,
+                                graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
+                                topics from other CS courses.</p>
+                            <p>Problem solving and algorithms, implementation of algorithms in a high level programming
+                                language, conditionals, the iterative approach and debugging, collections of data,
+                                searching and sorting, solving problems by decomposition, the object-oriented approach,
+                                subclasses of existing classes, handling exceptions that occur when the program is running,
+                                graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
+                                topics from other CS courses.</p>
+                            <p>Problem solving and algorithms, implementation of algorithms in a high level programming
+                                language, conditionals, the iterative approach and debugging, collections of data,
+                                searching and sorting, solving problems by decomposition, the object-oriented approach,
+                                subclasses of existing classes, handling exceptions that occur when the program is running,
+                                graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
+                                topics from other CS courses.</p>
+                        </div>
+                        <div class="tab-pane fade" id="Links">
+                            <h4>Helpful Links</h4>
+                            <p>http://courses.cs.purdue.edu/spring17:start#</p>
+                            <p>http://courses.cs.purdue.edu/cs18000:spring16:start</p>
+                            <p>https://www.helpguide.org/articles/depression/dealing-with-depression.htm</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Classmates
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="height:240px;overflow:auto;">
+
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Username</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="success">
+                                <td>1</td>
+                                <td>Kyle</td>
+                                <td>Korver</td>
+                                <td>@3sss4days</td>
+                            </tr>
+                            <tr class="info">
+                                <td>2</td>
+                                <td>J. R.</td>
+                                <td>Smith</td>
+                                <td>@failure</td>
+                            </tr>
+                            <tr class="warning">
+                                <td>3</td>
+                                <td>Kyrie</td>
+                                <td>Irving</td>
+                                <td>@irvingKyrie</td>
+                            </tr>
+                            <tr class="danger">
+                                <td>4</td>
+                                <td>LeBron</td>
+                                <td>James</td>
+                                <td>@therealLeBron</td>
+                            </tr>
+                            <tr class="success">
+                                <td>5</td>
+                                <td>Kevin</td>
+                                <td>Love</td>
+                                <td>@bigman</td>
+                            </tr>
+                            <tr class="success">
+                                <td>5</td>
+                                <td>Kevin</td>
+                                <td>Love</td>
+                                <td>@bigman</td>
+                            </tr>
+                            <tr class="success">
+                                <td>5</td>
+                                <td>Kevin</td>
+                                <td>Love</td>
+                                <td>@bigman</td>
+                            </tr>
+                            <tr class="success">
+                                <td>5</td>
+                                <td>Kevin</td>
+                                <td>Love</td>
+                                <td>@bigman</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-8">
+
+
+            <div class="panel panel-default" >
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Summary
+
+                </div>
+                <!-- /.panel-heading -->
+
+                <div class="panel-body" style="height:500px;overflow:auto;">
+
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+
+
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-body -->
+
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                                        <button class="btn btn-warning btn-sm" id="btn-chat">
+                                            Post
+                                        </button>
+                                    </span>
+                    </div>
+                </div>
+
+            </div>
+            <!-- /.panel -->
+
+        </div>
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> Events
+                    <span class="pull-right" type="button" onclick="alert('Under Construction Yo')">Create Event</span>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="height:200px;overflow:auto;">
+
+
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-tasks fa-fw"></i> Study Session
+                        <span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-bolt fa-fw"></i> Second Exam
+                        <span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>
+                                        </span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-comment fa-fw"></i> Group Meeting
+                        <span class="pull-right text-muted small"><em>3/13 10:00 P.M.</em>
+                                        </span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-comment fa-fw"></i> Group Meeting
+                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
+                                        </span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-comment fa-fw"></i> Group Meeting
+                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
+                                        </span>
+                    </a>
+                    <a href="#" class="list-group-item">
+                        <i class="fa fa-comment fa-fw"></i> Group Meeting
+                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
+                                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- /.panel-body -->
+
+
+    </div>
+
+
+
+
+
+    <!-- jQuery -->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="../vendor/raphael/raphael.min.js"></script>
+    <script src="../vendor/morrisjs/morris.min.js"></script>
+    <script src="../data/morris-data.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="../js/main.js"></script>
+
+</body>
+
+</html>

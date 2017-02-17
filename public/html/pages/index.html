@@ -1,0 +1,48 @@
+<!-- 
+
+	Purdue Univ. Spring 2017
+
+	CS408 Software Testing Team 14 
+
+	Team member
+		Kate Wang, Dominic Valentine, Wilson E Husin, Jiho Choi, Kyle Leaf
+
+
+-->
+
+<!-- this index.html will redirect to pages/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<!--
+	<meta http-equiv="refresh" content="0;url=pages/index.html">
+	-->
+	<title>Coconut Watr</title>
+	<!--
+	<script language="javascript">
+    	window.location.href = "./pages/dashboard.html"
+	</script>
+	-->
+</head>
+<body>
+	<a href="/login">Login</a> 
+	<br>
+	<a href="/register">Register</a>
+	<br>
+	<form name="logout" id="logout" method="post" action="/logout">
+		<input type="hidden" name="perform_logout" value="1">
+		<input type="submit" value="Logout" id="perform_logout_button">
+		<a href="/logout" style="display:none;" id="logout_link">Logout</a>
+	</form>
+
+	
+	
+	<script type="text/javascript">
+		// Assuming you're using jQuery...
+		$('#perform_logout_button').hide();
+		$('#logout_link').click(function() {
+			document.logout_form.submit(); return false; });
+	</script>
+</body>
+</html>

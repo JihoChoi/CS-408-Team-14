@@ -3,7 +3,7 @@ var fs = require('fs');
 var url = require('url');
 var colors = require('colors');
 var port = 8080;
-var notfound = fs.readFileSync("./public/html/notfound.html");
+var notfound = fs.readFileSync("./public/html/pages/notfound.html");
 
 // Create a server
 http.createServer( function (request, response) {  
