@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var User = require("./user.js");
+var Student = require("./student.js");
 var Class = require("./class.js");
 
 var EventSchema = new Schema({
@@ -9,7 +9,7 @@ var EventSchema = new Schema({
 	type: String,
 	className: {type:mongoose.Schema.Types.ObjectId, ref: 'Class'},
 	startTime: Date,
-	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'User'}]
+	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}]
 });
 
 var Event = mongoose.model('Event', EventSchema);

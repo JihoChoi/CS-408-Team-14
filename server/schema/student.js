@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var UserSchema = new Schema({
+var StudentSchema = new Schema({
 	username : String,
 	email: String,
 	courses: [{type: mongoose.Schema.Types.ObjectId, ref:'Class'}],
@@ -10,7 +10,7 @@ var UserSchema = new Schema({
 });
 
 
-var User = mongoose.model('User', UserSchema);
-module.exports = User;
+var Student = mongoose.model('Student', StudentSchema);
+module.exports = Student;
 
 
