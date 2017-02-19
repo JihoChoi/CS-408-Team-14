@@ -1,671 +1,417 @@
 doctype html
 html(lang='en')
-  head
-    meta(charset='utf-8')
-    |     
-    meta(http-equiv='X-UA-Compatible', content='IE=edge')
-    |     
-    meta(name='viewport', content='width=device-width, initial-scale=1')
-    |     
-    meta(name='description', content='')
-    |     
-    meta(name='author', content='')
-    |     
-    title Coconut Watr
-    // Bootstrap Core CSS
-    link(href='../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
-    // MetisMenu CSS
-    link(href='../vendor/metisMenu/metisMenu.min.css', rel='stylesheet')
-    // Custom CSS
-    link(href='../css/style.css', rel='stylesheet')
-    // Morris Charts CSS
-    link(href='../vendor/morrisjs/morris.css', rel='stylesheet')
-    // Custom Fonts
-    link(href='../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
-    // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
-    // WARNING: Respond.js doesn't work if you view the page via file://
-    //if lt IE 9
-      script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
-      |         
-      script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
-  body
-    #wrapper
-      // Navigation
-      nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-            span.sr-only Toggle navigation
-            |                     
-            span.icon-bar
-            |                     
-            span.icon-bar
-            |                     
-            span.icon-bar
-          |                 
-          a.navbar-brand(href='index.html') Coconut Watr
-        // /.navbar-header
-        ul.nav.navbar-top-links.navbar-right
-          li.dropdown
-            a.dropdown-toggle(data-toggle='dropdown', href='#')
-              i.fa.fa-envelope.fa-fw
-              |  
-              i.fa.fa-caret-down
-            |                     
-            ul.dropdown-menu.dropdown-messages
-              li
-                a(href='#')
-                  div
-                    strong John Smith
-                    |                                     
-                    span.pull-right.text-muted
-                      em Yesterday
-                  |                                 
-                  div
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    strong John Smith
-                    |                                     
-                    span.pull-right.text-muted
-                      em Yesterday
-                  |                                 
-                  div
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    strong John Smith
-                    |                                     
-                    span.pull-right.text-muted
-                      em Yesterday
-                  |                                 
-                  div
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-              |                         
-              li.divider
-              |                         
-              li
-                a.text-center(href='#')
-                  strong Read All Messages
-                  |                                 
-                  i.fa.fa-angle-right
-            // /.dropdown-messages
-          // /.dropdown
-          li.dropdown
-            a.dropdown-toggle(data-toggle='dropdown', href='#')
-              i.fa.fa-tasks.fa-fw
-              |  
-              i.fa.fa-caret-down
-            |                     
-            ul.dropdown-menu.dropdown-tasks
-              li
-                a(href='#')
-                  div
-                    p
-                      strong Task 1
-                      |                                         
-                      span.pull-right.text-muted 40% Complete
-                    |                                     
-                    .progress.progress-striped.active
-                      .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
-                        span.sr-only 40% Complete (success)
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    p
-                      strong Task 2
-                      |                                         
-                      span.pull-right.text-muted 20% Complete
-                    |                                     
-                    .progress.progress-striped.active
-                      .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
-                        span.sr-only 20% Complete
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    p
-                      strong Task 3
-                      |                                         
-                      span.pull-right.text-muted 60% Complete
-                    |                                     
-                    .progress.progress-striped.active
-                      .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
-                        span.sr-only 60% Complete (warning)
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    p
-                      strong Task 4
-                      |                                         
-                      span.pull-right.text-muted 80% Complete
-                    |                                     
-                    .progress.progress-striped.active
-                      .progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='80', aria-valuemin='0', aria-valuemax='100', style='width: 80%')
-                        span.sr-only 80% Complete (danger)
-              |                         
-              li.divider
-              |                         
-              li
-                a.text-center(href='#')
-                  strong See All Tasks
-                  |                                 
-                  i.fa.fa-angle-right
-            // /.dropdown-tasks
-          // /.dropdown
-          li.dropdown
-            a.dropdown-toggle(data-toggle='dropdown', href='#')
-              i.fa.fa-bell.fa-fw
-              |  
-              i.fa.fa-caret-down
-            |                     
-            ul.dropdown-menu.dropdown-alerts
-              li
-                a(href='#')
-                  div
-                    i.fa.fa-comment.fa-fw
-                    |  New Comment
-                    |                                     
-                    span.pull-right.text-muted.small 4 minutes ago
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    i.fa.fa-twitter.fa-fw
-                    |  3 New Followers
-                    |                                     
-                    span.pull-right.text-muted.small 12 minutes ago
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    i.fa.fa-envelope.fa-fw
-                    |  Message Sent
-                    |                                     
-                    span.pull-right.text-muted.small 4 minutes ago
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    i.fa.fa-tasks.fa-fw
-                    |  New Task
-                    |                                     
-                    span.pull-right.text-muted.small 4 minutes ago
-              |                         
-              li.divider
-              |                         
-              li
-                a(href='#')
-                  div
-                    i.fa.fa-upload.fa-fw
-                    |  Server Rebooted
-                    |                                     
-                    span.pull-right.text-muted.small 4 minutes ago
-              |                         
-              li.divider
-              |                         
-              li
-                a.text-center(href='#')
-                  strong See All Alerts
-                  |                                 
-                  i.fa.fa-angle-right
-            // /.dropdown-alerts
-          // /.dropdown
-          li.dropdown
-            a.dropdown-toggle(data-toggle='dropdown', href='#')
+head
+meta(charset='utf-8')
+meta(http-equiv='X-UA-Compatible', content='IE=edge')
+meta(name='viewport', content='width=device-width, initial-scale=1')
+meta(name='description', content='')
+meta(name='author', content='')
+title Coconut Watr
+// Bootstrap Core CSS
+link(href='../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+// MetisMenu CSS
+link(href='../vendor/metisMenu/metisMenu.min.css', rel='stylesheet')
+// Custom CSS
+link(href='../css/style.css', rel='stylesheet')
+// Morris Charts CSS
+link(href='../vendor/morrisjs/morris.css', rel='stylesheet')
+// Custom Fonts
+link(href='../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+// HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+// WARNING: Respond.js doesn't work if you view the page via file://
+//if lt IE 9
+  script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+  script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+body
+#wrapper
+  // Navigation
+  nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+    .navbar-header
+      button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='#') Coconut Watr
+    // /.navbar-header
+    ul.nav.navbar-top-links.navbar-right
+      li.dropdown
+        a.dropdown-toggle(data-toggle='dropdown', href='#')
+          i.fa.fa-envelope.fa-fw
+          i.fa.fa-caret-down
+        ul.dropdown-menu.dropdown-messages
+          li
+            a(href='#')
+              div
+                strong John Smith
+                span.pull-right.text-muted
+                  em Yesterday
+              div
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+          li.divider
+          li
+            a(href='#')
+              div
+                strong John Smith
+                span.pull-right.text-muted
+                  em Yesterday
+              div
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+          li.divider
+          li
+            a(href='#')
+              div
+                strong John Smith
+                span.pull-right.text-muted
+                  em Yesterday
+              div
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+          li.divider
+          li
+            a.text-center(href='#')
+              strong Read All Messages
+              i.fa.fa-angle-right
+        // /.dropdown-messages
+      li.dropdown
+        a.dropdown-toggle(data-toggle='dropdown', href='#')
+          i.fa.fa-user.fa-fw
+          i.fa.fa-caret-down
+        ul.dropdown-menu.dropdown-user
+          li
+            a(href='#')
               i.fa.fa-user.fa-fw
-              |  
-              i.fa.fa-caret-down
-            |                     
-            ul.dropdown-menu.dropdown-user
+              |  User Profile
+          li
+            a(href='#')
+              i.fa.fa-gear.fa-fw
+              |  Settings
+          li.divider
+          li
+            a(href='index')
+              i.fa.fa-sign-out.fa-fw
+              |  Logout
+          script(type='text/javascript').
+            // Assuming you're using jQuery...
+            $('#perform_logout_button').hide();
+            $('#logout_link').click(function() {
+            document.logout_form.submit(); return false; });
+            
+        // /.dropdown-user
+      |                 #{user.fullName}
+      li
+      // /.dropdown
+    // /.navbar-top-links
+    .navbar-default.sidebar(role='navigation')
+      .sidebar-nav.navbar-collapse
+        ul#side-menu.nav
+          li
+            a(href='dashboard.html')
+              i.fa.fa-dashboard.fa-fw
+              |  Dashboard
+          li
+            a(href='#')
+              i.fa.fa-sitemap.fa-fw
+              |  Courses
+              span.fa.arrow
+            ul.nav.nav-second-level
               li
-                a(href='#')
-                  i.fa.fa-user.fa-fw
-                  |  User Profile
-              |                         
+                a(href='addClass') Add Class
+              //
+                <li>
+                <a href="createEvent.html">Create Event (TODO remove)</a>
+                </li>
               li
-                a(href='#')
-                  i.fa.fa-gear.fa-fw
-                  |  Settings
-              |                         
-              li.divider
-              |                         
+                a(href='class.html') CS180
+                // /course/cs180
               li
-                form#logout(name='logout', method='post', action='/logout')
-                  input(type='hidden', name='perform_logout', value='1')
-                  | &#x9;&#x9;
-                  input#perform_logout_button(type='submit', value='Logout')
-                  | &#x9;&#x9;
-                  a#logout_link(href='/logout', style='display:none;')
-                    i.fa.fa-sign-out.fa-fw
-                    | Logout
-                | &#x9;
-                | &#x9;
-                | &#x9;
-                script(type='text/javascript').
-                  // Assuming you're using jQuery...
-                  $('#perform_logout_button').hide();
-                  $('#logout_link').click(function () {
-                    document.logout_form.submit();
-                    return false;
-                  });
-            // /.dropdown-user
-          // /.dropdown
-        // /.navbar-top-links
-        .navbar-default.sidebar(role='navigation')
-          .sidebar-nav.navbar-collapse
-            ul#side-menu.nav
-              li.sidebar-search
-                .input-group.custom-search-form
-                  input.form-control(type='text', placeholder='Search...')
-                  |                                 
-                  span.input-group-btn
-                    button.btn.btn-default(type='button')
-                      i.fa.fa-search
-                // /input-group
-              |                         
-              li
-                a(href='dashboard.html')
-                  i.fa.fa-dashboard.fa-fw
-                  |  Dashboard
-              |                         
-              li
-                a(href='#')
-                  i.fa.fa-table.fa-fw
-                  |  Calendar
-              |                         
-              li
-                a(href='#')
-                  i.fa.fa-sitemap.fa-fw
-                  |  Courses
-                  span.fa.arrow
-                |                             
-                ul.nav.nav-second-level
-                  li
-                    a(href='./courses.html') CS180
-                  |                                 
-                  li
-                    a(href='#') CS240
-                  |                                 
-                  li
-                    a(href='#') MA251
-                  |                        
-                  |                                 
-                  li
-                    a(href='#') HIST101
-                  |                                 
-                  li
-                    a(href='#')
-                      | Past Courses (Sprint 2) 
-                      span.fa.arrow
-                    |                                     
-                    ul.nav.nav-third-level
-                      li
-                        a(href='#') Third Level Item
-                      |                                         
-                      li
-                        a(href='#') Third Level Item
-                      |                                         
-                      li
-                        a(href='#') Third Level Item
-                      |                                         
-                      li
-                        a(href='#') Third Level Item
-                    // /.nav-third-level
-                // /.nav-second-level
-          // /.sidebar-collapse
-        // /.navbar-static-side
-      |         
-      #page-wrapper
-        .row
-          .col-lg-12
-            h1.page-header Welcome back, #{user.fullName}!
-          // /.col-lg-12
-        // /.row
-        .row
-          .col-lg-3.col-md-6
-            .panel.panel-green
-              .panel-heading
-                .row
-                  .col-xs-3
-                    i.fa.fa-tasks.fa-5x
-                  |                                 
-                  .col-xs-9.text-right
-                    .huge 5
-                    |                                     
-                    div My Courses
-              |                         
-              a(href='#')
-                .panel-footer
-                  span.pull-left Add Class
-                  |                                 
-                  span.pull-right
-                    i.fa.fa-arrow-circle-right
-                  |                                 
-                  .clearfix
-          |                 
-          .col-lg-3.col-md-6
-            .panel.panel-primary
-              .panel-heading
-                .row
-                  .col-xs-3
-                    i.fa.fa-comments.fa-5x
-                  |                                 
-                  .col-xs-9.text-right
-                    .huge 26
-                    |                                     
-                    div New Feeds
-              |                         
-              a(href='#')
-                .panel-footer
-                  span.pull-left View Details
-                  |                                 
-                  span.pull-right
-                    i.fa.fa-arrow-circle-right
-                  |                                 
-                  .clearfix
-          |                 
-          .col-lg-3.col-md-6
-            .panel.panel-red
-              .panel-heading
-                .row
-                  .col-xs-3
-                    i.fa.fa-support.fa-5x
-                  |                                 
-                  .col-xs-9.text-right
-                    .huge 8
-                    |                                     
-                    div New Events
-              |                         
-              a(href='#')
-                .panel-footer
-                  span.pull-left View Details
-                  |                                 
-                  span.pull-right
-                    i.fa.fa-arrow-circle-right
-                  |                                 
-                  .clearfix
-        // /.row
-        .row
-          .col-lg-8
-            .panel.panel-default
-              .panel-heading
-                i.fa.fa-bar-chart-o.fa-fw
-                |  Summary
-                |                             
-                .pull-right
-                  .btn-group
-                    button.btn.btn-default.btn-xs.dropdown-toggle(type='button', data-toggle='dropdown')
-                      | Actions
-                      span.caret
-                    |                                     
-                    ul.dropdown-menu.pull-right(role='menu')
-                      li
-                        a(href='#') Action
-                      |                                         
-                      li
-                        a(href='#') Another action
-                      |                                         
-                      li
-                        a(href='#') Something else here
-                      |                                         
-                      li.divider
-                      |                                         
-                      li
-                        a(href='#') Separated link
-              // /.panel-heading
-              .panel-body
-                .well.well-sm
-                  h4 Small Well
-                  |                                 
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
-                |                             
-                .well.well-sm
-                  h4 Small Well
-                  |                                 
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
-                |                             
-                .well.well-sm
-                  h4 Small Well
-                  |                                 
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
-                |                             
-                .well.well-sm
-                  h4 Small Well
-                  |                                 
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
-                |                             
-                .well.well-sm
-                  h4 Small Well
-                  |                                 
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
-                |                             
-                .well.well-sm
-                  h4 Small Well
-                  |                                 
-                  p
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
-                // /.row
-              // /.panel-body
-            // /.panel
-          |                 
-          .col-lg-4
-            .panel.panel-default
-              .panel-heading
-                i.fa.fa-bell.fa-fw
-                |  Events
-                |                             
-                .pull-right
-                  .btn-group
-                    button.btn.btn-default.btn-xs.dropdown-toggle(type='button', data-toggle='dropdown')
-                      | Actions
-                      span.caret
-                    |                                     
-                    ul.dropdown-menu.pull-right(role='menu')
-                      li
-                        a(href='#') Action
-                      |                                         
-                      li
-                        a(href='#') Another action
-                      |                                         
-                      li
-                        a(href='#') Something else here
-                      |                                         
-                      li.divider
-                      |                                         
-                      li
-                        a(href='#') Separated link
-              // /.panel-heading
-              .panel-body
-                .list-group
-                  a.list-group-item(href='#')
-                    i.fa.fa-comment.fa-fw
-                    |  Group Meeting
-                    |                                     
-                    span.pull-right.text-muted.small
-                      em Today 10:00 P.M.
-                  |                                 
-                  a.list-group-item(href='#')
-                    i.fa.fa-tasks.fa-fw
-                    |  Study Session
-                    |                                     
-                    span.pull-right.text-muted.small
-                      em Tuesday 6:00 P.M.
-                  |                                 
-                  a.list-group-item(href='#')
-                    i.fa.fa-bolt.fa-fw
-                    |  Second Exam
-                    |                                     
-                    span.pull-right.text-muted.small
-                      em Wednesday 8:30 P.M.
-                  |                                 
-                  a.list-group-item(href='#')
-                    i.fa.fa-comment.fa-fw
-                    |  Group Meeting
-                    |                                     
-                    span.pull-right.text-muted.small
-                      em 3/13 10:00 P.M.
-                  |                                 
-                  a.list-group-item(href='#')
-                    i.fa.fa-comment.fa-fw
-                    |  Group Meeting
-                    |                                     
-                    span.pull-right.text-muted.small
-                      em 3/20 10:00 P.M.
-                |                             
-                a.btn.btn-default.btn-block(href='#') View All Events
-              // /.panel-body
-            // /.panel
-            .chat-panel.panel.panel-default
-              .panel-heading
-                i.fa.fa-comments.fa-fw
-                |  Chat
-                |                             
-                .btn-group.pull-right
-                  button.btn.btn-default.btn-xs.dropdown-toggle(type='button', data-toggle='dropdown')
-                    i.fa.fa-chevron-down
-                  |                                 
-                  ul.dropdown-menu.slidedown
-                    li
-                      a(href='#')
-                        i.fa.fa-refresh.fa-fw
-                        |  Refresh
-                    |                                     
-                    li
-                      a(href='#')
-                        i.fa.fa-check-circle.fa-fw
-                        |  Available
-                    |                                     
-                    li
-                      a(href='#')
-                        i.fa.fa-times.fa-fw
-                        |  Busy
-                    |                                     
-                    li
-                      a(href='#')
-                        i.fa.fa-clock-o.fa-fw
-                        |  Away
-                    |                                     
-                    li.divider
-                    |                                     
-                    li
-                      a(href='#')
-                        i.fa.fa-sign-out.fa-fw
-                        |  Sign Out
-              // /.panel-heading
-              .panel-body
-                ul.chat
-                  li.left.clearfix
-                    span.chat-img.pull-left
-                      img.img-circle(src='http://placehold.it/50/55C1E7/fff', alt='User Avatar')
-                    |                                     
-                    .chat-body.clearfix
-                      .header
-                        strong.primary-font Jack Sparrow
-                        |                                             
-                        small.pull-right.text-muted
-                          i.fa.fa-clock-o.fa-fw
-                          |  12 mins ago
-                      |                                         
-                      p
-                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                  |                                 
-                  li.right.clearfix
-                    span.chat-img.pull-right
-                      img.img-circle(src='http://placehold.it/50/FA6F57/fff', alt='User Avatar')
-                    |                                     
-                    .chat-body.clearfix
-                      .header
-                        small.text-muted
-                          i.fa.fa-clock-o.fa-fw
-                          |  13 mins ago
-                        |                                             
-                        strong.pull-right.primary-font Bhaumik Patel
-                      |                                         
-                      p
-                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                  |                                 
-                  li.left.clearfix
-                    span.chat-img.pull-left
-                      img.img-circle(src='http://placehold.it/50/55C1E7/fff', alt='User Avatar')
-                    |                                     
-                    .chat-body.clearfix
-                      .header
-                        strong.primary-font Jack Sparrow
-                        |                                             
-                        small.pull-right.text-muted
-                          i.fa.fa-clock-o.fa-fw
-                          |  14 mins ago
-                      |                                         
-                      p
-                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-                  |                                 
-                  li.right.clearfix
-                    span.chat-img.pull-right
-                      img.img-circle(src='http://placehold.it/50/FA6F57/fff', alt='User Avatar')
-                    |                                     
-                    .chat-body.clearfix
-                      .header
-                        small.text-muted
-                          i.fa.fa-clock-o.fa-fw
-                          |  15 mins ago
-                        |                                             
-                        strong.pull-right.primary-font Bhaumik Patel
-                      |                                         
-                      p
-                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
-              // /.panel-body
-              .panel-footer
-                .input-group
-                  input#btn-input.form-control.input-sm(type='text', placeholder='Type your message here...')
-                  |                                 
-                  span.input-group-btn
-                    button#btn-chat.btn.btn-warning.btn-sm
-                      | Send
-              // /.panel-footer
-            // /.panel .chat-panel
-          // /.col-lg-4
-        |             
-        .row
-      // /#page-wrapper
-    // /#wrapper
-    // jQuery
-    script(src='../vendor/jquery/jquery.min.js')
-    // Bootstrap Core JavaScript
-    script(src='../vendor/bootstrap/js/bootstrap.min.js')
-    // Metis Menu Plugin JavaScript
-    script(src='../vendor/metisMenu/metisMenu.min.js')
-    // Morris Charts JavaScript
-    script(src='../vendor/raphael/raphael.min.js')
-    |     
-    script(src='../vendor/morrisjs/morris.min.js')
-    |     
-    script(src='../data/morris-data.js')
-    // Custom Theme JavaScript
-    script(src='../js/main.js')
+                a(href='#') [Class Name]
+              //
+                <li>
+                <a href="#">Past Courses (Sprint 2) <span class="fa arrow"></span></a>
+                <ul class="nav nav-third-level">
+                <li>
+                <a href="#">Third Level Item</a>
+                </li>
+                <li>
+                <a href="#">Third Level Item</a>
+                </li>
+                <li>
+                <a href="#">Third Level Item</a>
+                </li>
+                <li>
+                <a href="#">Third Level Item</a>
+                </li>
+                </ul>
+                /.nav-third-level
+                </li>
+            // /.nav-second-level
+      // /.sidebar-collapse
+    // /.navbar-static-side
+  #page-wrapper
+    .row
+      .col-lg-12
+        h1.page-header Welcome, #{user.fullName}!
+      // /.col-lg-12
+    // /.row
+    .row
+      .col-lg-3.col-md-6
+        .panel.panel-green
+          .panel-heading
+            .row
+              .col-xs-3
+                i.fa.fa-tasks.fa-5x
+              .col-xs-9.text-right
+                .huge 5
+                div My Courses
+          a(href='addClass.html')
+            .panel-footer
+              span.pull-left Add Class
+              span.pull-right
+                i.fa.fa-arrow-circle-right
+              .clearfix
+      .col-lg-3.col-md-6
+        .panel.panel-primary
+          .panel-heading
+            .row
+              .col-xs-3
+                i.fa.fa-comments.fa-5x
+              .col-xs-9.text-right
+                .huge 26
+                div New Feeds
+          a(href='#')
+            .panel-footer
+              span.pull-left View Details
+              span.pull-right
+                i.fa.fa-arrow-circle-right
+              .clearfix
+      //
+        <div class="col-lg-3 col-md-6">
+        <div class="panel panel-red">
+        <div class="panel-heading">
+        <div class="row">
+        <div class="col-xs-3">
+        <i class="fa fa-support fa-5x"></i>
+        </div>
+        <div class="col-xs-9 text-right">
+        <div class="huge">8</div>
+        <div>New Events</div>
+        </div>
+        </div>
+        </div>
+        <a href="#">
+        <div class="panel-footer">
+        <span class="pull-left">View Details</span>
+        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+        <div class="clearfix"></div>
+        </div>
+        </a>
+        </div>
+        </div>
+    // /.row
+    .row
+      .col-lg-8
+        .panel.panel-default
+          .panel-heading
+            i.fa.fa-bar-chart-o.fa-fw
+            |  Summary
+          // /.panel-heading
+          .panel-body(style='height:500px;overflow:auto;')
+            .well.well-sm
+              h4 Small Well
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            .well.well-sm
+              h4 Small Well
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            .well.well-sm
+              h4 Small Well
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            .well.well-sm
+              h4 Small Well
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            .well.well-sm
+              h4 Small Well
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.
+            // /.row
+          // /.panel-body
+        // /.panel
+      .col-lg-4
+        .panel.panel-default
+          .panel-heading
+            i.fa.fa-bell.fa-fw
+            |  Events
+          // /.panel-heading
+          .panel-body(style='height:500px;overflow:auto;')
+            .list-group
+              a.list-group-item(href='#')
+                i.fa.fa-comment.fa-fw
+                |  Group Meeting
+                span.pull-right.text-muted.small
+                  em Today 10:00 P.M.
+              a.list-group-item(href='#')
+                i.fa.fa-tasks.fa-fw
+                |  Study Session
+                span.pull-right.text-muted.small
+                  em Tuesday 6:00 P.M.
+              a.list-group-item(href='#')
+                i.fa.fa-bolt.fa-fw
+                |  Second Exam
+                span.pull-right.text-muted.small
+                  em Wednesday 8:30 P.M.
+              a.list-group-item(href='#')
+                i.fa.fa-comment.fa-fw
+                |  Group Meeting
+                span.pull-right.text-muted.small
+                  em 3/13 10:00 P.M.
+              a.list-group-item(href='#')
+                i.fa.fa-comment.fa-fw
+                |  Group Meeting
+                span.pull-right.text-muted.small
+                  em 3/20 10:00 P.M.
+          // /.panel-body
+        // /.panel
+        // <div class="chat-panel panel panel-default">
+        // <div class="panel-heading">
+        // <i class="fa fa-comments fa-fw"></i> Chat
+        // <div class="btn-group pull-right">
+        // <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+        // <i class="fa fa-chevron-down"></i>
+        // </button>
+        // <ul class="dropdown-menu slidedown">
+        // <li>
+        // <a href="#">
+        // <i class="fa fa-refresh fa-fw"></i> Refresh
+        // </a>
+        // </li>
+        // <li>
+        // <a href="#">
+        // <i class="fa fa-check-circle fa-fw"></i> Available
+        // </a>
+        // </li>
+        // <li>
+        // <a href="#">
+        // <i class="fa fa-times fa-fw"></i> Busy
+        // </a>
+        // </li>
+        // <li>
+        // <a href="#">
+        // <i class="fa fa-clock-o fa-fw"></i> Away
+        // </a>
+        // </li>
+        // <li class="divider"></li>
+        // <li>
+        // <a href="#">
+        // <i class="fa fa-sign-out fa-fw"></i> Sign Out
+        // </a>
+        // </li>
+        // </ul>
+        // </div>
+        // </div>
+        // &lt;!&ndash; /.panel-heading &ndash;&gt;
+        // <div class="panel-body">
+        // <ul class="chat">
+        // <li class="left clearfix">
+        // <span class="chat-img pull-left">
+        // <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+        // </span>
+        // <div class="chat-body clearfix">
+        // <div class="header">
+        // <strong class="primary-font">Jack Sparrow</strong>
+        // <small class="pull-right text-muted">
+        // <i class="fa fa-clock-o fa-fw"></i> 12 mins ago
+        // </small>
+        // </div>
+        // <p>
+        // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+        // </p>
+        // </div>
+        // </li>
+        // <li class="right clearfix">
+        // <span class="chat-img pull-right">
+        // <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+        // </span>
+        // <div class="chat-body clearfix">
+        // <div class="header">
+        // <small class=" text-muted">
+        // <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
+        // <strong class="pull-right primary-font">Bhaumik Patel</strong>
+        // </div>
+        // <p>
+        // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+        // </p>
+        // </div>
+        // </li>
+        // <li class="left clearfix">
+        // <span class="chat-img pull-left">
+        // <img src="http://placehold.it/50/55C1E7/fff" alt="User Avatar" class="img-circle" />
+        // </span>
+        // <div class="chat-body clearfix">
+        // <div class="header">
+        // <strong class="primary-font">Jack Sparrow</strong>
+        // <small class="pull-right text-muted">
+        // <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+        // </div>
+        // <p>
+        // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+        // </p>
+        // </div>
+        // </li>
+        // <li class="right clearfix">
+        // <span class="chat-img pull-right">
+        // <img src="http://placehold.it/50/FA6F57/fff" alt="User Avatar" class="img-circle" />
+        // </span>
+        // <div class="chat-body clearfix">
+        // <div class="header">
+        // <small class=" text-muted">
+        // <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
+        // <strong class="pull-right primary-font">Bhaumik Patel</strong>
+        // </div>
+        // <p>
+        // Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
+        // </p>
+        // </div>
+        // </li>
+        // </ul>
+        // </div>
+        // &lt;!&ndash; /.panel-body &ndash;&gt;
+        // <div class="panel-footer">
+        // <div class="input-group">
+        // <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+        // <span class="input-group-btn">
+        // <button class="btn btn-warning btn-sm" id="btn-chat">
+        // Send
+        // </button>
+        // </span>
+        // </div>
+        // </div>
+        // &lt;!&ndash; /.panel-footer &ndash;&gt;
+        // </div>
+        // /.panel .chat-panel
+      // /.col-lg-4
+    .row
+  // /#page-wrapper
+// /#wrapper
+// jQuery
+script(src='../vendor/jquery/jquery.min.js')
+// Bootstrap Core JavaScript
+script(src='../vendor/bootstrap/js/bootstrap.min.js')
+// Metis Menu Plugin JavaScript
+script(src='../vendor/metisMenu/metisMenu.min.js')
+// Morris Charts JavaScript
+script(src='../vendor/raphael/raphael.min.js')
+script(src='../vendor/morrisjs/morris.min.js')
+script(src='../data/morris-data.js')
+// Custom Theme JavaScript
+script(src='../js/main.js')
+
+
+script(type='text/javascript').
+  // Assuming you're using jQuery...
+  $('#perform_logout_button').hide();
+  $('#index').click(function() {
+  document.logout_form.submit(); return false; });
+

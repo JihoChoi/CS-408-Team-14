@@ -56,6 +56,7 @@ app.get('/', stormpath.getUser, function(req, res) {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
         res.render("index");
+        // res.render("addClass");
     }
 });
 
