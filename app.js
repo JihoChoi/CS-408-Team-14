@@ -41,7 +41,7 @@ function send200(email, url, res) {
 };
 
 // Helper function for 404
-function send400(email, url, res) {
+function send404(email, url, res) {
     console.log("404".red + " [" + email + "] \'" + url + "\' not found.");
     res.status(404);
     res.render("notfound");
@@ -59,7 +59,7 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
-        send200(req.user.email, req.url);
+        send200(req.user.email, req.url, res);
         res.render("dashboard", {
                 user: req.user
             });
@@ -69,6 +69,10 @@ app.get('/', stormpath.getUser, function(req, res) {
         res.render("index");
         // res.render("addClass");
     }
+});
+
+app.get('/index', function (req, res) {
+    res.redirect('/');
 });
 
 // All events of user is in
@@ -176,7 +180,7 @@ app.get('/course/*', stormpath.authenticationRequired, function(req, res) {
             course: course
         })
     } else {
-        send400(req.user.email, req.url, res);
+        send404(req.user.email, req.url, res);
     }
 });
 
@@ -193,7 +197,7 @@ app.get('/data/morris-data.js', function(req, res) {
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
-    send400(req.user.email, req.url, res);
+    send404(null, req.url, res);
 });
 
 // Listen for requests
