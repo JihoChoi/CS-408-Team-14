@@ -34,6 +34,18 @@ app.use(stormpath.init(app, {
     }
 }));
 
+// Helper function for 200
+function send200(email, url, res) {
+    console.log("200".green + " [" + email + "] \'" + url + "\'");
+    res.status(200);
+};
+
+// Helper function for 404
+function send400(email, url, res) {
+    console.log("404".red + " [" + email + "] \'" + url + "\' not found.");
+    res.status(404);
+    res.render("notfound");
+};
 
 
 // Directories
@@ -47,8 +59,7 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
-        console.log("200 ".green + req.user.email + " requested page " + req.url + " granted.");
-        res.status(200);
+        send200(req.user.email, req.url);
         res.render("dashboard", {
                 user: req.user
             });
@@ -60,9 +71,118 @@ app.get('/', stormpath.getUser, function(req, res) {
     }
 });
 
+// All events of user is in
+app.get('/events', stormpath.authenticationRequired, function(req, res) {
+    send200(req.user.email, req.url);
+    res.render("events", {
+        user: req.user
+    });
+});
+
+// List of events in a subgroup
+app.get('/course/*/*/events', stormpath.authenticationRequired, function(req, res) {
+    var course = req.url.substr(8);
+    var index = course.indexOf('/');
+    var subgroup = course.substr(index);
+    course = course.substr(0, index);
+    index = subgroup.indexOf('/');
+    subgroup = subgroup.substr(0, index);
+
+    // Check if course exist/user has permission
+    // Check if subgroup exist/user has permission
+
+    send200(req.user.email, req.url, res);
+    res.render("events", {
+        user: req.user
+    });
+});
+
+// Subgroup event page
+app.get('/course/*/*/event/*', stormpath.authenticationRequired, function(req, res) {
+    var course = req.url.substr(8);
+    var index = course.indexOf('/');
+    var subgroup = course.substr(index);
+    course = course.substr(0, index);
+    index = subgroup.indexOf('/');
+    subgroup = subgroup.substr(0, index);
+    index = subgroup.substr(index).indexOf('/');
+    var event = subgroup.substr(index);
+
+    if (event.indexOf('/') != -1)
+        send400(req.user.email, req.url, res);
+    else {
+        // Check if course exist/user has permission
+        // Check if subgroup exist/user has permission
+        // Check if event exist/user has permission
+    
+        send200(req.user.email, req.url, res);
+        res.render("event" {
+            user: req.user,
+            event: event
+        });
+    }
+});
+
+// List of events in a course
+app.get('/course/*/events', stormpath.authenticationRequired, function(req, res) {
+    var course = req.url.substr(8);
+    if (course.indexOf('/') == -1) {
+        // Course homepage
+
+        // Lookup if class exist/user has permission
+
+        send200(req.user.email, req.url, res);
+        res.render("events", {
+            user: req.user,
+            course: course
+        })
+    } else {
+        send400(req.user.email, req.url, res);
+    }
+});
+
+// Course event page
+app.get('/course/*/event/*', stormpath.authenticationRequired, function(req, res) {
+    var course = req.url.substr(8);
+    var index = course.indexOf('/');
+    course = course.substr(0, index);
+    var event = course.substr(index + 7);
+
+    if (event.indexOf('/') != -1)
+        send400(req.user.email, req.url, res);
+    else {
+        // Check if course exist/user has permission
+        // Check if subgroup exist/user has permission
+        // Check if event exist/user has permission
+    
+        send200(req.user.email, req.url, res);
+        res.render("event" {
+            user: req.user,
+            event: event
+        });
+    }
+});
+
+app.get('/course/*', stormpath.authenticationRequired, function(req, res) {
+    var course = req.url.substr(8);
+    if (course.indexOf('/') == -1) {
+        // Course homepage
+
+        // Lookup if class exist/user has permission
+
+        send200(req.user.email, req.url, res);
+        res.render("class", {
+            user: req.user,
+            course: course
+        })
+    } else {
+        send400(req.user.email, req.url, res);
+    }
+});
+
 // Testing user session
 app.get('/secret', stormpath.authenticationRequired, function (req, res) {
-  console.log("Secret page requested.");
+  console.log("Secret page requested by " + req.user.email);
   res.json(req.user);
 });
 
@@ -73,12 +193,8 @@ app.get('/data/morris-data.js', function(req, res) {
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
-    console.log("404".red + " requested page " + req.url + " not found.");
-    res.status(404);
-    res.render("notfound");
+    send400(req.user.email, req.url, res);
 });
-
-
 
 // Listen for requests
 app.on('stormpath.ready', function() {
