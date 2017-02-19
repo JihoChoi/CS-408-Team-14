@@ -6,6 +6,32 @@
 body {
   background-color: #f8f8f8;
 }
+
+#index-wrapper {
+  background-image: url("../images/background.jpeg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 640px;
+}
+
+#index-wrapper h4 {
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-size: 50px;
+    
+}
+
+#index-wrapper h2 {
+    text-align: center;
+    color: white;
+    padding: 10px;
+    font-size: 25px;
+    
+}
+
 #wrapper {
   width: 100%;
 }
