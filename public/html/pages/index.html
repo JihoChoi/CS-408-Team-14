@@ -43,6 +43,9 @@
 	<!-- Custom CSS -->
 	<link href="../dist/css/sb-admin-2.css" rel="stylesheet">
 
+	<!-- Custom CSS -->
+	<link href="../css/style.css" rel="stylesheet">
+
 	<!-- Custom Fonts -->
 	<link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
@@ -55,27 +58,44 @@
 
 
 
+<!--
 
+
+logout
+
+    | &#x9;
+    form#logout(name='logout', method='post', action='/logout')
+      input(type='hidden', name='perform_logout', value='1')
+      | &#x9;&#x9;
+      input#perform_logout_button(type='submit', value='Logout')
+      | &#x9;&#x9;
+      a#logout_link(href='/logout', style='display:none;') Logout
+
+
+-->
 
 
 
 
 </head>
-<body >
+<body id="index-wrapper">
 
 
 	<br><br><br><br>
 	<br><br><br><br>
 	<br><br>
+    
 
-	<div class="container" >
+	<div class="container">
 		<div class="row">
 
-
+            <h4>CoconutWatr</h4>
+            <h2>Find Your Classmates!</h2>
+            
 			<div class="col-md-4 col-md-offset-4" >
 				<div class="login-panel panel panel-default">
 					<div class="panel-heading">
-						<h3 class="panel-title">CoconutWatr</h3>
+						<h3 class="panel-title">Start</h3>
 					</div>
 					<div class="panel-body">
 						<form role="form">
