@@ -3,6 +3,17 @@ var express = require('express');
 var app = express();
 var colors = require('colors');
 var stormpath = require('express-stormpath');
+var mongoose = require('mongoose');
+
+//Connect to mongodb
+mongoose.connect('mongodb://application:coconutWatr@ds153179.mlab.com:53179/coconutwatr');
+
+//Import database schema and functions; call functions with dbFunc.*functionName*(args);
+var Student = require("./server/schema/student.js");
+var Event = require("./server/schema/event.js");
+var Group = require("./server/schema/group.js");
+var Class = require("./server/schema/class.js");
+var dbFunc = require("./server/db.js");
 
 // Variables
 var prepath = __dirname + "/public/html";
@@ -120,7 +131,7 @@ app.get('/course/*/*/event/*', stormpath.authenticationRequired, function(req, r
         // Check if event exist/user has permission
     
         send200(req.user.email, req.url, res);
-        res.render("event" {
+        res.render("event", {
             user: req.user,
             event: event
         });
@@ -160,7 +171,7 @@ app.get('/course/*/event/*', stormpath.authenticationRequired, function(req, res
         // Check if event exist/user has permission
     
         send200(req.user.email, req.url, res);
-        res.render("event" {
+        res.render("event", {
             user: req.user,
             event: event
         });
@@ -197,7 +208,7 @@ app.get('/data/morris-data.js', function(req, res) {
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
-    send404(null, req.url, res);
+	send404(null, req.url, res);
 });
 
 // Listen for requests
@@ -206,3 +217,4 @@ app.on('stormpath.ready', function() {
         console.log("LISTENING".magenta + " on port " + app.get('port'));
     });
 });
+
