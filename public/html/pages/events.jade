@@ -1,0 +1,385 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+        title Coconut Watr
+        // Bootstrap Core CSS
+        link(href='../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+        // MetisMenu CSS
+        link(href='../vendor/metisMenu/metisMenu.min.css', rel='stylesheet')
+        // Custom CSS
+        link(href='../css/style.css', rel='stylesheet')
+        // Morris Charts CSS
+        link(href='../vendor/morrisjs/morris.css', rel='stylesheet')
+        // Custom Fonts
+        link(href='../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+        // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        // WARNING: Respond.js doesn't work if you view the page via file://
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+          script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body
+        #wrapper
+            // Navigation
+            nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+                .navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='index.html') Coconut Watr
+                // /.navbar-header
+                ul.nav.navbar-top-links.navbar-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-envelope.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-messages
+                            li
+                                a(href='#')
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a.text-center(href='#')
+                                    strong Read All Messages
+                                    i.fa.fa-angle-right
+                        // /.dropdown-messages
+                    // /.dropdown
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-tasks.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-tasks
+                            li
+                                a(href='#')
+                                    div
+                                        p
+                                            strong Task 1
+                                            span.pull-right.text-muted 40% Complete
+                                        .progress.progress-striped.active
+                                            .progress-bar.progress-bar-success(role='progressbar', aria-valuenow='40', aria-valuemin='0', aria-valuemax='100', style='width: 40%')
+                                                span.sr-only 40% Complete (success)
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        p
+                                            strong Task 2
+                                            span.pull-right.text-muted 20% Complete
+                                        .progress.progress-striped.active
+                                            .progress-bar.progress-bar-info(role='progressbar', aria-valuenow='20', aria-valuemin='0', aria-valuemax='100', style='width: 20%')
+                                                span.sr-only 20% Complete
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        p
+                                            strong Task 3
+                                            span.pull-right.text-muted 60% Complete
+                                        .progress.progress-striped.active
+                                            .progress-bar.progress-bar-warning(role='progressbar', aria-valuenow='60', aria-valuemin='0', aria-valuemax='100', style='width: 60%')
+                                                span.sr-only 60% Complete (warning)
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        p
+                                            strong Task 4
+                                            span.pull-right.text-muted 80% Complete
+                                        .progress.progress-striped.active
+                                            .progress-bar.progress-bar-danger(role='progressbar', aria-valuenow='80', aria-valuemin='0', aria-valuemax='100', style='width: 80%')
+                                                span.sr-only 80% Complete (danger)
+                            li.divider
+                            li
+                                a.text-center(href='#')
+                                    strong See All Tasks
+                                    i.fa.fa-angle-right
+                        // /.dropdown-tasks
+                    // /.dropdown
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-bell.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-alerts
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-comment.fa-fw
+                                        |  New Comment
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-twitter.fa-fw
+                                        |  3 New Followers
+                                        span.pull-right.text-muted.small 12 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-envelope.fa-fw
+                                        |  Message Sent
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-tasks.fa-fw
+                                        |  New Task
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        i.fa.fa-upload.fa-fw
+                                        |  Server Rebooted
+                                        span.pull-right.text-muted.small 4 minutes ago
+                            li.divider
+                            li
+                                a.text-center(href='#')
+                                    strong See All Alerts
+                                    i.fa.fa-angle-right
+                        // /.dropdown-alerts
+                    // /.dropdown
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-user.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-user
+                            li
+                                a(href='#')
+                                    i.fa.fa-user.fa-fw
+                                    |  User Profile
+                            li
+                                a(href='#')
+                                    i.fa.fa-gear.fa-fw
+                                    |  Settings
+                            li.divider
+                            li
+                                a(href='login.html')
+                                    i.fa.fa-sign-out.fa-fw
+                                    |  Logout
+                        // /.dropdown-user
+                    // /.dropdown
+                // /.navbar-top-links
+                .navbar-default.sidebar(role='navigation')
+                    .sidebar-nav.navbar-collapse
+                        ul#side-menu.nav
+                            li.sidebar-search
+                                .input-group.custom-search-form
+                                    input.form-control(type='text', placeholder='Search...')
+                                    span.input-group-btn
+                                        button.btn.btn-default(type='button')
+                                            i.fa.fa-search
+                                // /input-group
+                            li
+                                a(href='dashboard.html')
+                                    i.fa.fa-dashboard.fa-fw
+                                    |  Dashboard
+                            li
+                                a(href='tables.html')
+                                    i.fa.fa-table.fa-fw
+                                    |  Calendar
+                            li
+                                a(href='#')
+                                    i.fa.fa-sitemap.fa-fw
+                                    |  Courses
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li
+                                        a(href='#') CS180
+                                    li
+                                        a(href='#') CS240
+                                    li
+                                        a(href='#') MA251
+                                    li
+                                        a(href='#') HIST101
+                                // /.nav-second-level
+                    // /.sidebar-collapse
+                // /.navbar-static-side
+            #page-wrapper
+                .row
+                    .col-lg-12
+                        h1.page-header Study Session
+                    // /.col-lg-12
+                // /.row
+                .row
+                    .col-lg-8
+                        .panel.panel-default
+                            .panel-heading
+                                // Header for this Panel. Not sure what to put in it.
+                            // /.panel-heading
+                            .panel-body
+                                // Nav tabs
+                                ul.nav.nav-tabs
+                                    li.active
+                                        a(href='#Schedule', data-toggle='tab') Attend Event
+                                    li
+                                        a(href='#home', data-toggle='tab') Description
+                                    li
+                                        a(href='#Links', data-toggle='tab') Addition Info
+                                // Tab panes
+                                .tab-content
+                                    #home.tab-pane.fade
+                                        h4 About Event
+                                        p
+                                            | The Raising Peace campaign has become a strategic long-term campaign for the CCIVS and its members, developing knowledge, capacities and activism in the field of Human Rights and Peace. The Raising Peace Campaign is a plural campaign that gathers dozens of organisations, over a hundred professionals and activists, and involves hundreds of people every year, in activities which involve training, awareness-raising, communication, advocacy and volunteering.
+                                            | The main idea for this Study Session is that participants and the movement will get prepared and empowered for new steps of the Campaign, which increase the impact of the movement in the field of Human Rights and Peace.
+                                            | This activity will bring the possibility to volunteers, staff and activists who participated during the 2014 and 2015 Raising Peace Campaign editions to meet, learn from their experiences, and develop their knowledge in order to be ready to walk beyond the present achievements. The horizon is to advance in the guarantee of human rights in Europe and the rest of the world, consolidating the International Voluntary Service movement as a relevant actor for this goal.
+                                            | OBJECTIVES
+                                            | To share and evaluate the experience of 50 Human Rights actions in different points in Europe, by organisations and activists, during 2014 and 2015;
+                                            | To learn about emerging initiatives of promotion of Human Rights, like the Universal Declaration of Emerging Human Rights, or the work of social movements;
+                                            | To learn educational and awareness-raising methods for the promotion of Human Rights and Peace;
+                                            | To understand and discuss the conclusions of 2014-2015 campaigns, and therefore plan together the new strategies and steps.
+                                            | The Study Session will combine learning from outside approaches/experts with mutual learning from 2014-2015 participants and organisations responsible. All participants will have the opportunity to learn, to bring their knowledge and experience, and to contribute to create the new strategies for the Raising Peace Campaign.
+                                            | PARTICIPANTS PROFILE
+                                            | Volunteers, activists and staff who have participated already in the Raising Peace campaign; one participant at least from each of the main activities, all hosting organisations  and that ICYE, SCI, Alliance, NVDA, Wavan and CCIVS (signing networks of the declaration on HR by IVS networks) should be represented.
+                                            | More in detail, the Study Session will gather:
+                                            | Young activists and volunteers, 24-30 years old, at least 2 per Peace Week (therefore 6 at least in total which have participated in Peace Weeks), and at least 4 having participated in different awareness-raising actions of the Campaign; 2-3 participants in side-actions of the campaign. In total around 13 participants of this target group.
+                                            | Young staff and board members, 24-38 years old, of youth organisations who hosted Peace Weeks, the global meeting, the event in Ukraine, etc. In total, around 7 participants of this target group.
+                                            | Representatives of the boards of international networks, 27-45 years old, who signed the Declaration. In total, up to 7 participants of this target group.
+                                            | Representatives of youth, peace and human rights organisations interested in the work of the Raising Peace Campaign. In total, up to 5 participants of this target group.
+                                    #Links.tab-pane.fade
+                                        h4 Specifics
+                                        p
+                                            | Where:
+                                            span.pull-right
+                                                em LWSN B160
+                                        p
+                                            | When:
+                                            span.pull-right
+                                                em Tuesday 6:00 P.M.
+                                        p
+                                            | Additional Info:
+                                            span.pull-right
+                                                em Bring snacks and come prepared to learn for 2 hours :)
+                                    #Schedule.tab-pane.fade.in.active
+                                        h4
+                                        a.button(href='#', onclick="alert('You have been RSVPed for Event')") RSVP for Event
+                                        a.button.pull-right(href='#', onclick="alert('You have been removed from the Attendees List')") Remove my RSVP
+                            // /.panel-body
+                        // /.panel
+                    .col-lg-4
+                        .panel.panel-default
+                            .panel-heading
+                                | Classmates Attending
+                            // /.panel-heading
+                            .panel-body
+                                .table-responsive
+                                    table.table
+                                        thead
+                                            tr
+                                                th #
+                                                th First Name
+                                                th Last Name
+                                                th Username
+                                        tbody
+                                            tr.success
+                                                td 1
+                                                td Kyle
+                                                td Korver
+                                                td @3sss4days
+                                            tr.info
+                                                td 2
+                                                td J. R.
+                                                td Smith
+                                                td @failure
+                                            tr.warning
+                                                td 3
+                                                td Kyrie
+                                                td Irving
+                                                td @irvingKyrie
+                                            tr.danger
+                                                td 4
+                                                td LeBron
+                                                td James
+                                                td @therealLeBron
+                                            tr.success
+                                                td 5
+                                                td Kevin
+                                                td Love
+                                                td @bigman
+                                a.btn.btn-default.btn-block(href='#') See All Attendees
+                                // /.table-responsive
+                            // /.panel-body
+                        // /.panel
+                    .col-lg-4.fa-pull-right
+                        .panel.panel-default
+                            .panel-heading
+                                i.fa.fa-bell.fa-fw
+                                |  Subgroups
+                                span.pull-right(type='button', onclick="alert('Under Construction Yo')") Create Subgroup
+                            // /.panel-heading
+                            .panel-body
+                                .list-group
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-tencent-weibo.fa-fw
+                                        |  Study Group
+                                        span.pull-right.text-muted.small
+                                            em 4 minutes ago
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-barcode.fa-fw
+                                        |  CoconutWatr Skwad
+                                        span.pull-right.text-muted.small
+                                            em 53 minutes ago
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-money.fa-fw
+                                        |  Dream Team
+                                        span.pull-right.text-muted.small
+                                            em 2 hours ago
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-terminal.fa-fw
+                                        |  Recitation 10:30
+                                        span.pull-right.text-muted.small
+                                            em 2 days ago
+                                    a.list-group-item(href='#')
+                                        i.fa.fa-glass.fa-fw
+                                        |  Project 1 Group
+                                        span.pull-right.text-muted.small
+                                            em 24 days ago
+                                // /.list-group
+                                a.btn.btn-default.btn-block(href='#') View All Subgroups
+                            // /.panel-body
+            // /#page-wrapper
+        // /#wrapper
+        // jQuery
+        script(src='../vendor/jquery/jquery.min.js')
+        // Bootstrap Core JavaScript
+        script(src='../vendor/bootstrap/js/bootstrap.min.js')
+        // Metis Menu Plugin JavaScript
+        script(src='../vendor/metisMenu/metisMenu.min.js')
+        // Morris Charts JavaScript
+        script(src='../vendor/raphael/raphael.min.js')
+        script(src='../vendor/morrisjs/morris.min.js')
+        script(src='../data/morris-data.js')
+        // Custom Theme JavaScript
+        script(src='../js/main.js')
