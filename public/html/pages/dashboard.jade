@@ -77,25 +77,62 @@ body
           i.fa.fa-user.fa-fw
           i.fa.fa-caret-down
         ul.dropdown-menu.dropdown-user
+          //li
+          //  a(href='#')
+          //    i.fa.fa-user.fa-fw
+          //    |  User Profile
+          //li
+          //  a(href='#')
+          //    i.fa.fa-gear.fa-fw
+          //    |  Settings
+          //li.divider
           li
-            a(href='#')
-              i.fa.fa-user.fa-fw
-              |  User Profile
-          li
-            a(href='#')
-              i.fa.fa-gear.fa-fw
-              |  Settings
-          li.divider
-          li
-            a(href='index')
-              i.fa.fa-sign-out.fa-fw
-              |  Logout
+
+            //a(method='post' action='/logout')
+            //  i.fa.fa-sign-out.fa-fw
+            //  |  Logout
+            //
+            //
+            //form#logout(name='logout', method='post', action='/logout')
+            //  i.fa.fa-sign-out.fa-fw
+            //  input(type='hidden', name='perform_logout', value='1')
+            //  input#perform_logout_button(type='submit', value='Logout')
+            //  a#logout_link(href='/logout', style='display:none;') Logout
+            //
+            //a(href='#logout' action=logout)
+            //  i.fa.fa-sign-out.fa-fw
+            //
+            //
+            //form#logout(name='logout', method='post', action='/logout')
+            //  input(type='hidden', name='perform_logout', value='1')
+            //  input#perform_logout_button(type='submit', value='Logout')
+            //  a#logout_link(href='/logout', style='display:none;') Logout
+            //
+
+            form(action='/logout', method='post')
+              //i.fa.fa-sign-out.fa-fw
+              button.btn-link(type='submit', name='your_name', value='your_value') Logout
+
+
+            //a(href='#logout' action=logout)
+            //  i.fa.fa-sign-out.fa-fw
+            //  |  Logout
+            //
+            //a(action='/logout', method='post')
+            //  i.fa.fa-sign-out.fa-fw
+            //  |  Logout
+
+
           script(type='text/javascript').
             // Assuming you're using jQuery...
             $('#perform_logout_button').hide();
             $('#logout_link').click(function() {
             document.logout_form.submit(); return false; });
-            
+
+
+
+
+
         // /.dropdown-user
       |                 #{user.fullName}
       li
@@ -409,9 +446,13 @@ script(src='../data/morris-data.js')
 script(src='../js/main.js')
 
 
+
+
+
 script(type='text/javascript').
   // Assuming you're using jQuery...
   $('#perform_logout_button').hide();
-  $('#index').click(function() {
-  document.logout_form.submit(); return false; });
-
+  $('#logout_link').click(function () {
+    document.logout_form.submit();
+    return false;
+  });
