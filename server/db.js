@@ -8,7 +8,13 @@ var Class = require("./schema/class.js");
 //link here: http://mongoosejs.com/docs/subdocs.html
 
 //Create a new class
-var addClass = function(name, semester, fullName, student) {
+var addClass = function(name, semester, fullName, email){
+	getStudent(email,function(student){
+		addClassHelp(name,semester,fullName,student);
+	});
+};
+
+var addClassHelp = function(name, semester, fullName, student) {
 	var course = new Class({
 		name: name,
 		semester: semester,
@@ -29,7 +35,15 @@ var addClass = function(name, semester, fullName, student) {
 };
 
 //Add a new student to a class
-var classAddStudent = function (course, student) {
+var classAddStudent = function (courseName, email) {
+	getClass(courseName,function(course) {
+	getStudent(email,function(student){
+		classAddStudentHelp(course,student);
+	});
+	});
+};
+
+var classAddStudentHelp = function(course, student) {
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -39,10 +53,16 @@ var classAddStudent = function (course, student) {
 	student.save(function(err) {
 		if(err) throw err;
 	});
-};
+}
 
 //Add a new event to a class
-var classAddEvent = function(name, description, type, course, startTime) {
+var classAddEvent = function(name, description, type, courseName, startTime){
+	getClass(courseName, function(course){
+		classAddEventHelp(name,description,type,course,startTime);
+	});
+};
+
+var classAddEventHelp = function(name, description, type, course, startTime) {
 	var event = new Event({
 		name: name,
 		description: description,
@@ -62,7 +82,14 @@ var classAddEvent = function(name, description, type, course, startTime) {
 };
 
 //Add a new subgroup to a class
-var classAddGroup = function(name, course, student) {
+var classAddGroup = function(name, courseName, email) {
+	getClass(courseName,function(course) {
+	getStudent(email,function(student){
+		classAddGroupHelp(name,course,student);
+	});
+	});
+};
+var classAddGroupHelp = function(name, course, student) {
 	var group = new Group({
 		name: name,
 		className: course,
@@ -84,36 +111,45 @@ var classAddGroup = function(name, course, student) {
 };
 
 //Find a class by name; Returns class document
-var getClass = function(className) {
-	Class.find({name: className}, function(err, course) {
+var getClass = function(className, callback) {
+	Class.findOne({name: className}, function(err, course) {
 		if(err) throw err;
-		return course;
+		callback(course);
 	});
 };
 
 //Find a Student by email; Returns student document
-var getStudent = function(email) {
+var getStudent = function(email,callback) {
 	Student.findOne({email: email}, function(err, student){
-		return student;
+		if(err) throw err;
+		callback(student);;
 	});
 };
 
 //Get all events for a class; Returns an array of Event documents
-var getEvents = function(className) {
+var getEvents = function(className, callback) {
 	Class.find({name: className}, function(err, course) {
-		return course.events;
+		if(err) throw err;
+		callback(course);
 	});
 };
 
 //Get all groups for a class; Returns an array of Group documents
-var getGroups = function(className) {
+var getGroups = function(className, callback) {
 	Class.find({name: className}, function(err, course) {
-		return course.subgroups;
+		if(err) throw err;
+		callback(course.subgroups);
 	});
 };
 
 //Add a new student to a group
-var groupAddStudent = function(student, group) {
+var groupAddStudent = function(email, group) {
+	getStudent(email,function(student){
+		groupAddStudentHelp(student,group);
+	});
+};
+
+var groupAddStudentHelp = function(student, group) {
 	group.students.push(student);
 	group.save(function(err){
 		if(err) throw err;
@@ -126,7 +162,13 @@ var groupAddStudent = function(student, group) {
 };
 
 //Add a new student to an Event
-var eventAddStudent = function(event, student) {
+var eventAddStudent = function(event, email) {
+	getStudent(email,function(student){
+		eventAddStudentHelp(event,student);
+	});
+};
+
+var eventAddStudentHelp = function(event, student) {
 	event.students.push(student);
 	event.save(function(err) {
 		if(err) throw err;
@@ -138,7 +180,13 @@ var eventAddStudent = function(event, student) {
 };
 
 //Remove a student from a group
-var groupRemoveStudent = function(group, student) {
+var groupRemoveStudent = function(group, email) {
+	getStudent(email,function(student){
+		groupRemoveStudentHelp(group,student);
+	});
+};
+
+var groupRemoveStudentHelp = function(group, student) {
 	group.students.id(student._id).remove();
 	group.save(function(err){
 		if(err) throw err;
@@ -150,7 +198,13 @@ var groupRemoveStudent = function(group, student) {
 };
 
 //Remove a student from an event
-var eventRemoveStudent = function(event, student) {
+var eventRemoveStudent = function(event, email) {
+	getStudent(email,function(student){
+		eventRemoveStudentHelp(event,student);
+	});
+};
+
+var eventRemoveStudentHelp = function(event, student) {
 	event.students.id(student._id).remove();
 	event.save(function(err) {
 		if(err) throw err;
@@ -162,8 +216,10 @@ var eventRemoveStudent = function(event, student) {
 };
 
 //Get array of events for a particular user. Returns array of Event documents
-var getUserEvents = function(student) {
-	return student.events;
+var getUserEvents = function(email, callback) {
+	getStudent(email,function(student){
+		callbacks(tudent.events);
+	});
 };
 
 module.exports = {
