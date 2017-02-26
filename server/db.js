@@ -7,6 +7,7 @@ var Class = require("./schema/class.js");
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
 
+//Usage: addClass("class name", "semester", "full class name", "student email")
 //Create a new class
 var addClass = function(name, semester, fullName, email){
 	getStudent(email,function(student){
@@ -34,6 +35,7 @@ var addClassHelp = function(name, semester, fullName, student) {
 	});
 };
 
+//Usage: classAddStudent("course name", "student email")
 //Add a new student to a class
 var classAddStudent = function (courseName, email) {
 	getClass(courseName,function(course) {
@@ -55,6 +57,7 @@ var classAddStudentHelp = function(course, student) {
 	});
 }
 
+//Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
 var classAddEvent = function(name, description, type, courseName, startTime){
 	getClass(courseName, function(course){
@@ -81,6 +84,7 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 	});
 };
 
+//Usage: classAddGroup("group name", "course name", "student email")
 //Add a new subgroup to a class
 var classAddGroup = function(name, courseName, email) {
 	getClass(courseName,function(course) {
@@ -110,6 +114,7 @@ var classAddGroupHelp = function(name, course, student) {
 	});
 };
 
+//Usage: getClass("class name", function(course){*whatever you want to do with the course document*})
 //Find a class by name; Returns class document
 var getClass = function(className, callback) {
 	Class.findOne({name: className}, function(err, course) {
@@ -118,6 +123,7 @@ var getClass = function(className, callback) {
 	});
 };
 
+//Usage: getStudent("class name", function(student){*whatever you want to do with the student document*})
 //Find a Student by email; Returns student document
 var getStudent = function(email,callback) {
 	Student.findOne({email: email}, function(err, student){
@@ -126,6 +132,7 @@ var getStudent = function(email,callback) {
 	});
 };
 
+//Usage: getEvent("class name", function(event){*whatever you want to do with the event document*})
 //Get all events for a class; Returns an array of Event documents
 var getEvents = function(className, callback) {
 	Class.find({name: className}, function(err, course) {
@@ -134,6 +141,7 @@ var getEvents = function(className, callback) {
 	});
 };
 
+//Usage: getGroup("class name", function(group){*whatever you want to do with the group document*})
 //Get all groups for a class; Returns an array of Group documents
 var getGroups = function(className, callback) {
 	Class.find({name: className}, function(err, course) {
@@ -142,6 +150,8 @@ var getGroups = function(className, callback) {
 	});
 };
 
+
+//Usage: groupAddStudent("student email", Group document)
 //Add a new student to a group
 var groupAddStudent = function(email, group) {
 	getStudent(email,function(student){
@@ -161,24 +171,26 @@ var groupAddStudentHelp = function(student, group) {
 	});
 };
 
+//Usage: eventAddStudent("student email", Event document)
 //Add a new student to an Event
-var eventAddStudent = function(event, email) {
+var eventAddStudent = function(email, event1) {
 	getStudent(email,function(student){
-		eventAddStudentHelp(event,student);
+		eventAddStudentHelp(event1,student);
 	});
 };
 
-var eventAddStudentHelp = function(event, student) {
-	event.students.push(student);
-	event.save(function(err) {
+var eventAddStudentHelp = function(event1, student) {
+	event1.students.push(student);
+	event1.save(function(err) {
 		if(err) throw err;
 	});
-	student.events.push(event);
+	student.events.push(event1);
 	student.save(function(err) {
 		if(err) throw err;
 	});
 };
 
+//Usage: groupRemoveStudent(Group document, "student email")
 //Remove a student from a group
 var groupRemoveStudent = function(group, email) {
 	getStudent(email,function(student){
@@ -197,16 +209,17 @@ var groupRemoveStudentHelp = function(group, student) {
 	});
 };
 
+//Usage: eventRemoveStudent(Event document, "student email")
 //Remove a student from an event
-var eventRemoveStudent = function(event, email) {
+var eventRemoveStudent = function(event1, email) {
 	getStudent(email,function(student){
-		eventRemoveStudentHelp(event,student);
+		eventRemoveStudentHelp(event1,student);
 	});
 };
 
-var eventRemoveStudentHelp = function(event, student) {
-	event.students.id(student._id).remove();
-	event.save(function(err) {
+var eventRemoveStudentHelp = function(event1, student) {
+	event1.students.id(student._id).remove();
+	event1.save(function(err) {
 		if(err) throw err;
 	});
 	student.events.id(event._id).remove();
@@ -215,6 +228,7 @@ var eventRemoveStudentHelp = function(event, student) {
 	});
 };
 
+//Usage: getUserEvents("student email", function(events){*whatever you want to do with the events*}) ***note that the item returned by this function is an array of event documents
 //Get array of events for a particular user. Returns array of Event documents
 var getUserEvents = function(email, callback) {
 	getStudent(email,function(student){
