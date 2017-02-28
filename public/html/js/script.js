@@ -1,5 +1,4 @@
 
-
 // header and navigation bar
 document.getElementById("header-navigation-bar").innerHTML = 
 
@@ -42,7 +41,6 @@ document.getElementById("header-navigation-bar").innerHTML =
 
 
               '<li class="dropdown">' +
-
                   '<a class="dropdown-toggle" data-toggle="dropdown" href="#">' +
                       '<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>' +
                   '</a>' +
@@ -52,14 +50,13 @@ document.getElementById("header-navigation-bar").innerHTML =
                       '<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>' +
                       '</li>' +
                       '<li class="divider"></li>' +
-                      '<li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>' +
-                      '</li>' +
 
-                      '<script type="text/javascript">' +
-                          '$(\'#perform_logout_button\').hide();' +
-                          '$(\'#logout_link\').click(function() {' +
-                              'document.logout_form.submit(); return false; });' +
-                      '</script>' +
+                      '<li>' +
+                        '<form action="/logout" method="POST">' +
+                          '<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>' +
+                        '</form>' +
+                      '</li>' +         
+
                   '</ul>' +
               '</li>' +
               '[User name]' +
@@ -97,16 +94,23 @@ document.getElementById("header-navigation-bar").innerHTML =
 
 
 
+            // form(action='/logout', method='post')
+            //   button.btn-link(type='submit', name='your_name', value='your_value') Logout
+
+            // script(type='text/javascript').
+            //   $('#perform_logout_button').hide();
+            //   $('#logout_link').click(function() {
+            //   document.logout_form.submit(); return false; });
 
 
 
 
 
-$.getScript("../../../server/db.js", function(){
 
-   alert("MongoDB Script Loaded.");
 
-}); 
+
+
+
 
 
 
