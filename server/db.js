@@ -233,10 +233,12 @@ var eventRemoveStudentHelp = function(event1, student) {
 //Get array of events for a particular user. Returns array of Event documents
 var getUserEvents = function(email, callback) {
 	getStudent(email,function(student){
-		callbacks(tudent.events);
+		callback(student.events);
 	});
 };
 
+//Usage: createInvite("student you want to invite's email", Group document, Student who sent the invite Document)
+//create an invitation for a group; includes group the invite is for, the student who the invite was from, student who the invite was too
 var createInvite = function(targetEmail, group, student){
 	getStudent(targetEmail, function(toStudent){
 		var invite = new Invite({
@@ -254,6 +256,8 @@ var createInvite = function(targetEmail, group, student){
 	});
 };
 
+//Usage: acceptInvite(Invite document)
+//accept invitation and add the student to the group
 var acceptInvite = function(invite) {
 	groupAddStudent(invite.toStudent.email, invite.group);
 	invite.toStudent.invites.id(invite._id).remove();
@@ -261,9 +265,19 @@ var acceptInvite = function(invite) {
 
 };
 
+//Usage: declineInvite(Invite document)
+//decline invitation
 var declineInvite = function(invite) {
 	invite.toStudent.invites.id(invite._id).remove();
 	invite.remove();
+};
+
+//Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item returned by this function is an array of invite documents
+//get Array of invites for a particular user. Returns array of Invite documents
+var getUserInvites = function(email, callback) {
+	getStudent(email, function(student){
+		callback(student.invites);
+	});
 };
 
 module.exports = {
