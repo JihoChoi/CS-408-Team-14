@@ -3,6 +3,7 @@ var Student = require("./schema/student.js");
 var Event = require("./schema/event.js");
 var Group = require("./schema/group.js");
 var Class = require("./schema/class.js");
+var Invite = require("./schema/invite.js");
 
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
@@ -236,6 +237,35 @@ var getUserEvents = function(email, callback) {
 	});
 };
 
+var createInvite = function(targetEmail, group, student){
+	getStudent(targetEmail, function(toStudent){
+		var invite = new Invite({
+			group: group,
+			studentTo: toStudent,
+			studentFrom: student
+		});
+		invite.save(function(err){
+			if(err) throw err;
+		});
+		toStudent.invites.push(invite);
+		toStudent.save(function(err){
+			if(err) throw err;
+		});
+	});
+};
+
+var acceptInvite = function(invite) {
+	groupAddStudent(invite.toStudent.email, invite.group);
+	invite.toStudent.invites.id(invite._id).remove();
+	invite.remove();
+
+};
+
+var declineInvite = function(invite) {
+	invite.toStudent.invites.id(invite._id).remove();
+	invite.remove();
+};
+
 module.exports = {
 addClass,
 classAddStudent,
@@ -248,5 +278,9 @@ getGroups,
 groupAddStudent,
 eventAddStudent,
 groupRemoveStudent,
-eventRemoveStudent
+eventRemoveStudent,
+getUserEvents,
+createInvite,
+acceptInvite,
+declineInvite
 }; 

@@ -13,6 +13,7 @@ var Student = require("./server/schema/student.js");
 var Event = require("./server/schema/event.js");
 var Group = require("./server/schema/group.js");
 var Class = require("./server/schema/class.js");
+var Invite = require("./server/schema/invite.js");
 var dbFunc = require("./server/db.js");
 
 // Variables
