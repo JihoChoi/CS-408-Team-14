@@ -6,7 +6,8 @@ var StudentSchema = new Schema({
 	email: String,
 	courses: [{type: mongoose.Schema.Types.ObjectId, ref:'Class'}],
 	events: [{type:mongoose.Schema.Types.ObjectId, ref: 'Event'}],
-	subgroups: [{type:mongoose.Schema.Types.ObjectId, ref: 'Group'}]
+	subgroups: [{type:mongoose.Schema.Types.ObjectId, ref: 'Group'}],
+	invites: [{type:mongoose.Schema.Types.ObjectId, ref:'Invite'}]
 });
 
 

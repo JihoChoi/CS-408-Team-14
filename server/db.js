@@ -3,6 +3,7 @@ var Student = require("./schema/student.js");
 var Event = require("./schema/event.js");
 var Group = require("./schema/group.js");
 var Class = require("./schema/class.js");
+var Invite = require("./schema/invite.js");
 
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
@@ -232,7 +233,50 @@ var eventRemoveStudentHelp = function(event1, student) {
 //Get array of events for a particular user. Returns array of Event documents
 var getUserEvents = function(email, callback) {
 	getStudent(email,function(student){
-		callbacks(tudent.events);
+		callback(student.events);
+	});
+};
+
+//Usage: createInvite("student you want to invite's email", Group document, Student who sent the invite Document)
+//create an invitation for a group; includes group the invite is for, the student who the invite was from, student who the invite was too
+var createInvite = function(targetEmail, group, student){
+	getStudent(targetEmail, function(toStudent){
+		var invite = new Invite({
+			group: group,
+			studentTo: toStudent,
+			studentFrom: student
+		});
+		invite.save(function(err){
+			if(err) throw err;
+		});
+		toStudent.invites.push(invite);
+		toStudent.save(function(err){
+			if(err) throw err;
+		});
+	});
+};
+
+//Usage: acceptInvite(Invite document)
+//accept invitation and add the student to the group
+var acceptInvite = function(invite) {
+	groupAddStudent(invite.toStudent.email, invite.group);
+	invite.toStudent.invites.id(invite._id).remove();
+	invite.remove();
+
+};
+
+//Usage: declineInvite(Invite document)
+//decline invitation
+var declineInvite = function(invite) {
+	invite.toStudent.invites.id(invite._id).remove();
+	invite.remove();
+};
+
+//Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item returned by this function is an array of invite documents
+//get Array of invites for a particular user. Returns array of Invite documents
+var getUserInvites = function(email, callback) {
+	getStudent(email, function(student){
+		callback(student.invites);
 	});
 };
 
@@ -248,5 +292,9 @@ getGroups,
 groupAddStudent,
 eventAddStudent,
 groupRemoveStudent,
-eventRemoveStudent
+eventRemoveStudent,
+getUserEvents,
+createInvite,
+acceptInvite,
+declineInvite
 }; 
