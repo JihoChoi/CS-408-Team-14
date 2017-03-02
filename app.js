@@ -62,6 +62,11 @@ function send404(email, url, res) {
 
 // Directories
 
+// Truncate html
+app.get('/*.html', function(req, res) {
+    res.redirect(req.url.slice(0, -5));
+});
+
 // Favicon.ico
 app.get('/favicon.ico', function(req, res) {
     console.log("Sending favicon.ico as a file.");
@@ -83,13 +88,24 @@ app.get('/', stormpath.getUser, function(req, res) {
     }
 });
 
-app.get('/index', function (req, res) {
+app.get('/index', function(req, res) {
     res.redirect('/');
+});
+
+app.get('/dashboard', function(req, res) {
+    res.redirect('/');
+});
+
+app.get('/addClass', stormpath.authenticationRequired, function(req, res) {
+    send200(req.user.email, req.url, res);
+    res.render("addClass", {
+        user: req.user
+    });
 });
 
 // All events of user is in
 app.get('/events', stormpath.authenticationRequired, function(req, res) {
-    send200(req.user.email, req.url);
+    send200(req.user.email, req.url, res);
     res.render("events", {
         user: req.user
     });
