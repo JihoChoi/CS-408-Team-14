@@ -28,12 +28,9 @@ var createUser = function(email, callback) {
 //Checks if a user exists, if it does do nothing, if it doesn't, creates it
 var enrollUser = function(email,callback) {
 	getStudent(email, function(student){
-		console.log(student);
 		if(student) {
-		console.log("yes");
 		callback();
 		} else {
-		console.log("no");
 		createUser(email, callback);
 		}
 	});
