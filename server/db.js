@@ -237,6 +237,14 @@ var getUserEvents = function(email, callback) {
 	});
 };
 
+//Usage: getUserCourses("student email", function(courses){*whatever you want to do with the courses*}) ***note that the item return by this function is an array of course documents
+//Get array of courses for a particular user. Returns array of Course documents
+var getUserCourses = function(email, callback) {
+	getStudent(email,function(student){
+		callback(student.courses);
+	});
+};
+
 //Usage: createInvite("student you want to invite's email", Group document, Student who sent the invite Document)
 //create an invitation for a group; includes group the invite is for, the student who the invite was from, student who the invite was too
 var createInvite = function(targetEmail, group, student){
