@@ -8,6 +8,35 @@ var Invite = require("./schema/invite.js");
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
 
+//Usage: createUser("student email", callback function);
+//Cretes a user and adds it to the database. Mostly a helper function. Use at your own discretion
+var createUser = function(email, callback) {
+	var student = new Student({
+		email: email,
+		courses: [],
+		events: [],
+		subgroups: [],
+		invites: []
+	});
+	student.save(function(err){
+		if(err) throw err;
+		callback();
+	});
+};
+
+//Usage: enrollUser("student email", callback function); **the callback function is only here so that the code doesn't continue before the user can be created, which would casue a crash
+//Checks if a user exists, if it does do nothing, if it doesn't, creates it
+var enrollUser = funtion(email,callback) {
+	getStudent(email, function(student){
+		if(student) {
+		callback();
+		} else {
+		createUser(email, callback());
+		}
+	});
+	
+};
+
 //Usage: addClass("class name", "semester", "full class name", "student email")
 //Create a new class
 var addClass = function(name, semester, fullName, email){
@@ -50,7 +79,6 @@ var classAddStudentHelp = function(course, student) {
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
-		console.log('Student added to class');
 	});
 	student.courses.push(course);
 	student.save(function(err) {
@@ -77,7 +105,6 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 	});
 	event.save(function(err) {
 		if(err) throw err;
-		console.log('Event added');
 	});
 	course.events.push(event);
 	course.save(function(err) {
@@ -103,7 +130,6 @@ var classAddGroupHelp = function(name, course, student) {
 	group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
-		console.log('Group added');
 	});
 	course.subgroups.push(group);
 	course.save(function(err) {
@@ -164,7 +190,6 @@ var groupAddStudentHelp = function(student, group) {
 	group.students.push(student);
 	group.save(function(err){
 		if(err) throw err;
-		console.log("Student added to group");
 	});
 	student.subgroups.push(group);
 	student.save(function(err){
@@ -297,6 +322,8 @@ var getUserInvites = function(email, callback) {
 };
 
 module.exports = {
+createUser,
+enrollUser,
 addClass,
 classAddStudent,
 classAddEvent,
