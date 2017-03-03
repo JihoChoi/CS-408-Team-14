@@ -78,6 +78,7 @@ app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
         db.enrollUser(req.user.email, function () {
             db.getUserCourses(req.user.email, function(courses) {
+	    	console.log(courses);
                 send200(req.user.email, req.url, res);
                 res.render("dashboard", {
                     user: req.user,

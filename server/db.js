@@ -267,17 +267,31 @@ var getUserEvents = function(email, callback) {
 //Get array of courses for a particular user. Returns array of Course documents
 var getUserCourses = function(email, callback) {
 	getStudent(email,function(student){
-		callback(parseCourses(student.courses));
+		parseCourses(student.courses, callback);
 	});
 };
 
-var parseCourses = function(courses) {
+var parseCourses = function(courses, callback) {
+	var ret = [];
+	for (var i = 0; i < courses.length; i++) {
+		Class.findById(courses[i], function(course){
+			if(course) {
+			ret.push(course.name);
+			}
+			if(i = courses.length-1) {
+			callback(ret);
+			}
+		});
+	}
+	
+	/*
 	courses.map(function(obj) {
 	Class.findById(obj ,function(course){
 	return course.name;
 	});
 	}
 	);
+	*/
 }
 
 //Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of invite documents
