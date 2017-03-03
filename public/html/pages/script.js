@@ -102,15 +102,6 @@ document.getElementById("header-navigation-bar").innerHTML =
 
 
 
-$.getScript("../../../server/db.js", function(){
-
-   alert("MongoDB Script Loaded.");
-
-}); 
-
-
-
-
 
 
 

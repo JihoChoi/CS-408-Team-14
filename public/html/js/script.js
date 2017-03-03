@@ -49,13 +49,27 @@ document.getElementById("header-navigation-bar").innerHTML =
                       '</li>' +
                       '<li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>' +
                       '</li>' +
+
                       '<li class="divider"></li>' +
 
-                      '<li>' +
-                        '<form action="/logout" method="POST">' +
-                          '<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>' +
-                        '</form>' +
-                      '</li>' +         
+
+          // this two below buttons need to be combined.
+
+                      '<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>' +
+                      '</li>' +
+
+                      '<form name="logout" id="logout" method="post" action="/logout">' +
+                          '<input type="hidden" name="perform_logout" value="1">' +
+                          '<input type="submit" value="Logout" id="perform_logout_button">' +
+                          '<a href="/logout" style="display:none;" id="logout_link">Logout</a>' +
+                      '</form>' +
+
+                      '<script type="text/javascript">' +
+                         '$("#perform_logout_button").hide();' +
+                         '$("#logout_link").click(function() {' +
+                            'document.logout_form.submit(); return false; ' +
+                         '});' +
+                      '</script>' +
 
                   '</ul>' +
               '</li>' +
@@ -92,6 +106,14 @@ document.getElementById("header-navigation-bar").innerHTML =
       '</nav>';
 
 
+//
+// function hideButton() {
+//     $("perform_logout_button").hide();
+//     $("logout_link").click(function () {
+//         document.logout_form.submit();
+//         return false;
+//     })
+// }
 
 
             // form(action='/logout', method='post')
@@ -107,6 +129,15 @@ document.getElementById("header-navigation-bar").innerHTML =
 
 
 
+
+
+//
+//
+// $.getScript("../../../server/db.js", function(){
+//
+//     alert("MongoDB Script Loaded.");
+//
+// });
 
 
 
