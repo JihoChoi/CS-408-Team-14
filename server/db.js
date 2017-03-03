@@ -26,7 +26,7 @@ var createUser = function(email, callback) {
 
 //Usage: enrollUser("student email", callback function); **the callback function is only here so that the code doesn't continue before the user can be created, which would casue a crash
 //Checks if a user exists, if it does do nothing, if it doesn't, creates it
-var enrollUser = funtion(email,callback) {
+var enrollUser = function(email,callback) {
 	getStudent(email, function(student){
 		if(student) {
 		callback();
