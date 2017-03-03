@@ -302,6 +302,7 @@ eventAddStudent,
 groupRemoveStudent,
 eventRemoveStudent,
 getUserEvents,
+getUserCourses,
 createInvite,
 acceptInvite,
 declineInvite
