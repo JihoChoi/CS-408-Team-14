@@ -245,6 +245,14 @@ var getUserCourses = function(email, callback) {
 	});
 };
 
+//Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of invite documents
+//Get array of invite for a particular user. Returns array of invite documents
+var getUserInvites = function(email, callback) {
+	getStudent(email,function(student){
+		callback(student.invites);
+	});
+};
+
 //Usage: createInvite("student you want to invite's email", Group document, Student who sent the invite Document)
 //create an invitation for a group; includes group the invite is for, the student who the invite was from, student who the invite was too
 var createInvite = function(targetEmail, group, student){
@@ -303,6 +311,7 @@ groupRemoveStudent,
 eventRemoveStudent,
 getUserEvents,
 getUserCourses,
+getUserInvites,
 createInvite,
 acceptInvite,
 declineInvite
