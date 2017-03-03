@@ -4,6 +4,7 @@ var Event = require("./schema/event.js");
 var Group = require("./schema/group.js");
 var Class = require("./schema/class.js");
 var Invite = require("./schema/invite.js");
+var ObjectId = require('mongoose').Types.ObjectId; 
 
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
@@ -266,9 +267,18 @@ var getUserEvents = function(email, callback) {
 //Get array of courses for a particular user. Returns array of Course documents
 var getUserCourses = function(email, callback) {
 	getStudent(email,function(student){
-		callback(student.courses);
+		callback(parseCourses(student.courses));
 	});
 };
+
+var parseCourses = function(courses) {
+	courses.map(function(obj) {
+	Class.findById(obj ,function(course){
+	return course.name;
+	});
+	}
+	);
+}
 
 //Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of invite documents
 //Get array of invite for a particular user. Returns array of invite documents
