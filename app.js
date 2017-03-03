@@ -76,11 +76,6 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
-        send200(req.user.email, req.url, res);
-        res.render("dashboard", {
-            user: req.user
-        });
-        /* gdi mongo
         db.enrollUser(req.user.email, function () {
             db.getUserCourses(req.user.email, function(courses) {
                 send200(req.user.email, req.url, res);
@@ -90,7 +85,6 @@ app.get('/', stormpath.getUser, function(req, res) {
                 });
             });
         });
-        */
     } else {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
