@@ -4,6 +4,7 @@ var app = express();
 var colors = require('colors');
 var stormpath = require('express-stormpath');
 var mongoose = require('mongoose');
+var bodyparser = require('body-parser');
 
 //Connect to mongodb
 mongoose.connect('mongodb://application:coconutWatr@ds153179.mlab.com:53179/coconutwatr');
@@ -27,6 +28,10 @@ app.use(express.static(prepath));
 app.set('view engine', "jade");
 app.set('views', prepath + '/pages')
 app.use('/vendor', express.static(prepath + "/vendor"));
+app.use(bodyparser.json());         // Support JSON-encoded bodies
+app.use(bodyparser.urlencoded({     // Support URL-encoded bodies
+    extended: true
+}));
 
 // Stormpath stuff
 app.use(stormpath.init(app, {
@@ -60,7 +65,7 @@ function send404(email, url, res) {
 };
 
 
-// Directories
+// GET REQUESTS
 
 // Truncate html
 app.get('/*.html', function(req, res) {
@@ -228,6 +233,21 @@ app.get('/secret', stormpath.authenticationRequired, function (req, res) {
 app.get('/data/morris-data.js', function(req, res) {
     ;
 });
+
+
+// POST REQUESTS
+app.post('/join-class', stormpath.authenticationRequired, function(req, res) {
+    db.classAddStudent(req.body.coursename,
+        req.user.email); // db stuff
+});
+
+app.post('/create-class', stormpath.authenticationRequired, function(req, res) {
+    db.addClass(req.body.coursename,
+        req.body.semester,
+        req.body.fullCourseName,
+        req.user.email); // db stuff
+});
+
 
 // If nothing matches, go 404
 app.get('*', function(req, res) {
