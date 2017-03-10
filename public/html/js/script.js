@@ -1,6 +1,6 @@
-
-  // document.write("HERE" + user);
-  // document.write("HERE" + user.fullName);
+/*
+  static nav bar
+*/
 
 console.log("========================");
 console.log("INSIDE script.js");
@@ -8,6 +8,8 @@ console.log("========================");
 console.log("user.fullName: " + user.fullName);
 console.log("user.email: " + user.email);
 console.log("courses.length: " + courses.length);
+console.log("tempCourse[0]: " + tempCourse[0].name);
+console.log("tempCourse[1]: " + tempCourse[1].name);
 console.log("========================");
 
 
@@ -104,8 +106,13 @@ document.getElementById("header-navigation-bar").innerHTML =
                                   '<a href="addClass.html">Add Class</a>' +
                               '</li>' +
 
+    // TODO make javascript forloop to make courses.length size of menu when there are a real data 
                               '<li>' +
-                                  '<a href="class.html">CS180</a>' +
+                                  '<a href="/course/' + tempCourse[0].name.toLowerCase() + '">'+tempCourse[0].name+'</a>' +
+                              '</li>' +
+                
+                              '<li>' +
+                                  '<a href="/course/' + tempCourse[1].name.toLowerCase() + '">'+tempCourse[1].name+'</a>' +
                               '</li>' +
 
                               '<li>' +

@@ -24,119 +24,15 @@ html(lang='en')
       script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
   body
     #wrapper
-      // Navigation
-      nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
-        .navbar-header
-          button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-            span.sr-only Toggle navigation
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand(href='index.html') Coconut Watr
-        // /.navbar-header
-        ul.nav.navbar-top-links.navbar-right
-          li.dropdown
-            a.dropdown-toggle(data-toggle='dropdown', href='#')
-              i.fa.fa-envelope.fa-fw
-              i.fa.fa-caret-down
-            ul.dropdown-menu.dropdown-messages
-              li
-                a(href='#')
-                  div
-                    strong John Smith
-                    span.pull-right.text-muted
-                      em Yesterday
-                  div
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-              li.divider
-              li
-                a(href='#')
-                  div
-                    strong John Smith
-                    span.pull-right.text-muted
-                      em Yesterday
-                  div
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-              li.divider
-              li
-                a(href='#')
-                  div
-                    strong John Smith
-                    span.pull-right.text-muted
-                      em Yesterday
-                  div
-                    | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
-              li.divider
-              li
-                a.text-center(href='#')
-                  strong Read All Messages
-                  i.fa.fa-angle-right
-            // /.dropdown-messages
-          li.dropdown
-            a.dropdown-toggle(data-toggle='dropdown', href='#')
-              i.fa.fa-user.fa-fw
-              i.fa.fa-caret-down
-            ul.dropdown-menu.dropdown-user
-              li
-                a(href='#')
-                  i.fa.fa-user.fa-fw
-                  |  User Profile
-              li
-                a(href='#')
-                  i.fa.fa-gear.fa-fw
-                  |  Settings
-              li.divider
-              li
-                a(href='login.html')
-                  i.fa.fa-sign-out.fa-fw
-                  |  Logout
-            // /.dropdown-user
-          // /.dropdown
-        // /.navbar-top-links
-        .navbar-default.sidebar(role='navigation')
-          .sidebar-nav.navbar-collapse
-            ul#side-menu.nav
-              li
-                a(href='dashboard.html')
-                  i.fa.fa-dashboard.fa-fw
-                  |  Dashboard
-              //
-                <li>
-                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Courses<span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level">
-                <li>
-                <a href="class.html">CS180</a>
-                </li>
-                <li>
-                <a href="#">CS240</a>
-                </li>
-                <li>
-                <a href="#">MA251</a>
-                </li>
-                <li>
-                <a href="#">HIST101</a>
-                </li>
-                <li>
-                <a href="#">Past Courses (Sprint 2) <span class="fa arrow"></span></a>
-                <ul class="nav nav-third-level">
-                <li>
-                <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                <a href="#">Third Level Item</a>
-                </li>
-                <li>
-                <a href="#">Third Level Item</a>
-                </li>
-                </ul>
-                </li>
-                </ul>
-                </li>
-          // /.sidebar-collapse
-        // /.navbar-static-side
+
+      nav#header-navigation-bar
+
+      script(type='text/javascript').
+        var user = !{JSON.stringify(user)};
+        var courses = !{JSON.stringify(courses)};
+      script(src='../js/script.js')
+
+
       #page-wrapper
         .row
           .col-lg-12
@@ -156,7 +52,7 @@ html(lang='en')
               .panel-body
                 .row
                   .col-lg-6
-                    form(role='form')
+                    form(action='/join-class', method='post')
                       .form-group
                         label Class Name
                         input.form-control(placeholder='CS180, MATH251')
@@ -180,229 +76,17 @@ html(lang='en')
               .panel-body
                 .row
                   .col-lg-6
-                    form(role='form')
+                    form(action='/create-class', method='post')
                       .form-group
-                        label Class Name
-                        input.form-control(placeholder='CS180, MATH251')
-                      //
-                        <div class="form-group">
-                        <label>Checkboxes</label>
-                        <div class="checkbox">
-                        <label>
-                        <input type="checkbox" value="">Checkbox 1
-                        </label>
-                        </div>
-                        <div class="checkbox">
-                        <label>
-                        <input type="checkbox" value="">Checkbox 2
-                        </label>
-                        </div>
-                        <div class="checkbox">
-                        <label>
-                        <input type="checkbox" value="">Checkbox 3
-                        </label>
-                        </div>
-                        </div>
+                        label Course Name
+                        input.coursename(placeholder='CS180, MATH251')
+                      .form-group
+                        label Full Course Name
+                        input.fullCourseName(placeholder='Systems Programming')
                       button.btn.btn-default(type='submit') Create Class
                       button.btn.btn-default(type='reset') Cancel
-                  // /.col-lg-6 (nested)
-                  //
-                    <div class="col-lg-6">
-                    <h1>Form Validation States</h1>
-                    <form role="form">
-                    <div class="form-group has-success">
-                    <label class="control-label" for="inputSuccess">Input with success</label>
-                    <input type="text" class="form-control" id="inputSuccess">
-                    </div>
-                    <div class="form-group has-warning">
-                    <label class="control-label" for="inputWarning">Input with warning</label>
-                    <input type="text" class="form-control" id="inputWarning">
-                    </div>
-                    <div class="form-group has-error">
-                    <label class="control-label" for="inputError">Input with error</label>
-                    <input type="text" class="form-control" id="inputError">
-                    </div>
-                    </form>
-                    </div>
-                  // /.col-lg-6 (nested)
-                // /.row (nested)
-              // /.panel-body
-            //
-              <div class="panel panel-default">
-              <div class="panel-heading">
-              TODO (delete when finished)
-              </div>
-              <div class="panel-body">
-              <div class="row">
-              <div class="col-lg-6">
-              <form role="form">
-              <div class="form-group">
-              <label>Text Input</label>
-              <input class="form-control">
-              <p class="help-block">Example block-level help text here.</p>
-              </div>
-              <div class="form-group">
-              <label>Text Input with Placeholder</label>
-              <input class="form-control" placeholder="Enter text">
-              </div>
-              <div class="form-group">
-              <label>Static Control</label>
-              <p class="form-control-static">email@example.com</p>
-              </div>
-              <div class="form-group">
-              <label>File input</label>
-              <input type="file">
-              </div>
-              <div class="form-group">
-              <label>Text area</label>
-              <textarea class="form-control" rows="3"></textarea>
-              </div>
-              <div class="form-group">
-              <label>Checkboxes</label>
-              <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">Checkbox 1
-              </label>
-              </div>
-              <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">Checkbox 2
-              </label>
-              </div>
-              <div class="checkbox">
-              <label>
-              <input type="checkbox" value="">Checkbox 3
-              </label>
-              </div>
-              </div>
-              <div class="form-group">
-              <label>Inline Checkboxes</label>
-              <label class="checkbox-inline">
-              <input type="checkbox">1
-              </label>
-              <label class="checkbox-inline">
-              <input type="checkbox">2
-              </label>
-              <label class="checkbox-inline">
-              <input type="checkbox">3
-              </label>
-              </div>
-              <div class="form-group">
-              <label>Radio Buttons</label>
-              <div class="radio">
-              <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>Radio 1
-              </label>
-              </div>
-              <div class="radio">
-              <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">Radio 2
-              </label>
-              </div>
-              <div class="radio">
-              <label>
-              <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3">Radio 3
-              </label>
-              </div>
-              </div>
-              <div class="form-group">
-              <label>Inline Radio Buttons</label>
-              <label class="radio-inline">
-              <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>1
-              </label>
-              <label class="radio-inline">
-              <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">2
-              </label>
-              <label class="radio-inline">
-              <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline3" value="option3">3
-              </label>
-              </div>
-              <div class="form-group">
-              <label>Selects</label>
-              <select class="form-control">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-              </select>
-              </div>
-              <button type="submit" class="btn btn-default">Submit Button</button>
-              <button type="reset" class="btn btn-default">Reset Button</button>
-              </form>
-              </div>
-              <div class="col-lg-6">
-              <h1>Disabled Form States</h1>
-              <form role="form">
-              <fieldset disabled>
-              <div class="form-group">
-              <label for="disabledSelect">Disabled input</label>
-              <input class="form-control" id="disabledInput" type="text" placeholder="Disabled input" disabled>
-              </div>
-              <div class="form-group">
-              <label for="disabledSelect">Disabled select menu</label>
-              <select id="disabledSelect" class="form-control">
-              <option>Disabled select</option>
-              </select>
-              </div>
-              <div class="checkbox">
-              <label>
-              <input type="checkbox">Disabled Checkbox
-              </label>
-              </div>
-              <button type="submit" class="btn btn-primary">Disabled Button</button>
-              </fieldset>
-              </form>
-              <h1>Form Validation States</h1>
-              <form role="form">
-              <div class="form-group has-success">
-              <label class="control-label" for="inputSuccess">Input with success</label>
-              <input type="text" class="form-control" id="inputSuccess">
-              </div>
-              <div class="form-group has-warning">
-              <label class="control-label" for="inputWarning">Input with warning</label>
-              <input type="text" class="form-control" id="inputWarning">
-              </div>
-              <div class="form-group has-error">
-              <label class="control-label" for="inputError">Input with error</label>
-              <input type="text" class="form-control" id="inputError">
-              </div>
-              </form>
-              <h1>Input Groups</h1>
-              <form role="form">
-              <div class="form-group input-group">
-              <span class="input-group-addon">@</span>
-              <input type="text" class="form-control" placeholder="Username">
-              </div>
-              <div class="form-group input-group">
-              <input type="text" class="form-control">
-              <span class="input-group-addon">.00</span>
-              </div>
-              <div class="form-group input-group">
-              <span class="input-group-addon"><i class="fa fa-eur"></i>
-              </span>
-              <input type="text" class="form-control" placeholder="Font Awesome Icon">
-              </div>
-              <div class="form-group input-group">
-              <span class="input-group-addon">$</span>
-              <input type="text" class="form-control">
-              <span class="input-group-addon">.00</span>
-              </div>
-              <div class="form-group input-group">
-              <input type="text" class="form-control">
-              <span class="input-group-btn">
-              <button class="btn btn-default" type="button"><i class="fa fa-search"></i>
-              </button>
-              </span>
-              </div>
-              </form>
-              </div>
-              <!-- /.col-lg-6 (nested)
-          // /.row (nested)
-        // /.panel-body
-      |     -->
-    // /.col-lg-4
-    // /#page-wrapper
+          // /.col-lg-4
+      // /#page-wrapper
     // /#page-wrapper
     // /#wrapper
     // jQuery

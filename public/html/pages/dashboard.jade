@@ -25,11 +25,27 @@ html(lang='en')
       //script(src='../js/script.js')
         //hideButton()
 
-
       script(type='text/javascript').
         var user = !{JSON.stringify(user)};
         var courses = !{JSON.stringify(courses)};
-        
+        var tempCourse = [
+          {
+            name: "CS240",
+            semester: "spring2017",
+            fullName: "Prograimming in C",
+            students: [],
+            events: [],
+            subgroups: []
+          },
+          {
+            name: "CS252",
+            semester: "spring2017",
+            fullName: "Systems Programming",
+            students: [],
+            events: [],
+            subgroups: []
+          }
+        ];
       script(src='../js/script.js')
 
 
@@ -70,30 +86,7 @@ html(lang='en')
                   span.pull-right
                     i.fa.fa-arrow-circle-right
                   .clearfix
-          //
-            <div class="col-lg-3 col-md-6">
-            <div class="panel panel-red">
-            <div class="panel-heading">
-            <div class="row">
-            <div class="col-xs-3">
-            <i class="fa fa-support fa-5x"></i>
-            </div>
-            <div class="col-xs-9 text-right">
-            <div class="huge">8</div>
-            <div>New Events</div>
-            </div>
-            </div>
-            </div>
-            <a href="#">
-            <div class="panel-footer">
-            <span class="pull-left">View Details</span>
-            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-            <div class="clearfix"></div>
-            </div>
-            </a>
-            </div>
-            </div>
-        // /.row
+
         .row
           .col-lg-8
             .panel.panel-default
