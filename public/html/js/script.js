@@ -1,4 +1,17 @@
 
+  // document.write("HERE" + user);
+  // document.write("HERE" + user.fullName);
+
+console.log("========================");
+console.log("INSIDE script.js");
+console.log("========================");
+console.log("user.fullName: " + user.fullName);
+console.log("user.email: " + user.email);
+console.log("courses.length: " + courses.length);
+console.log("========================");
+
+
+
 // header and navigation bar
 document.getElementById("header-navigation-bar").innerHTML = 
 
@@ -53,8 +66,7 @@ document.getElementById("header-navigation-bar").innerHTML =
                       '<li class="divider"></li>' +
 
 
-          // this two below buttons need to be combined.
-
+                      // this two below buttons need to be combined.
                       '<li><a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>' +
                       '</li>' +
 
@@ -73,7 +85,7 @@ document.getElementById("header-navigation-bar").innerHTML =
 
                   '</ul>' +
               '</li>' +
-              '[User name]' +
+              user.email +
               '<li></li>' +
           '</ul>' +
 
@@ -95,6 +107,12 @@ document.getElementById("header-navigation-bar").innerHTML =
                               '<li>' +
                                   '<a href="class.html">CS180</a>' +
                               '</li>' +
+
+                              '<li>' +
+                                  '<a href="class.html">!{user.fullName}</a>' +
+                              '</li>' +
+
+
                               '<li>' +
                                   '<a href="#">[Class Name]</a>' +
                               '</li>' +
@@ -104,51 +122,6 @@ document.getElementById("header-navigation-bar").innerHTML =
               '</div>' +
           '</div>' +
       '</nav>';
-
-
-//
-// function hideButton() {
-//     $("perform_logout_button").hide();
-//     $("logout_link").click(function () {
-//         document.logout_form.submit();
-//         return false;
-//     })
-// }
-
-
-            // form(action='/logout', method='post')
-            //   button.btn-link(type='submit', name='your_name', value='your_value') Logout
-
-            // script(type='text/javascript').
-            //   $('#perform_logout_button').hide();
-            //   $('#logout_link').click(function() {
-            //   document.logout_form.submit(); return false; });
-
-
-
-
-
-
-
-
-//
-//
-// $.getScript("../../../server/db.js", function(){
-//
-//     alert("MongoDB Script Loaded.");
-//
-// });
-
-
-
-
-
-
-
-
-
-
-
 
 
 

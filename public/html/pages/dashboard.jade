@@ -21,8 +21,16 @@ html(lang='en')
     #wrapper
       // nav bar
       nav#header-navigation-bar
-      script(src='../js/script.js')
+      
+      //script(src='../js/script.js')
         //hideButton()
+
+
+      script(type='text/javascript').
+        var user = !{JSON.stringify(user)};
+        var courses = !{JSON.stringify(courses)};
+        
+      script(src='../js/script.js')
 
 
       #page-wrapper
