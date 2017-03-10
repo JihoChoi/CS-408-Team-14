@@ -156,9 +156,23 @@ var getClass = function(className, callback) {
 var getStudent = function(email,callback) {
 	Student.findOne({email: email}, function(err, student){
 		if(err) throw err;
-		callback(student);;
+		callback(student);
 	});
 };
+
+var getEvent = function(name, callback) {
+	Event.findOne({name:name}, function(err, event){
+		if(err) throw err;
+		callback(event);
+	});
+}
+
+var getGroup = function(name, callback) {
+	Group.findOne({name:name}, function(err, group){
+		if(err) throw err;
+		callback(group);
+	});
+}
 
 //Usage: getEvent("class name", function(event){*whatever you want to do with the event document*})
 //Get all events for a class; Returns an array of Event documents
@@ -259,8 +273,23 @@ var eventRemoveStudentHelp = function(event1, student) {
 //Get array of events for a particular user. Returns array of Event documents
 var getUserEvents = function(email, callback) {
 	getStudent(email,function(student){
-		callback(student.events);
+		parseEvents(student.events, [], callback);
 	});
+};
+
+var parseEvents = function(events, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(i == events.length) {
+		callback(ret);
+	} else {
+		Event.findById(events[i], function(err, event)
+			if (event) {
+				ret1.push(event.name);
+			}
+			parseEvents(events, ret1, callback);
+		});
+	}
 };
 
 //Usage: getUserCourses("student email", function(courses){*whatever you want to do with the courses*}) ***note that the item return by this function is an array of course documents
@@ -286,12 +315,31 @@ var parseCourses = function(courses, ret, callback) {
 	}
 }
 
-//Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of invite documents
-//Get array of invite for a particular user. Returns array of invite documents
+//Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of group names for the invites
+//Get array of invite for a particular user. Returns array of group names
 var getUserInvites = function(email, callback) {
 	getStudent(email,function(student){
-		callback(student.invites);
+		parseInvites(student.invites, [], callback);
 	});
+};
+
+var parseInvites = function(invites, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(i == invites.length) {
+		callabck(ret);
+	} else {
+		Invite.findById(invites[i], function(err,invite){
+			if(invite) {
+				Group.findById(invite.group, function(err, group) {
+					if (group) {
+						ret1.push(group.name);
+					}
+					parseInvites(invites, ret1, callback);
+				});
+			}
+		});
+	}
 };
 
 //Usage: createInvite("student you want to invite's email", Group document, Student who sent the invite Document)
@@ -341,6 +389,8 @@ module.exports = {
 createUser,
 enrollUser,
 addClass,
+getEvent,
+getGroup,
 classAddStudent,
 classAddEvent,
 classAddGroup,
