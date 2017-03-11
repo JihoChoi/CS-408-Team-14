@@ -240,11 +240,11 @@ var groupRemoveStudent = function(group, email) {
 };
 
 var groupRemoveStudentHelp = function(group, student) {
-	group.students.id(student._id).remove();
+	group.students.splice(group.students.indexOf(student._id), 1);
 	group.save(function(err){
 		if(err) throw err;
 	});
-	student.subgroups.id(group._id).remove();
+	student.subgroups.splice(student.subgroups.indexOf(group._id), 1);
 	student.save(function(err) {
 		if(err) throw err;
 	});
@@ -259,11 +259,11 @@ var eventRemoveStudent = function(event1, email) {
 };
 
 var eventRemoveStudentHelp = function(event1, student) {
-	event1.students.id(student._id).remove();
+	event1.students.splice(event1.students.indexOf(student._id), 1);
 	event1.save(function(err) {
 		if(err) throw err;
 	});
-	student.events.id(event._id).remove();
+	student.events.splice(student.events.indexOf(event1._id), 1);
 	student.save(function(err){
 		if(err) throw err;
 	});
@@ -385,6 +385,12 @@ var getUserInvites = function(email, callback) {
 	});
 };
 
+var getUserGroups = function(email, callback) {
+	getStudent(email, function(student){
+		callback(student.subgroups);
+	});
+};
+
 module.exports = {
 createUser,
 enrollUser,
@@ -405,6 +411,7 @@ eventRemoveStudent,
 getUserEvents,
 getUserCourses,
 getUserInvites,
+getUserGroups,
 createInvite,
 acceptInvite,
 declineInvite
