@@ -1,0 +1,307 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(http-equiv='X-UA-Compatible', content='IE=edge')
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        meta(name='description', content='')
+        meta(name='author', content='')
+        title Coconut Watr
+        // Bootstrap Core CSS
+        link(href='../vendor/bootstrap/css/bootstrap.min.css', rel='stylesheet')
+        // MetisMenu CSS
+        link(href='../vendor/metisMenu/metisMenu.min.css', rel='stylesheet')
+        // Custom CSS
+        link(href='../css/style.css', rel='stylesheet')
+        // Morris Charts CSS
+        link(href='../vendor/morrisjs/morris.css', rel='stylesheet')
+        // Custom Fonts
+        link(href='../vendor/font-awesome/css/font-awesome.min.css', rel='stylesheet', type='text/css')
+        // HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+        // WARNING: Respond.js doesn't work if you view the page via file://
+        //if lt IE 9
+          script(src='https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js')
+          script(src='https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js')
+    body
+        #wrapper
+            // Navigation
+            nav.navbar.navbar-default.navbar-static-top(role='navigation', style='margin-bottom: 0')
+                .navbar-header
+                    button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                        span.sr-only Toggle navigation
+                        span.icon-bar
+                        span.icon-bar
+                        span.icon-bar
+                    a.navbar-brand(href='index.html') Coconut Watr
+                // /.navbar-header
+                ul.nav.navbar-top-links.navbar-right
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-envelope.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-messages
+                            li
+                                a(href='#')
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a(href='#')
+                                    div
+                                        strong John Smith
+                                        span.pull-right.text-muted
+                                            em Yesterday
+                                    div
+                                        | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...
+                            li.divider
+                            li
+                                a.text-center(href='#')
+                                    strong Read All Messages
+                                    i.fa.fa-angle-right
+                        // /.dropdown-messages
+                    li.dropdown
+                        a.dropdown-toggle(data-toggle='dropdown', href='#')
+                            i.fa.fa-user.fa-fw
+                            i.fa.fa-caret-down
+                        ul.dropdown-menu.dropdown-user
+                            li
+                                a(href='#')
+                                    i.fa.fa-user.fa-fw
+                                    |  User Profile
+                            li
+                                a(href='#')
+                                    i.fa.fa-gear.fa-fw
+                                    |  Settings
+                            li.divider
+                            li
+                                a(href='login.html')
+                                    i.fa.fa-sign-out.fa-fw
+                                    |  Logout
+                        // /.dropdown-user
+                    // /.dropdown
+                // /.navbar-top-links
+                .navbar-default.sidebar(role='navigation')
+                    .sidebar-nav.navbar-collapse
+                        ul#side-menu.nav
+                            li
+                                a(href='dashboard.html')
+                                    i.fa.fa-dashboard.fa-fw
+                                    |  Dashboard
+                            li
+                                a(href='#')
+                                    i.fa.fa-sitemap.fa-fw
+                                    |  Courses
+                                    span.fa.arrow
+                                ul.nav.nav-second-level
+                                    li
+                                        a(href='class.html') CS180
+                                    li
+                                        a(href='#') CS240
+                                    li
+                                        a(href='#') MA251
+                                    li
+                                        a(href='#') HIST101
+                                    li
+                                        a(href='#')
+                                            | Past Courses (Sprint 2)
+                                            span.fa.arrow
+                                        ul.nav.nav-third-level
+                                            li
+                                                a(href='#') Third Level Item
+                                            li
+                                                a(href='#') Third Level Item
+                                            li
+                                                a(href='#') Third Level Item
+                                            li
+                                                a(href='#') Third Level Item
+                                        // /.nav-third-level
+                                // /.nav-second-level
+                    // /.sidebar-collapse
+                // /.navbar-static-side
+            #page-wrapper
+                .row
+                    .col-lg-12
+                        h1.page-header Create Event
+                    // /.col-lg-12
+                // /.row
+                .row
+                    .col-lg-12
+                        // /.panel
+                    // /.col-lg-12
+                // /.row
+                .row
+                    .col-lg-8
+                        .panel.panel-default
+                            .panel-heading
+                                | Create Event
+                            .panel-body
+                                .row
+                                    .col-lg-6
+                                        form(role='form')
+                                            .form-group
+                                                label Event Title
+                                                input.form-control(placeholder='CS180, MATH251')
+                                            // <div class="form-group">
+                                            // <label>Day</label>
+                                            // <br>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Mon.
+                                            // </label>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Tue.
+                                            // </label>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Wed.
+                                            // </label>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Thr.
+                                            // </label>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Fri.
+                                            // </label>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Sat.
+                                            // </label>
+                                            // <label class="checkbox-inline">
+                                            // <input type="checkbox">Sun.
+                                            // </label>
+                                            // </div>
+                                            .form-group
+                                                label Month
+                                                select.form-control
+                                                    option 1
+                                                    option 2
+                                                    option 3
+                                                    option 4
+                                                    option 5
+                                                    option 6
+                                                    option 7
+                                                    option 8
+                                                    option 9
+                                                    option 10
+                                                    option 11
+                                                    option 12
+                                            .form-group
+                                                label Day
+                                                select.form-control
+                                                    option 1
+                                                    option 2
+                                                    option 3
+                                                    option 4
+                                                    option 5
+                                                    option 6
+                                                    option 7
+                                                    option 8
+                                                    option 9
+                                                    option 10
+                                                    option 11
+                                                    option 12
+                                                    option 13
+                                                    option 14
+                                                    option 15
+                                                    option 16
+                                                    option 17
+                                                    option 18
+                                                    option 19
+                                                    option 20
+                                                    option 21
+                                                    option 22
+                                                    option 23
+                                                    option 24
+                                                    option 25
+                                                    option 26
+                                                    option 27
+                                                    option 28
+                                                    option 29
+                                                    option 30
+                                                    option 31
+                                            .form-group
+                                                label Time
+                                                select.form-control
+                                                    option 1
+                                                    option 2
+                                                    option 3
+                                                    option 4
+                                                    option 5
+                                                    option 6
+                                                    option 7
+                                                    option 8
+                                                    option 9
+                                                    option 10
+                                                    option 11
+                                                    option 12
+                                                select.form-control
+                                                    option 00
+                                                    option 15
+                                                    option 30
+                                                    option 45
+                                                label.radio-inline
+                                                    input#optionsRadiosInline1(type='radio', name='optionsRadiosInline', value='option1', checked='')
+                                                    | AM
+                                                label.radio-inline
+                                                    input#optionsRadiosInline2(type='radio', name='optionsRadiosInline', value='option2')
+                                                    | PM
+                                                select.form-control
+                                                    option 1
+                                                    option 2
+                                                    option 3
+                                                    option 4
+                                                    option 5
+                                                    option 6
+                                                    option 7
+                                                    option 8
+                                                    option 9
+                                                    option 10
+                                                    option 11
+                                                    option 12
+                                                select.form-control
+                                                    option 00
+                                                    option 15
+                                                    option 30
+                                                    option 45
+                                                label.radio-inline
+                                                    input#optionsRadiosInline1(type='radio', name='optionsRadiosInline', value='option1', checked='')
+                                                    | AM
+                                                label.radio-inline
+                                                    input#optionsRadiosInline2(type='radio', name='optionsRadiosInline', value='option2')
+                                                    | PM
+                                                // <input class="form-control" placeholder="15">
+                                            button.btn.btn-default(type='submit') Create Event
+                                            button.btn.btn-default(type='reset') Cancel
+                                    // /.col-lg-6 (nested)
+                                    .col-lg-6
+                                        .form-group
+                                            label Description
+                                            textarea.form-control(rows='5')
+                                    // /.col-lg-6 (nested)
+                                // /.row (nested)
+                            // /.panel-body
+                    // /.col-lg-4
+            // /#page-wrapper
+        // /#page-wrapper
+        // /#wrapper
+        // jQuery
+        script(src='../vendor/jquery/jquery.min.js')
+        // Bootstrap Core JavaScript
+        script(src='../vendor/bootstrap/js/bootstrap.min.js')
+        // Metis Menu Plugin JavaScript
+        script(src='../vendor/metisMenu/metisMenu.min.js')
+        // Morris Charts JavaScript
+        script(src='../vendor/raphael/raphael.min.js')
+        script(src='../vendor/morrisjs/morris.min.js')
+        script(src='../data/morris-data.js')
+        // Custom Theme JavaScript
+        script(src='../js/main.js')

@@ -206,6 +206,9 @@ app.get('/course/*/event/*', stormpath.authenticationRequired, function(req, res
     }
 });
 
+/* TODO might want to check if the course for the url is existing */
+/* in case of something like http://localhost:3000/course/notacourse */
+
 app.get('/course/*', stormpath.authenticationRequired, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
