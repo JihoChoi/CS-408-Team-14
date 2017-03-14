@@ -5,6 +5,9 @@ var colors = require('colors');
 var stormpath = require('express-stormpath');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
+var path = require('path');
+var hbs = require('express-handlebars');
+
 
 //Connect to mongodb
 mongoose.connect('mongodb://application:coconutWatr@ds153179.mlab.com:53179/coconutwatr');
@@ -28,7 +31,12 @@ app.use(express.static(prepath));
 // app.set('view engine', "jade");
 // app.set('views', prepath + '/pages')
 
-// randering engin jade -> handlebars
+// view engine setup handlebars
+app.engine('hbs',hbs({extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/public/views/'}));
+app.set('views', path.join(prepath, '/views'));
+app.set('view engine', 'hbs');
+
+// rendering engin jade -> handlebars
 //  Jiho Choi
 
 
@@ -109,6 +117,7 @@ app.get('/index', function(req, res) {
 });
 
 app.get('/dashboard', function(req, res) {
+    console.log("start rout dashboard");
     res.redirect('/');
 });
 
@@ -270,3 +279,4 @@ app.on('stormpath.ready', function() {
     });
 });
 
+module.exports = app;
