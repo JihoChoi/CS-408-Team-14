@@ -25,8 +25,13 @@ var port = 3000;
 // Set stuff for basic configurations
 app.set('port', (process.env.PORT || port));
 app.use(express.static(prepath));
-app.set('view engine', "jade");
-app.set('views', prepath + '/pages')
+// app.set('view engine', "jade");
+// app.set('views', prepath + '/pages')
+
+// randering engin jade -> handlebars
+//  Jiho Choi
+
+
 app.use('/vendor', express.static(prepath + "/vendor"));
 app.use(bodyparser.json());         // Support JSON-encoded bodies
 app.use(bodyparser.urlencoded({     // Support URL-encoded bodies
