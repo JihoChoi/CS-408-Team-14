@@ -18,7 +18,7 @@ var Invite = require("./server/schema/invite.js");
 var db = require("./server/db.js");
 
 // Variables
-var prepath = __dirname + "/public/html";
+var prepath = __dirname + "/public";
 var host = "127.0.0.1";
 var port = 3000;
 
@@ -75,7 +75,7 @@ app.get('/*.html', function(req, res) {
 // Favicon.ico
 app.get('/favicon.ico', function(req, res) {
     console.log("Sending favicon.ico as a file.");
-    res.sendFile(__dirname + "/public/icons/favicon.ico");
+    res.sendFile(__dirname + "/public/images/favicon.ico");
 });
 
 // Landing page
@@ -232,10 +232,11 @@ app.get('/secret', stormpath.authenticationRequired, function (req, res) {
   res.json(req.user);
 });
 
+// todo remove, I believe it is not needed anymore
 // Quick fix of deprecated morris-data.js
-app.get('/data/morris-data.js', function(req, res) {
-    ;
-});
+// app.get('/data/morris-data.js', function(req, res) {
+//     ;
+// });
 
 
 // POST REQUESTS

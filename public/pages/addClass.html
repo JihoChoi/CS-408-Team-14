@@ -46,7 +46,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Add Subgroup</h1>
+                <h1 class="page-header">Add Class</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -63,23 +63,61 @@
             <div class="col-lg-8">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Create Subgroup
+                        Search Class
                     </div>
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form action="/create-event" method="post">
-
+                                <form action="/join-class" method="post">
                                     <div class="form-group">
-                                        <label>Subgroup Name</label>
-                                        <input class="coursename" placeholder="CS381-Thursday, MATH252-kewlKids">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Invite Members</label>
-                                        <input class="fullCourseName" placeholder="dvalenti@purdue.edu">
+                                        <label>Class Name</label>
+                                        <input class="form-control" placeholder="CS180, MATH251">
                                     </div>
 
-                                    <button type="submit" class="btn btn-default">Create Subgroup</button>
+                                    <button type="submit" class="btn btn-default">Find Class</button>
+
+                                    <br>
+
+                                    <div class="form-group">
+                                        <label>Search Result</label>
+                                        <select multiple class="form-control">
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                            <option>4</option>
+                                            <option>5</option>
+                                        </select>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-default">Join Class</button>
+                                    <button type="reset" class="btn btn-default">Cancel</button>
+                                </form>
+                            </div>
+
+                        </div>
+                        <!-- /.row (nested) -->
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Create Class
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <form action="/create-class" method="post">
+
+                                    <div class="form-group">
+                                        <label>Course Name</label>
+                                        <input class="coursename" placeholder="CS180, MATH251">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Full Course Name</label>
+                                        <input class="fullCourseName" placeholder="Systems Programming">
+                                    </div>
+
+                                    <button type="submit" class="btn btn-default">Create Class</button>
                                     <button type="reset" class="btn btn-default">Cancel</button>
                                 </form>
                             </div>
@@ -101,8 +139,8 @@
 
 
 
-</div>
-<!-- /#page-wrapper -->
+    </div>
+    <!-- /#page-wrapper -->
 
 </div>
 <!-- /#wrapper -->
@@ -122,7 +160,7 @@
 <script src="../data/morris-data.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="../js/main.js"></script>
+<script src="../../js/main.js"></script>
 
 </body>
 
