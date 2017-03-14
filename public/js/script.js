@@ -5,11 +5,11 @@
 console.log("========================");
 console.log("INSIDE script.js");
 console.log("========================");
-console.log("user.fullName: " + user.fullName);
-console.log("user.email: " + user.email);
-console.log("courses.length: " + courses.length);
-console.log("tempCourse[0]: " + tempCourse[0].name);
-console.log("tempCourse[1]: " + tempCourse[1].name);
+// console.log("user.fullName: " + user.fullName);
+// console.log("user.email: " + user.email);
+// console.log("courses.length: " + courses.length);
+// console.log("tempCourse[0]: " + tempCourse[0].name);
+// console.log("tempCourse[1]: " + tempCourse[1].name);
 console.log("========================");
 
 
@@ -87,7 +87,7 @@ document.getElementById("header-navigation-bar").innerHTML =
 
                   '</ul>' +
               '</li>' +
-              user.email +
+              // user.email +
               '<li></li>' +
           '</ul>' +
 
@@ -107,13 +107,13 @@ document.getElementById("header-navigation-bar").innerHTML =
                               '</li>' +
 
     // TODO make javascript forloop to make courses.length size of menu when there are a real data 
-                              '<li>' +
-                                  '<a href="/course/' + tempCourse[0].name.toLowerCase() + '">'+tempCourse[0].name+'</a>' +
-                              '</li>' +
-                
-                              '<li>' +
-                                  '<a href="/course/' + tempCourse[1].name.toLowerCase() + '">'+tempCourse[1].name+'</a>' +
-                              '</li>' +
+    //                           '<li>' +
+    //                               '<a href="/course/' + tempCourse[0].name.toLowerCase() + '">'+tempCourse[0].name+'</a>' +
+    //                           '</li>' +
+    //
+    //                           '<li>' +
+    //                               '<a href="/course/' + tempCourse[1].name.toLowerCase() + '">'+tempCourse[1].name+'</a>' +
+    //                           '</li>' +
 
                               '<li>' +
                                   '<a href="class.html">!{user.fullName}</a>' +
