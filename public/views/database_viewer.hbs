@@ -29,12 +29,12 @@
                                 <h3>Get Data</h3>
                                 <a href="/get-all-data">LOAD DATA</a>
                                 <div>
-                                    {{# each items }}
-                                        <article class="courses">
-                                            <div>Title: {{ this.title }}</div>
-                                            <div>Content: {{ this.content }}</div>
-                                            <div>Author: {{ this.author }}</div>
-                                            <div>ID: {{ this._id }}</div>
+                                    {{# each courses }}
+                                        <article class="course">
+                                            <div>name: {{ this }}</div>
+                                            <div>name: {{ this.name }}</div>
+                                            <div>semester: {{ this.semester }}</div>
+                                            <div>fullName: {{ this.fullName }}</div>
                                         </article>
                                     {{/each}}
                                 </div>
