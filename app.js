@@ -96,7 +96,7 @@ app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
         db.enrollUser(req.user.email, function () {
             db.getUserCourses(req.user.email, function(courses) {
-	    	console.log(courses);
+	    	console.log("courses :"+courses);
                 send200(req.user.email, req.url, res);
                 res.render("dashboard", {
                     user: req.user,
@@ -107,7 +107,9 @@ app.get('/', stormpath.getUser, function(req, res) {
     } else {
         console.log("200".green + " requested page " + req.url + " granted.");
         res.status(200);
-        res.render("index", {layout: false});
+        res.render("index", {
+            layout: false,
+        });
     }
 });
 
@@ -120,9 +122,36 @@ app.get('/dashboard', function(req, res) {
     res.redirect('/');
 });
 
-app.get('/addClass', stormpath.authenticationRequired, function(req, res) {
+
+// temp database viewer by jiho
+
+app.get('/database_viewer', stormpath.authenticationRequired, function(req, res) {
     send200(req.user.email, req.url, res);
-    res.render("addClass", {
+    res.render("database_viewer", {
+        user: req.user
+    });
+});
+
+app.get('/get-all-data',function(req, res, next) {
+    if (req.user) {
+        db.enrollUser(req.user.email, function () {
+            db.getUserCourses(req.user.email, function(courses) {
+                console.log(courses);
+                send200(req.user.email, req.url, res);
+                res.render("dashboard", {
+                    user: req.user,
+                    courses: courses
+                });
+            });
+        });
+    } else {
+        console.log("error:user not found!");
+    }
+});
+
+app.get('/addCourse', stormpath.authenticationRequired, function(req, res) {
+    send200(req.user.email, req.url, res);
+    res.render("addCourse", {
         user: req.user
     });
 });
@@ -254,12 +283,14 @@ app.get('/secret', stormpath.authenticationRequired, function (req, res) {
 
 // POST REQUESTS
 app.post('/join-class', stormpath.authenticationRequired, function(req, res) {
-    db.classAddStudent(req.body.coursename,
+    db.classAddStudent(
+        req.body.coursename,
         req.user.email); // db stuff
 });
 
-app.post('/create-class', stormpath.authenticationRequired, function(req, res) {
-    db.addClass(req.body.coursename,
+app.post('/create-course', stormpath.authenticationRequired, function(req, res) {
+    db.addClass(
+        req.body.coursename,
         req.body.semester,
         req.body.fullCourseName,
         req.user.email); // db stuff
