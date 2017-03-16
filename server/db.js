@@ -391,6 +391,12 @@ var getUserGroups = function(email, callback) {
 	});
 };
 
+var deleteCourse = function(name) {
+	Course.findOneAndRemove({name:name}, function(err){
+		if(err) throw err;
+	});
+};
+
 module.exports = {
 createUser,
 enrollUser,
@@ -414,5 +420,6 @@ getUserInvites,
 getUserGroups,
 createInvite,
 acceptInvite,
-declineInvite
+declineInvite,
+deleteCourse
 }; 
