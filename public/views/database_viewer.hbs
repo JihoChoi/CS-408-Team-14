@@ -1,0 +1,80 @@
+
+
+<!--
+
+    Title       : Database viewer
+    Author      : Jiho Choi
+
+    Description : this is temporal front-end page to check the back-end (monogoDB)
+
+-->
+
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Database Viewer - MongoDB</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Retrieve <b>Courses (Classes)</b> from DB
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <section class="get">
+                                <h3>Get Data</h3>
+                                <a href="/get-all-data">LOAD DATA</a>
+                                <div>
+                                    {{# each items }}
+                                        <article class="courses">
+                                            <div>Title: {{ this.title }}</div>
+                                            <div>Content: {{ this.content }}</div>
+                                            <div>Author: {{ this.author }}</div>
+                                            <div>ID: {{ this._id }}</div>
+                                        </article>
+                                    {{/each}}
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Retrieve <b>Students</b> from DB
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form action="/join-class" method="post">
+                                <div class="form-group">
+                                    <label>Search Results</label>
+                                    <select multiple class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+
+                                <button type="submit" class="btn btn-default">Load</button>
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
