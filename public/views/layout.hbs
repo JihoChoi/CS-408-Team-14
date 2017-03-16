@@ -140,9 +140,15 @@
                             <li>
                                 <a href="database_viewer.html">TEMP: DB VIEWER</a>
                             </li>
-                            <li>
-                                <a href="class.html">!{user.fullName}</a>
-                            </li>
+
+                            {{# each courses }}
+                                <li>
+                                    <a href="class.html">{{ this }}</a>
+                                </li>
+                            {{/each}}
+
+
+
                             <li>
                                 <a href="#">[Class Name]</a>
                             </li>

@@ -44,16 +44,14 @@
 
                                 <button type="submit" class="btn btn-default">Find Class</button>
 
-                                <br>
+                                <br><br>
 
                                 <div class="form-group">
                                     <label>Search Results</label>
                                     <select multiple class="form-control">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
+
+                                        <!--<option>none</option>-->
+
                                     </select>
                                 </div>
 
@@ -78,39 +76,28 @@
 
                                 <div class="form-group">
                                     <label>Course Title</label>
-                                    <input class="coursename" placeholder="CS180, MATH251">
+                                    <input class="form-control" id="coursename" name="coursename" placeholder="CS180, MATH251">
                                 </div>
+
                                 <div class="form-group">
                                     <label>Full Course Title</label>
-                                    <input class="fullCourseName" placeholder="Systems Programming">
+                                    <input class="form-control" id="fullCourseName" name="fullCourseName" placeholder="Systems Programming">
                                 </div>
+
                                 <div class="form-group">
                                     <label>Semester</label>
-                                    <select multiple class="form-control" id="semester">
-                                        <option>Fall 2017</option>
-                                        <option>Summer 2017</option>
-                                        <option>Sprint 2017</option>
-                                        <option>Fall 2016</option>
+                                    <select multiple class="form-control" id="semester" name="semester">
+                                        <option value="Fall 2017">Fall 2017</option>
+                                        <option value="Summer 2017">Summer 2017</option>
+                                        <option value="Spring 2017">Spring 2017</option>
+                                        <option value="Fall 2016">Fall 2016</option>
+                                        <option value="Summer 2016">Summer 2016</option>
+                                        <option value="Spring 2016">Spring 2016</option>
                                     </select>
                                 </div>
 
                                 <button type="submit" class="btn btn-default">Create Course</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
-                            </form>
-                            <form action="/insert" method="post">
-                                <div class="input">
-                                    <label for="title">Title</label>
-                                    <input type="text" id="title" name="title">
-                                </div>
-                                <div class="input">
-                                    <label for="content">Content</label>
-                                    <input type="text" id="content" name="content">
-                                </div>
-                                <div class="input">
-                                    <label for="author">Author</label>
-                                    <input type="text" id="author" name="author">
-                                </div>
-                                <button type="submit">INSERT</button>
                             </form>
                         </div>
                     </div>
