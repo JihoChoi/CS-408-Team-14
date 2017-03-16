@@ -96,7 +96,8 @@ app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
         db.enrollUser(req.user.email, function () {
             db.getUserCourses(req.user.email, function(courses) {
-	    	console.log("courses :"+courses);
+	    	    console.log("courses :"+courses);
+
                 send200(req.user.email, req.url, res);
                 res.render("dashboard", {
                     user: req.user,
@@ -259,9 +260,10 @@ app.get('/course/*', stormpath.authenticationRequired, function(req, res) {
         // Lookup if class exist/user has permission
 
         send200(req.user.email, req.url, res);
-        res.render("class", {
+        res.render("course", {
             user: req.user,
-            course: course
+            course: course,
+            courses: courses
         })
     } else {
         send404(req.user.email, req.url, res);
