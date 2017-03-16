@@ -96,22 +96,27 @@
                     <li class="divider"></li>
                     <!--this two below buttons need to be combined.-->
 
+                    <!--<li>-->
+                        <!--<a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>-->
+                    <!--</li>-->
+
                     <li>
-                        <a href="#"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <form name="logout" id="logout" method="post" action="/logout">
+                        <!--<input type="hidden" name="perform_logout" value="1">-->
+                        <!--<input type="submit" value="Logout" id="perform_logout_button">-->
+                        <!--<a href="/logout" style="display:none;" id="logout_link">Logout</a>-->
+                        <a onclick="logout.submit();">
+                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                        </a>
+                    </form>
                     </li>
 
-                    <form name="logout" id="logout" method="post" action="/logout">
-                        <input type="hidden" name="perform_logout" value="1">
-                        <input type="submit" value="Logout" id="perform_logout_button">
-                        <a href="/logout" style="display:none;" id="logout_link">Logout</a>
-                    </form>
-
-                    <script type="text/javascript">
-                        $("#perform_logout_button").hide();
-                        $("#logout_link").click(function() {
-                            document.logout_form.submit(); return false;
-                        });
-                    </script>
+                    <!--<script type="text/javascript">-->
+                        <!--$("#perform_logout_button").hide();-->
+                        <!--$("#logout_link").click(function() {-->
+                            <!--document.logout_form.submit(); return false;-->
+                        <!--});-->
+                    <!--</script>-->
 
                 </ul>
             </li>
