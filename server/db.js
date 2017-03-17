@@ -87,6 +87,26 @@ var classAddStudentHelp = function(course, student) {
 	});
 }
 
+//Remove a studnet from a class
+var classRemoveStudent = function(courseName, email) {
+	getClass(courseName, functions(course) {
+	getStudent(email, function(student) {
+		classRemoveStudentHelp(course, student);
+	});
+	});
+};
+
+var classRemoveStudentHelp = function(course, student) {
+	course.students.splice(course.students.indexOf(student._id), 1);
+	course.save(function(err) {
+		if(err) throw err;
+	});
+	student.courses.splice(students.courses.indexOf(course._id), 1);
+	student.save(function(err) {
+		if(err) throw err;
+	});
+};
+
 //Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
 var classAddEvent = function(name, description, type, courseName, startTime){
@@ -430,5 +450,6 @@ createInvite,
 acceptInvite,
 declineInvite,
 deleteCourse,
-getUserCoursesFull
+getUserCoursesFull,
+classRemoveStudent
 }; 
