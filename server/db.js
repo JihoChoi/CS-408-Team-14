@@ -315,6 +315,14 @@ var parseCourses = function(courses, ret, callback) {
 	}
 }
 
+
+//Returns an array of course DOCUMENTS for a particular student
+var getUserCoursesFull = function(email, callback) {
+	getStudent(email, function(student){
+		callback(student.courses);
+	};
+};
+
 //Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of group names for the invites
 //Get array of invite for a particular user. Returns array of group names
 var getUserInvites = function(email, callback) {
@@ -421,5 +429,6 @@ getUserGroups,
 createInvite,
 acceptInvite,
 declineInvite,
-deleteCourse
+deleteCourse,
+getUserCoursesFull
 }; 
