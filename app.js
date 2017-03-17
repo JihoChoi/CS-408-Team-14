@@ -96,7 +96,8 @@ app.get('/', stormpath.getUser, function(req, res) {
 	if (req.user) {
         db.enrollUser(req.user.email, function () {
             db.getUserCourses(req.user.email, function(courses) {
-	    	    console.log("courses :"+courses);
+
+                console.log("courses :"+courses);
 
                 send200(req.user.email, req.url, res);
                 res.render("dashboard", {
@@ -150,11 +151,29 @@ app.get('/get-all-data',function(req, res, next) {
     }
 });
 
-app.get('/addCourse', stormpath.authenticationRequired, function(req, res) {
+app.get('/manageCourses', stormpath.authenticationRequired, function(req, res) {
     send200(req.user.email, req.url, res);
-    res.render("addCourse", {
-        user: req.user
-    });
+    // res.render("manageCourses", {
+    //     user: req.user,
+    //     courses: courses
+    // });
+
+    if (req.user) {
+        db.enrollUser(req.user.email, function () {
+            db.getUserCourses(req.user.email, function(courses) {
+
+                console.log("manageCourses");
+                console.log("courses :"+ courses);
+
+                send200(req.user.email, req.url, res);
+                res.render("manageCourses", {
+                    user: req.user,
+                    courses: courses
+                });
+            });
+        });
+    }
+
 });
 
 // All events of user is in

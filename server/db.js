@@ -308,7 +308,7 @@ var parseCourses = function(courses, ret, callback) {
 	} else {
 		Class.findById(courses[i], function(err, course){
 			if(course) {
-			ret1.push(course.name);
+				ret1.push(course.name);
 			}
 			parseCourses(courses, ret1, callback);
 		});
