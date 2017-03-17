@@ -281,8 +281,7 @@ app.get('/course/*', stormpath.authenticationRequired, function(req, res) {
         send200(req.user.email, req.url, res);
         res.render("course", {
             user: req.user,
-            course: course,
-            courses: courses
+            course: course
         })
     } else {
         send404(req.user.email, req.url, res);
