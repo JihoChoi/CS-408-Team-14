@@ -40,20 +40,15 @@
                             <form action="/delete-course" method="post">
                                 <div class="form-group">
                                     <label>Course</label>
-                                    <select multiple class="form-control" id="semester" name="semester">
+                                    <!-- todo change delete course to delete course for that user -->
+
+                                    <select multiple class="form-control" id="delete_course" name="semester">
 
                                         {{# each courses }}
                                             <option value="{{ this }}">{{ this }}</option>
-                                            <option value="{{ this.semester }}">{{ this.semester }}</option>
-
+                                            <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
                                         {{/each}}
 
-                                        <option value="Fall 2017">Fall 2017</option>
-                                        <option value="Summer 2017">Summer 2017</option>
-                                        <option value="Spring 2017">Spring 2017</option>
-                                        <option value="Fall 2016">Fall 2016</option>
-                                        <option value="Summer 2016">Summer 2016</option>
-                                        <option value="Spring 2016">Spring 2016</option>
                                     </select>
                                 </div>
 

@@ -153,6 +153,7 @@ app.get('/get-all-data',function(req, res, next) {
 
 app.get('/manageCourses', stormpath.authenticationRequired, function(req, res) {
     send200(req.user.email, req.url, res);
+
     // res.render("manageCourses", {
     //     user: req.user,
     //     courses: courses
@@ -300,6 +301,16 @@ app.get('/secret', stormpath.authenticationRequired, function (req, res) {
 //     ;
 // });
 
+// POST REQUESTS
+app.post('/delete-course', stormpath.authenticationRequired, function(req, res) {
+
+    console.log("delete course :" + req.body.delete_course);
+
+    db.deleteCourse(
+        req.body.delete_course
+    );
+});
+
 
 // POST REQUESTS
 app.post('/join-class', stormpath.authenticationRequired, function(req, res) {
@@ -309,11 +320,19 @@ app.post('/join-class', stormpath.authenticationRequired, function(req, res) {
 });
 
 app.post('/create-course', stormpath.authenticationRequired, function(req, res) {
+
+    // console.log("create course :" + req.body.coursename + req.body.semester + req.body.fullCourseName);
+
     db.addClass(
         req.body.coursename,
         req.body.semester,
         req.body.fullCourseName,
         req.user.email); // db stuff
+
+    // res.render("/course/req.body.coursename", {
+    //     user: req.user
+    // });
+
 });
 
 
