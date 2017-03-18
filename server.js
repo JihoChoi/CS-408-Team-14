@@ -34,6 +34,8 @@ app.use(bodyparser.json());         // Support JSON-encoded bodies
 app.use(bodyparser.urlencoded({     // Support URL-encoded bodies
     extended: true
 }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+
 
 // User management
 passport.use(new googleStrategy({
@@ -78,15 +80,16 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', function(req, res) {
 	if (req.user) {
-		db.enrollUser(req.user.email, function () {
-            db.getUserCourses(req.user.email, function(courses) {
+		db.enrollUser(req.user.emails.value, function () {
+            db.getUserCourses(req.user.emails.value, function(courses) {
                 // console.log("courses :" + courses);
 				res.status(200);
                 res.render("dashboard", {
                     user: req.user,
                     courses: courses
                 });
-				console.log('200'.green+ " " + req.user.email +" requested " + req.url);
+				console.log('200'.green+ " " + req.user.emails[0].value +" requested " + req.url);
+				console.log(req.user);
             });
         });
 	} else {
@@ -99,11 +102,9 @@ app.get('/', function(req, res) {
 });
 
 // Login attempt & callback
-app.get('/login', passport.authenticate('google', { scope: ['profile'] }));
+app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
 app.get('/callbacks/google', passport.authenticate('google', { failureRedirect: '/loginerror' }),
 	function(req, res) {
-		console.log("Callback received.");
-		console.log(req.user);
 		res.redirect('/');
 	}
 );
