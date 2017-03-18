@@ -9,6 +9,21 @@ var ObjectId = require('mongoose').Types.ObjectId;
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
 
+function liveTime() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth();
+	if (month < 5) {
+		month = 4;
+	} else if (month < 8) {
+		month = 7;
+	} else {
+		month = 11;
+	}
+	var semEnd = new Date(year, month, 28, 0,0,0,0);
+	return parseInt((semEnd-now)/1000/60/60/24) + "d";
+}
+
 //Usage: createUser("student email", callback function);
 //Cretes a user and adds it to the database. Mostly a helper function. Use at your own discretion
 var createUser = function(email, callback) {
@@ -451,5 +466,6 @@ acceptInvite,
 declineInvite,
 deleteCourse,
 getUserCoursesFull,
-classRemoveStudent
+classRemoveStudent,
+liveTime
 }; 

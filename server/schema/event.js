@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var Student = require("./student.js");
 var Class = require("./class.js");
+var ttl = require("mongoose-ttl");
 
 var EventSchema = new Schema({
 	name: String,
@@ -11,6 +12,8 @@ var EventSchema = new Schema({
 	startTime: Date,
 	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}]
 });
+
+EventSchema.plugin(ttl, {ttl: 60000});
 
 var Event = mongoose.model('Event', EventSchema);
 module.exports = Event;
