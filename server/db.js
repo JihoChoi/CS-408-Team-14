@@ -11,6 +11,21 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 //Usage: createUser("student email", callback function);
 //Cretes a user and adds it to the database. Mostly a helper function. Use at your own discretion
+function liveTime() {
+	var now = new Date();
+	var year = now.getFullYear();
+	var month = now.getMonth();
+	if (month < 5) {
+		month = 4;
+	} else if (month < 8) {
+		month = 7;
+	} else {
+		month = 11;
+	}
+	var semEnd = new Date(year, month, 28, 0,0,0,0);
+	return parseInt((semEnd-now)/1000/60/60/24) + "d";
+}
+
 var createUser = function(email, callback) {
 	var student = new Student({
 		email: email,
@@ -55,6 +70,7 @@ var addClassHelp = function(name, semester, fullName, student) {
 		events: [],
 		subgroups: []
 	});
+	course.ttl=liveTime();
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -87,26 +103,6 @@ var classAddStudentHelp = function(course, student) {
 	});
 }
 
-//Remove a studnet from a class
-var classRemoveStudent = function(courseName, email) {
-	getClass(courseName, functions(course) {
-	getStudent(email, function(student) {
-		classRemoveStudentHelp(course, student);
-	});
-	});
-};
-
-var classRemoveStudentHelp = function(course, student) {
-	course.students.splice(course.students.indexOf(student._id), 1);
-	course.save(function(err) {
-		if(err) throw err;
-	});
-	student.courses.splice(students.courses.indexOf(course._id), 1);
-	student.save(function(err) {
-		if(err) throw err;
-	});
-};
-
 //Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
 var classAddEvent = function(name, description, type, courseName, startTime){
@@ -124,6 +120,7 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 		startTime: startTime,
 		students: []
 	});
+	event.ttl=liveTime();
 	event.save(function(err) {
 		if(err) throw err;
 	});
@@ -148,6 +145,7 @@ var classAddGroupHelp = function(name, course, student) {
 		className: course,
 		students: []
 	});
+	group.ttl=liveTime();
 	group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
@@ -328,20 +326,12 @@ var parseCourses = function(courses, ret, callback) {
 	} else {
 		Class.findById(courses[i], function(err, course){
 			if(course) {
-				ret1.push(course.name);
+			ret1.push(course.name);
 			}
 			parseCourses(courses, ret1, callback);
 		});
 	}
 }
-
-
-//Returns an array of course DOCUMENTS for a particular student
-var getUserCoursesFull = function(email, callback) {
-	getStudent(email, function(student){
-		callback(student.courses);
-	};
-};
 
 //Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of group names for the invites
 //Get array of invite for a particular user. Returns array of group names
@@ -379,6 +369,7 @@ var createInvite = function(targetEmail, group, student){
 			studentTo: toStudent,
 			studentFrom: student
 		});
+		invite.ttl=liveTime();
 		invite.save(function(err){
 			if(err) throw err;
 		});
@@ -419,13 +410,8 @@ var getUserGroups = function(email, callback) {
 	});
 };
 
-var deleteCourse = function(name) {
-	Course.findOneAndRemove({name:name}, function(err){
-		if(err) throw err;
-	});
-};
-
 module.exports = {
+liveTime,
 createUser,
 enrollUser,
 addClass,
@@ -448,8 +434,5 @@ getUserInvites,
 getUserGroups,
 createInvite,
 acceptInvite,
-declineInvite,
-deleteCourse,
-getUserCoursesFull,
-classRemoveStudent
+declineInvite
 }; 
