@@ -2,7 +2,8 @@
 var express = require('express');
 var app = express();
 var colors = require('colors');
-var stormpath = require('express-stormpath');
+var passport = require('passport');
+var passportgoogle = require('passport-google-oauth20');
 var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var path = require('path');
@@ -18,6 +19,7 @@ var Event = require("./server/schema/event.js");
 var Group = require("./server/schema/group.js");
 var Class = require("./server/schema/class.js");
 var Invite = require("./server/schema/invite.js");
+var User = require("./server/schema/user.js");
 var db = require("./server/db.js");
 
 // Variables

@@ -2,9 +2,9 @@
   "name": "coconut-watr",
   "version": "0.0.1",
   "description": "CoconutWatr",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "nodemon server.js"
   },
   "author": {
     "name": "CoconutWatr"
@@ -13,11 +13,13 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "colors": "1.1.2",
+    "cookie-parser": "^1.4.3",
     "express": "*",
     "express-handlebars": "^3.0.0",
     "mongoose": "^4.8.3",
     "mongoose-ttl": "0.0.3",
     "nodemon": "^1.11.0",
-    "passport": "^0.3.2"
+    "passport": "^0.3.2",
+    "passport-google-oauth20": "^1.0.0"
   }
 }
