@@ -70,6 +70,7 @@ var addClassHelp = function(name, semester, fullName, student) {
 		events: [],
 		subgroups: []
 	});
+	course.ttl=liveTime();
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -139,6 +140,7 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 		startTime: startTime,
 		students: []
 	});
+	event.ttl=liveTime();
 	event.save(function(err) {
 		if(err) throw err;
 	});
@@ -163,6 +165,7 @@ var classAddGroupHelp = function(name, course, student) {
 		className: course,
 		students: []
 	});
+	group.ttl=liveTime();
 	group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
@@ -394,6 +397,7 @@ var createInvite = function(targetEmail, group, student){
 			studentTo: toStudent,
 			studentFrom: student
 		});
+		invite.ttl=liveTime();
 		invite.save(function(err){
 			if(err) throw err;
 		});
