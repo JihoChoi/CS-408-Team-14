@@ -15,9 +15,9 @@
     "colors": "1.1.2",
     "express": "*",
     "express-handlebars": "^3.0.0",
-    "express-stormpath": "*",
     "mongoose": "^4.8.3",
     "mongoose-ttl": "0.0.3",
-    "nodemon": "^1.11.0"
+    "nodemon": "^1.11.0",
+    "passport": "^0.3.2"
   }
 }
