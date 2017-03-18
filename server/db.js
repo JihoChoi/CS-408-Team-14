@@ -101,14 +101,14 @@ var classAddStudentHelp = function(course, student) {
 	student.save(function(err) {
 		if(err) throw err;
 	});
-}
+};
 
 //Remove a studnet from a class
 var classRemoveStudent = function(courseName, email) {
-	getClass(courseName, functions(course) {
-	getStudent(email, function(student) {
-		classRemoveStudentHelp(course, student);
-	});
+	getClass(courseName, function(course) {
+		getStudent(email, function(student) {
+			classRemoveStudentHelp(course, student);
+		});
 	});
 };
 
@@ -356,9 +356,9 @@ var parseCourses = function(courses, ret, callback) {
 
 //Returns an array of course DOCUMENTS for a particular student
 var getUserCoursesFull = function(email, callback) {
-	getStudent(email, function(student){
+	getStudent(email, function(student) {
 		callback(student.courses);
-	};
+	});
 };
 
 //Usage: getUserInvites("student email", function(invites){*whatever you want to do with the invites*}) ***note that the item return by this function is an array of group names for the invites

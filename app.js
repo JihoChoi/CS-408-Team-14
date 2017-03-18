@@ -134,7 +134,7 @@ app.get('/database_viewer', stormpath.authenticationRequired, function(req, res)
     });
 });
 
-app.get('/get-all-data',function(req, res, next) {
+app.get('/get-all-data', function(req, res, next) {
     if (req.user) {
         db.enrollUser(req.user.email, function () {
             db.getUserCourses(req.user.email, function(courses) {
