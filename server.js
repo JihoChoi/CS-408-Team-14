@@ -63,7 +63,7 @@ function loginVerify(req, res, next) {
 };
 
 /**
- * GET REQUESTS
+ * DIRECTORY NAVIGATION
  */
 
 // Truncate html
@@ -89,7 +89,6 @@ app.get('/', function(req, res) {
                     courses: courses
                 });
 				console.log('200'.green+ " " + req.user.emails[0].value +" requested " + req.url);
-				console.log(req.user);
             });
         });
 	} else {
@@ -101,13 +100,26 @@ app.get('/', function(req, res) {
 	}
 });
 
+
+
+
+/**
+ * USER MANAGEMENT
+ */
+
 // Login attempt & callback
 app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/callbacks/google', passport.authenticate('google', { failureRedirect: '/loginerror' }),
-	function(req, res) {
-		res.redirect('/');
-	}
+app.get('/callbacks/google', passport.authenticate('google', { 
+	failureFlash: 'Unexpected error from Google OAuth.',
+	failureRedirect: '/loginerror',
+	successRedirect: '/' })
 );
+
+// Logout attempt
+app.get('/logout', function(req, res) {
+	req.logout();
+	res.redirect('/');
+})
 
 // Get other pages
 // app.get({page}. loginVerify, function (req, res)
