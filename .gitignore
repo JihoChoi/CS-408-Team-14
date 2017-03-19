@@ -13,3 +13,6 @@ npm-debug.log
 
 # node_modules to keep things clean
 node_modules/
+
+# Environment variabels so that it won't mess Heroku setup
+.env

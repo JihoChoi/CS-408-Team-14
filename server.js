@@ -8,7 +8,8 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var path = require('path');
 var hbs = require('express-handlebars');
-var auth = require(__dirname + '/config/auth.js').googleAuth;
+if (!process.env.googleclientid)
+	require('dotenv').load();
 
 // Connect to database
 mongoose.connect('mongodb://application:coconutWatr@ds153179.mlab.com:53179/coconutwatr');
@@ -39,9 +40,9 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveU
 
 // User management
 passport.use(new googleStrategy({
-	clientID: auth.id,
-	clientSecret: auth.secret,
-	callbackURL: auth.callback
+	clientID: process.env.googleclientid,
+	clientSecret: process.env.googleclientsecret,
+	callbackURL: process.env.googlecallbackuri
 },
 function(accessToken, refreshToken, profile, cb) {
 	return cb(null, profile);
@@ -114,6 +115,10 @@ app.get('/callbacks/google', passport.authenticate('google', {
 	failureRedirect: '/loginerror',
 	successRedirect: '/' })
 );
+
+app.get('/register', function(req, res) {
+	res.redirect('/login');
+})
 
 // Logout attempt
 app.get('/logout', function(req, res) {
