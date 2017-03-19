@@ -269,30 +269,7 @@ app.get('/course/*', loginVerify, function(req, res) {
  * POST REQUESTS
  */
 
-// Delete a course
-app.post('/delete-course', courseEnrolled, function(req, res) {
-	// Check if user is enrolled
-	db.deleteCourse(req.body.delete_course);
-	res.redirect('/manageCourses');
-});
 
-// Join a course
-app.post('/join-course', courseEnrolled, function(req, res) {
-	// Check if user is enrolled
-	db.classAddStudent(req.body.coursename, req.user.emails[0].value);
-	res.redirect('/manageCourses');
-});
-
-app.post('/join-class', function(req, res) {
-	res.redirect(307, '/join-course');
-});
-
-// Create a new course
-app.post('/create-course', loginVerify, function(req, res) {
-	db.addClass(req.body.coursename, req.body.semester, req.body.fullCourseName, req.user.email);
-	var dest = '/course/' + req.body.coursename;
-	res.redirect(dest);
-});
 
 
 /**
