@@ -98,7 +98,7 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', function(req, res) {
 	if (req.user) {
-		db.enrollUser(req.user.emails.value, function () {
+		db.enrollUser(req.user.emails[0].value, function () {
             db.getUserCourses(req.user.emails[0].value, function(courses) {
                 // console.log('courses :' + courses);
 				res.status(200);
@@ -281,7 +281,7 @@ app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] 
 app.get('/callbacks/google', passport.authenticate('google', { 
 	failureFlash: 'Unexpected error from Google OAuth.',
 	failureRedirect: '/loginerror',
-	successRedirect: '/appenddata' })
+	successRedirect: '/' })
 );
 
 app.get('/appenddata', function(req, res) {
