@@ -50,13 +50,29 @@ function(accessToken, refreshToken, profile, cb) {
 app.use(passport.initialize());
 app.use(passport.session());
 passport.serializeUser(function(user, done) {
-  done(null, user);
+  	done(null, user);
 });
 passport.deserializeUser(function(user, done) {
-  done(null, user);
+	done(null, user)
 });
+
+
+/**
+ * VERIFY USER'S PERMISSIONS
+ */
+
 function loginVerify(req, res, next) {
 	if (req.user) {
+		next();
+	} else {
+		res.redirect('/login');
+	}
+};
+
+function courseEnrolled(req, res, next) {
+	//TODO: Check if user is enrolled in the class
+	if (req.user) {
+		// Check if enrolled
 		next();
 	} else {
 		res.redirect('/login');
@@ -83,7 +99,7 @@ app.get('/favicon.ico', function(req, res) {
 app.get('/', function(req, res) {
 	if (req.user) {
 		db.enrollUser(req.user.emails.value, function () {
-            db.getUserCourses(req.user.emails.value, function(courses) {
+            db.getUserCourses(req.user.emails[0].value, function(courses) {
                 // console.log('courses :' + courses);
 				res.status(200);
                 res.render('dashboard', {
@@ -120,7 +136,7 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 		});
 		console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 	});
-})
+});
 
 // All events of user is in
 app.get('/events', loginVerify, function(req, res) {
@@ -248,6 +264,37 @@ app.get('/course/*', loginVerify, function(req, res) {
     }
 });
 
+
+/**
+ * POST REQUESTS
+ */
+
+// Delete a course
+app.post('/delete-course', courseEnrolled, function(req, res) {
+	// Check if user is enrolled
+	db.deleteCourse(req.body.delete_course);
+	res.redirect('/manageCourses');
+});
+
+// Join a course
+app.post('/join-course', courseEnrolled, function(req, res) {
+	// Check if user is enrolled
+	db.classAddStudent(req.body.coursename, req.user.emails[0].value);
+	res.redirect('/manageCourses');
+});
+
+app.post('/join-class', function(req, res) {
+	res.redirect(307, '/join-course');
+});
+
+// Create a new course
+app.post('/create-course', loginVerify, function(req, res) {
+	db.addClass(req.body.coursename, req.body.semester, req.body.fullCourseName, req.user.email);
+	var dest = '/course/' + req.body.coursename;
+	res.redirect(dest);
+});
+
+
 /**
  * USER MANAGEMENT
  */
@@ -257,8 +304,15 @@ app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] 
 app.get('/callbacks/google', passport.authenticate('google', { 
 	failureFlash: 'Unexpected error from Google OAuth.',
 	failureRedirect: '/loginerror',
-	successRedirect: '/' })
+	successRedirect: '/appenddata' })
 );
+
+app.get('/appenddata', function(req, res) {
+	db.getUserCourses(req.user.emails[0].value, function(courses) {
+		req.user.courses = courses;
+	})
+	res.redirect('/');
+})
 
 app.get('/register', function(req, res) {
 	res.redirect('/login');
@@ -274,7 +328,13 @@ app.get('/logout', function(req, res) {
 /**
  * DEVELOPER SECRET PAGES
  */
-
+app.get('/database_viewer', loginVerify, function(req, res) {
+	res.status(200);
+	res.render('database_viewer', {
+		user: req.user
+	});
+	console.log('200'.green + ' guest requested ' + req.url);
+})
 
 
 /** 
