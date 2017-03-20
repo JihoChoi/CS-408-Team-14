@@ -13,10 +13,13 @@ Atom
 
 
 
+#### HEROKU (deloy app from master branch)
+https://coconutwatr.herokuapp.com
+<br />
+
 #### Google Drive (view only)
 https://drive.google.com/drive/folders/0B3AZYENof7jSYUdOQTQzYk1TOWs?usp=sharing
 <br />
-
 
 #### Slack
 https://cs408skwad.slack.com/messages/general/
@@ -60,9 +63,6 @@ https://cs408skwad.slack.com/messages/general/
 
 
 #### References 
-
-   (TODO Remove if not needed)
-
    Dashboard References
 
       Open Source Bootstrap Framework
