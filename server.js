@@ -98,7 +98,7 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', function(req, res) {
 	if (req.user) {
-		db.enrollUser(req.user.emails.value, function () {
+		db.enrollUser(req.user.emails[0].value, function () {
             db.getUserCourses(req.user.emails[0].value, function(courses) {
                 // console.log('courses :' + courses);
 				res.status(200);
@@ -278,30 +278,7 @@ app.get('/chat', loginVerify, function(req, res) {
  * POST REQUESTS
  */
 
-// Delete a course
-app.post('/delete-course', courseEnrolled, function(req, res) {
-	// Check if user is enrolled
-	db.deleteCourse(req.body.delete_course);
-	res.redirect('/manageCourses');
-});
 
-// Join a course
-app.post('/join-course', courseEnrolled, function(req, res) {
-	// Check if user is enrolled
-	db.classAddStudent(req.body.coursename, req.user.emails[0].value);
-	res.redirect('/manageCourses');
-});
-
-app.post('/join-class', function(req, res) {
-	res.redirect(307, '/join-course');
-});
-
-// Create a new course
-app.post('/create-course', loginVerify, function(req, res) {
-	db.addClass(req.body.coursename, req.body.semester, req.body.fullCourseName, req.user.email);
-	var dest = '/course/' + req.body.coursename;
-	res.redirect(dest);
-});
 
 
 /**
@@ -313,7 +290,7 @@ app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] 
 app.get('/callbacks/google', passport.authenticate('google', { 
 	failureFlash: 'Unexpected error from Google OAuth.',
 	failureRedirect: '/loginerror',
-	successRedirect: '/appenddata' })
+	successRedirect: '/' })
 );
 
 app.get('/appenddata', function(req, res) {

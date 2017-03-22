@@ -347,6 +347,8 @@ var parseCourses = function(courses, ret, callback) {
 		Class.findById(courses[i], function(err, course){
 			if(course) {
 				ret1.push(course.name);
+			} else {
+				ret1.push("");
 			}
 			parseCourses(courses, ret1, callback);
 		});
@@ -439,10 +441,38 @@ var getUserGroups = function(email, callback) {
 };
 
 var deleteCourse = function(name) {
-	Course.findOneAndRemove({name:name}, function(err){
-		if(err) throw err;
+	Class.findOne({name: name}, function(err, course) {
+		for (var i = 0; i < course.students.length; i++) {
+			Students.findById(course.students[i], function(err, student){
+				if (student) {
+					classRemoveStudent(course.name, student.email);
+				}
+				if(i == course.students.length-1) {
+					Class.findOneAndRemove({name:name}, function(err){
+						if(err) throw err;
+					});
+				}
+			});
+		}
 	});
 };
+
+var purgeCourse = function(email) {
+	getStudent(email, function(student){
+		for (var i = 0; i < student.courses.length; i++) {
+			Class.findById(student.courses[i], function(err, course){
+				if(!course){
+					student.courses.splice(i,1);
+				}
+				if(i == student.courses-1){
+					student.save(function(err){
+						if(err)throw err;
+					});
+				}
+			});
+		}
+	});
+}
 
 module.exports = {
 createUser,
@@ -471,5 +501,6 @@ declineInvite,
 deleteCourse,
 getUserCoursesFull,
 classRemoveStudent,
-liveTime
+liveTime,
+purgeCourse
 }; 
