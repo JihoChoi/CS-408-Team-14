@@ -264,6 +264,15 @@ app.get('/course/*', loginVerify, function(req, res) {
     }
 });
 
+app.get('/chat', loginVerify, function(req, res) {
+    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+	res.status(200);
+	res.render('chat', {
+		user: user,
+		chatserver: process.env.CHATSERVER
+	});
+});
+
 
 /**
  * POST REQUESTS
