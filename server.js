@@ -65,6 +65,8 @@ function loginVerify(req, res, next) {
 	if (req.user) {
 		next();
 	} else {
+		req.session.returnTo = req.url;
+		//console.log('Guest requested ' + req.url + ' without logging in.');
 		res.redirect('/login');
 	}
 };
@@ -75,6 +77,8 @@ function courseEnrolled(req, res, next) {
 		// Check if enrolled
 		next();
 	} else {
+		req.session.returnTo = req.url;
+		//console.log('Guest requested ' + req.url + ' without logging in.');
 		res.redirect('/login');
 	}
 };
@@ -131,7 +135,7 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	db.getUserCourses(req.user.emails[0].value, function(courses) {
 		res.status(200);
 		res.render('manageCourses', {
-			user: req.user,
+			email: req.user.emails[0].value,
 			courses: courses
 		});
 		console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
@@ -264,15 +268,26 @@ app.get('/course/*', loginVerify, function(req, res) {
     }
 });
 
-app.get('/chat', loginVerify, function(req, res) {
+app.get('/chat*', loginVerify, function(req, res) {
+	var url = req.url.substr(6);
+	var newurl = url.replace(/[^0-9a-zA-z]/gi, '');
+	if (newurl != url) {
+		res.redirect('/chat/' + newurl);
+		return;
+	}
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 	res.status(200);
 	res.render('chat', {
-		user: user,
+		layout: false,
+		room: url || 'global',
+		email: req.user.emails[0].value,
 		chatserver: process.env.CHATSERVER
 	});
 });
 
+app.get('/socket.io/*', function(req, res) {
+	res.redirect(301, process.env.CHATSERVER + req.url);
+});
 
 /**
  * POST REQUESTS
@@ -287,11 +302,13 @@ app.get('/chat', loginVerify, function(req, res) {
 
 // Login attempt & callback
 app.get('/login', passport.authenticate('google', { scope: ['profile', 'email'] }));
-app.get('/callbacks/google', passport.authenticate('google', { 
-	failureFlash: 'Unexpected error from Google OAuth.',
-	failureRedirect: '/loginerror',
-	successRedirect: '/' })
-);
+app.get('/callbacks/google', passport.authenticate('google'), function(req, res) {
+		// console.log('req.session.returnTo: ' + req.session.returnTo);
+		var redirect = (req.session.returnTo || '/');
+		delete req.session.returnTo;
+		console.log('Redirecting ' + req.user.emails[0].value + ' to ' + redirect);
+		res.redirect(redirect);
+});
 
 app.get('/appenddata', function(req, res) {
 	db.getUserCourses(req.user.emails[0].value, function(courses) {
