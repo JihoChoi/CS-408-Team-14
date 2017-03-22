@@ -14,7 +14,7 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Add Course</h1>
+            <h1 class="page-header">Manage Courses</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -39,7 +39,7 @@
                         <div class="col-lg-6">
                             <form action="/delete-course" method="post">
                                 <div class="form-group">
-                                    <label>Course</label>
+                                    <label>Course Title</label>
                                     <!-- todo change delete course to delete course for that user -->
 
                                     <select multiple class="form-control" id="delete_course" name="delete_course">
@@ -79,11 +79,14 @@
                                 <br><br>
 
                                 <div class="form-group">
-                                    <label>Search Results</label>
+                                    <!--<label>Search Results</label>-->
+                                    <label>Existing Courses</label>
                                     <select multiple class="form-control">
-
+                                        {{# each courses }}
+                                            <option value="{{ this }}">{{ this }}</option>
+                                            <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
+                                        {{/each}}
                                         <!--<option>none</option>-->
-
                                     </select>
                                 </div>
 
@@ -106,16 +109,55 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <form action="/create-course" method="post">
+                            <!--<form action="/create-course" method="post">-->
+
+                            <form name="create-course-form" onsubmit="submit_create_course()">
+
+                                <!--<div class="form-group has-warning has-feedback">-->
+                                    <!--<label>Course Title</label>-->
+                                    <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251"-->
+                                           <!--pattern="[A-Z0-9]{5,10}" required>-->
+                                    <!--<span class="help-block">Not A Valid Title: Course title should be in form of MATH123</span>-->
+                                    <!--<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>-->
+                                <!--</div>-->
+
+                                <!--<div class="form-group has-success has-feedback">-->
+                                    <!--<label>Course Title</label>-->
+                                    <!--&lt;!&ndash;<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>&ndash;&gt;-->
+                                    <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>-->
+                                    <!--<span class="glyphicon glyphicon-ok-sign form-control-feedback"></span>-->
+                                    <!--<span class="help-block">Valid Course Title!</span>-->
+                                <!--</div>-->
+
+                                <script>
+                                    function submit_create_course() {
+                                        var coursename = document.forms["create-course-form"]["coursename"].value;
+                                        var fullcoursename = document.forms["create-course-form"]["fullcoursename"].value;
+                                        var semester = document.forms["create-course-form"]["semester"].value;
+
+                                        // check if it already exist
+
+                                        alert("Course Title : " + coursename + "\n" +
+                                                "Full Course Name : " + fullcoursename + "\n" +
+                                                "Semester : " + semester + "\n\n" +
+                                                "Course Created Successfully...");
+
+                                        // document.getElementById("form_id").getAttribute("class")
+                                    }
+                                </script>
 
                                 <div class="form-group">
                                     <label>Course Title</label>
-                                    <input class="form-control" id="coursename" name="coursename" placeholder="CS180, MATH251">
+                                    <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>-->
+                                    <input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251"
+                                           pattern="[A-Z0-9]{5,10}" required>
+                                    <span class="help-block">Course title should be in a form of XXX000 ex) CS180, MATH250, EAPS100 </span>
+
                                 </div>
 
                                 <div class="form-group">
-                                    <label>Full Course Title</label>
-                                    <input class="form-control" id="fullCourseName" name="fullCourseName" placeholder="Systems Programming">
+                                    <label>Full Course Name</label>
+                                    <input class="form-control" type="text" id="fullcoursename" name="fullcoursename" placeholder="Systems Programming">
                                 </div>
 
                                 <div class="form-group">
@@ -124,9 +166,9 @@
                                         <option value="Fall 2017">Fall 2017</option>
                                         <option value="Summer 2017">Summer 2017</option>
                                         <option value="Spring 2017">Spring 2017</option>
-                                        <option value="Fall 2016">Fall 2016</option>
-                                        <option value="Summer 2016">Summer 2016</option>
-                                        <option value="Spring 2016">Spring 2016</option>
+                                        <!--<option value="Fall 2016">Fall 2016</option>-->
+                                        <!--<option value="Summer 2016">Summer 2016</option>-->
+                                        <!--<option value="Spring 2016">Spring 2016</option>-->
                                     </select>
                                 </div>
 
