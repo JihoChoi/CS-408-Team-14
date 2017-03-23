@@ -109,9 +109,9 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <!--<form action="/create-course" method="post">-->
+                            <form action="/create-course" method="post">
 
-                            <form name="create-course-form" onsubmit="submit_create_course()">
+                            <!--<form name="create-course-form" onsubmit="submit_create_course()">-->
 
                                 <!--<div class="form-group has-warning has-feedback">-->
                                     <!--<label>Course Title</label>-->
@@ -143,6 +143,17 @@
                                                 "Course Created Successfully...");
 
                                         // document.getElementById("form_id").getAttribute("class")
+
+                                        var form = $('<form></form>');;
+                                        var field = $('<input>');;
+                                        field.attr("coursename", coursename);
+
+                                        console.log("coursename is "+coursename);
+
+                                        form.append(field);
+
+                                        $(document.body).append(form);
+                                        form.submit();
                                     }
                                 </script>
 
