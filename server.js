@@ -146,23 +146,6 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	});
 });
 
-
-app.post('/create-course', loginVerify, function(req, res) {
-
-    console.log("create course : " + req.body.coursename + req.body.semester + req.body.fullcoursename);
-    console.log("current user : " + req.user.emails[0].value);
-
-    db.addClass(
-        req.body.coursename,
-        req.body.semester,
-        req.body.fullcoursename,
-        req.user.emails[0].value);
-
-});
-
-
-
-
 // All events of user is in
 app.get('/events', loginVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
@@ -280,7 +263,7 @@ app.get('/course/*', loginVerify, function(req, res) {
             db.getUserCourses(req.user.emails[0].value, function (courses) {
                 // console.log('courses :' + courses);
 
-                console.log("Course View courses :" + courses);
+                console.log("current course: " + course);
 
                 res.status(200);
                 res.render('course', {
@@ -320,10 +303,21 @@ app.get('/socket.io/*', function(req, res) {
 	res.redirect(301, process.env.CHATSERVER + req.url);
 });
 
+
 /**
  * POST REQUESTS
  */
-
+app.post('/create-course', loginVerify, function(req, res) {
+    console.log("current user: " + req.user.emails[0].value);
+    console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
+    db.addClass(
+        req.body.coursename,
+        req.body.semester,
+        req.body.fullcoursename,
+        req.user.emails[0].value 
+        );
+    res.redirect('/course/' + req.body.coursename);
+});
 
 
 
