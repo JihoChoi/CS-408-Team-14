@@ -111,6 +111,7 @@ app.get('/', function(req, res) {
                     courses: courses
                 });
 				console.log('200'.green+ ' ' + req.user.emails[0].value +' requested ' + req.url);
+                console.log(courses);
             });
         });
 	} else {
@@ -134,6 +135,9 @@ app.get('/dashboard', function(req, res) {
 app.get('/manageCourses', loginVerify, function(req, res) {
 	db.getUserCourses(req.user.emails[0].value, function(courses) {
 		res.status(200);
+
+        console.log("courses : " + courses);
+
 		res.render('manageCourses', {
 			email: req.user.emails[0].value,
 			courses: courses
@@ -141,6 +145,23 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 		console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 	});
 });
+
+
+app.post('/create-course', loginVerify, function(req, res) {
+
+    console.log("create course : " + req.body.coursename + req.body.semester + req.body.fullcoursename);
+    console.log("current user : " + req.user.emails[0].value);
+
+    db.addClass(
+        req.body.coursename,
+        req.body.semester,
+        req.body.fullcoursename,
+        req.user.emails[0].value);
+
+});
+
+
+
 
 // All events of user is in
 app.get('/events', loginVerify, function(req, res) {
@@ -255,12 +276,22 @@ app.get('/course/*', loginVerify, function(req, res) {
 
         // Lookup if class exist/user has permission
 
-        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
-        res.status(200);
-        res.render('course', {
-            user: req.user,
-            course: course
-        })
+        db.enrollUser(req.user.emails[0].value, function () {
+            db.getUserCourses(req.user.emails[0].value, function (courses) {
+                // console.log('courses :' + courses);
+
+                console.log("Course View courses :" + courses);
+
+                res.status(200);
+                res.render('course', {
+                    user: req.user,
+                    courses: courses,
+                    course: course
+
+                });
+                console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+            });
+        });
     } else {
     	res.status(404);
     	res.render('notfound', { url: req.url, layout: false });
