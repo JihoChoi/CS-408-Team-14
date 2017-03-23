@@ -474,6 +474,12 @@ var purgeCourse = function(email) {
 	});
 }
 
+var courseExists = function(className) {
+	getClass(className, function(course) {
+		return(Boolean(course));
+	});
+}
+
 module.exports = {
 createUser,
 enrollUser,
@@ -502,5 +508,6 @@ deleteCourse,
 getUserCoursesFull,
 classRemoveStudent,
 liveTime,
-purgeCourse
+purgeCourse,
+courseExists
 }; 
