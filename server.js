@@ -53,7 +53,16 @@ passport.serializeUser(function(user, done) {
   	done(null, user);
 });
 passport.deserializeUser(function(user, done) {
-	done(null, user)
+    db.getUserCourses(user.emails[0].value, function(courses) {
+        user.courses = courses;
+        db.getUserEvents(user.emails[0].value, function(events) {
+            user.events = events;
+            db.getUserInvites(user.emails[0].value, function(invites) {
+                user.invites = invites;
+                done(null, user);
+            });
+        });
+    });
 });
 
 

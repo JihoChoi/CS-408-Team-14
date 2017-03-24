@@ -111,7 +111,7 @@ var classAddStudentHelp = function(course, student) {
 var classRemoveStudent = function(courseName, email) {
 	getClass(courseName, function(course) {
 		getStudent(email, function(student) {
-			if(course && students) {
+			if(course && student) {
 			classRemoveStudentHelp(course, student);
 			}
 		});
