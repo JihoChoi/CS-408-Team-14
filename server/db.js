@@ -442,8 +442,9 @@ var getUserGroups = function(email, callback) {
 
 var deleteCourse = function(name) {
 	Class.findOne({name: name}, function(err, course) {
+		if(course) {
 		for (var i = 0; i < course.students.length; i++) {
-			Students.findById(course.students[i], function(err, student){
+			Student.findById(course.students[i], function(err, student){
 				if (student) {
 					classRemoveStudent(course.name, student.email);
 				}
@@ -453,6 +454,7 @@ var deleteCourse = function(name) {
 					});
 				}
 			});
+		}
 		}
 	});
 };
