@@ -125,10 +125,9 @@ app.get('/', function(req, res) {
         res.status(200);
         res.render('dashboard', {
             user: req.user,
-            courses: courses
+            courses: req.user.courses
         });
-        console.log('200'.green+ ' ' + req.user.emails[0].value +' requested ' + req.url);
-        console.log(courses);
+        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 	} else {
         res.status(200);
 		res.render('index', {
@@ -151,7 +150,7 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
 	res.render('manageCourses', {
 		email: req.user.emails[0].value,
-		courses: courses
+		courses: req.user.courses
 	});
 	console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
@@ -163,7 +162,7 @@ app.get('/createEvent', loginVerify, function(req, res) {
     res.status(200);
     res.render('createEvent', {
         email: req.user.emails[0].value,
-        courses: courses
+        courses: req.user.courses
     });
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
@@ -173,7 +172,7 @@ app.get('/addSubgroup', loginVerify, function(req, res) {
     res.status(200);
     res.render('addSubgroup', {
         email: req.user.emails[0].value,
-        courses: courses
+        courses: req.user.courses
     });
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
@@ -284,7 +283,7 @@ app.get('/course/*', enrollmentVerify, function(req, res) {
         res.status(200);
         res.render('course', {
             user: req.user,
-            courses: courses,
+            courses: req.user.courses,
             course: course
         });
         console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
