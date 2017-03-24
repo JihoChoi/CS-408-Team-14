@@ -80,11 +80,21 @@ function loginVerify(req, res, next) {
 	}
 };
 
-function courseEnrolled(req, res, next) {
+function enrollmentVerify(req, res, next) {
 	//TODO: Check if user is enrolled in the class
 	if (req.user) {
+        var course = req.url.substr(8);
+        if (course.indexOf('/') != -1) {
+            course = course.substr(0, course.indexOf('/'));
+        }
 		// Check if enrolled
-		next();
+        if (req.user.courses.indexOf(course) < 0) {
+            req.session.attemptedURL = req.url;
+            res.redirect('/notpermitted');
+            return;
+        } else {
+            next();
+        }
 	} else {
 		req.session.returnTo = req.url;
 		//console.log('Guest requested ' + req.url + ' without logging in.');
@@ -199,7 +209,7 @@ app.get('/events', loginVerify, function(req, res) {
 });
 
 // List of events in a subgroup
-app.get('/course/*/*/events', loginVerify, function(req, res) {
+app.get('/course/*/*/events', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     var index = course.indexOf('/');
     var subgroup = course.substr(index);
@@ -218,7 +228,7 @@ app.get('/course/*/*/events', loginVerify, function(req, res) {
 });
 
 // Subgroup event page
-app.get('/course/*/*/event/*', loginVerify, function(req, res) {
+app.get('/course/*/*/event/*', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     var index = course.indexOf('/');
     var subgroup = course.substr(index);
@@ -247,7 +257,7 @@ app.get('/course/*/*/event/*', loginVerify, function(req, res) {
 });
 
 // List of events in a course
-app.get('/course/*/events', loginVerify, function(req, res) {
+app.get('/course/*/events', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
         // Course homepage
@@ -268,7 +278,7 @@ app.get('/course/*/events', loginVerify, function(req, res) {
 });
 
 // Course event page
-app.get('/course/*/event/*', loginVerify, function(req, res) {
+app.get('/course/*/event/*', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     var index = course.indexOf('/');
     course = course.substr(0, index);
@@ -295,7 +305,7 @@ app.get('/course/*/event/*', loginVerify, function(req, res) {
 /* TODO might want to check if the course for the url is existing */
 /* in case of something like http://localhost:3000/course/notacourse */
 
-app.get('/course/*', loginVerify, function(req, res) {
+app.get('/course/*', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
         // Course homepage
@@ -344,6 +354,21 @@ app.get('/chat*', loginVerify, function(req, res) {
 
 app.get('/socket.io/*', function(req, res) {
 	res.redirect(301, process.env.CHATSERVER + req.url);
+});
+
+app.get('/notpermitted', function(req, res) {
+    if (req.user)
+        console.log('403'.yellow + ' ' + req.user.emails[0].value + ' attempted to access ' + req.session.attemptedURL);
+    else {
+        res.redirect('/');
+        return;
+    }
+    res.status(403);
+    res.render('notpermitted', {
+        layout: false,
+        url: req.session.attemptedURL
+    });
+    delete req.session.attemptedURL;
 });
 
 
