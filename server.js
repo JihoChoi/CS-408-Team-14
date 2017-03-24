@@ -155,6 +155,40 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	});
 });
 
+
+
+// createEvent
+app.get('/createEvent', loginVerify, function(req, res) {
+    db.getUserCourses(req.user.emails[0].value, function(courses) {
+        res.status(200);
+
+        // console.log("courses : " + courses);
+
+        res.render('createEvent', {
+            email: req.user.emails[0].value,
+            courses: courses
+        });
+        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    });
+});
+
+// addSubgroup
+app.get('/addSubgroup', loginVerify, function(req, res) {
+    db.getUserCourses(req.user.emails[0].value, function(courses) {
+        res.status(200);
+
+        // console.log("courses : " + courses);
+
+        res.render('addSubgroup', {
+            email: req.user.emails[0].value,
+            courses: courses
+        });
+        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    });
+});
+
+
+
 // All events of user is in
 app.get('/events', loginVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
