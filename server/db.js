@@ -57,7 +57,9 @@ var enrollUser = function(email,callback) {
 //Create a new class
 var addClass = function(name, semester, fullName, email){
 	getStudent(email,function(student){
+		if(student) {
 		addClassHelp(name,semester,fullName,student);
+		}
 	});
 };
 
@@ -87,7 +89,9 @@ var addClassHelp = function(name, semester, fullName, student) {
 var classAddStudent = function (courseName, email) {
 	getClass(courseName,function(course) {
 	getStudent(email,function(student){
+		if(course && student) {
 		classAddStudentHelp(course,student);
+		}
 	});
 	});
 };
@@ -107,7 +111,9 @@ var classAddStudentHelp = function(course, student) {
 var classRemoveStudent = function(courseName, email) {
 	getClass(courseName, function(course) {
 		getStudent(email, function(student) {
+			if(course && students) {
 			classRemoveStudentHelp(course, student);
+			}
 		});
 	});
 };
@@ -117,7 +123,7 @@ var classRemoveStudentHelp = function(course, student) {
 	course.save(function(err) {
 		if(err) throw err;
 	});
-	student.courses.splice(students.courses.indexOf(course._id), 1);
+	student.courses.splice(student.courses.indexOf(course._id), 1);
 	student.save(function(err) {
 		if(err) throw err;
 	});
@@ -127,7 +133,9 @@ var classRemoveStudentHelp = function(course, student) {
 //Add a new event to a class
 var classAddEvent = function(name, description, type, courseName, startTime){
 	getClass(courseName, function(course){
+		if(course) {
 		classAddEventHelp(name,description,type,course,startTime);
+		}
 	});
 };
 
@@ -155,7 +163,9 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 var classAddGroup = function(name, courseName, email) {
 	getClass(courseName,function(course) {
 	getStudent(email,function(student){
+		if(course && student) {
 		classAddGroupHelp(name,course,student);
+		}
 	});
 	});
 };
