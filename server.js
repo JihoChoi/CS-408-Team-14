@@ -145,7 +145,7 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	db.getUserCourses(req.user.emails[0].value, function(courses) {
 		res.status(200);
 
-        console.log("courses : " + courses);
+        // console.log("courses : " + courses);
 
 		res.render('manageCourses', {
 			email: req.user.emails[0].value,
@@ -272,7 +272,7 @@ app.get('/course/*', loginVerify, function(req, res) {
             db.getUserCourses(req.user.emails[0].value, function (courses) {
                 // console.log('courses :' + courses);
 
-                console.log("current course: " + course);
+                // console.log("current course: " + course);
 
                 res.status(200);
                 res.render('course', {
