@@ -50,7 +50,7 @@
                 <span class="icon-bar"></span>
             </button>
             <!--<a class="navbar-brand" href="index.html">Coconut Watr</a>-->
-            <a class="navbar-brand" href="index">Coconut Watr</a>
+            <a class="navbar-brand" href="/index">Coconut Watr</a>
         </div>
 
         <ul class="nav navbar-top-links navbar-right">
@@ -131,7 +131,7 @@
                 <ul class="nav" id="side-menu">
                     <li>
                         <!--<a href="dashboard.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>-->
-                        <a href="dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        <a href="/dashboard"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Courses<span class="fa arrow"></span></a>
@@ -141,17 +141,19 @@
                                 <a href="/manageCourses">Manage Courses</a>
                             </li>
 
-                            {{# each courses }}
-                                <li>
-                                    <!--<a href="course/{{ this }}.html">{{ this }}</a>-->
-                                    <a href="course/{{ this }}">{{ this }}</a>
-                                </li>
-                            {{/each}}
 
+                            {{# each courses }}
+                                {{#if this }}
+                                    <li>
+                                        <!--<a href="course/{{ this }}.html">{{ this }}</a>-->
+                                        <a href="/course/{{ this }}">{{ this }}</a>
+                                    </li>
+                                {{/if}}
+                            {{/each}}
 
                             <li>
                                 <!--<a href="database_viewer.html">Database Viewer</a>-->
-                                <a href="database_viewer">Database Viewer</a>
+                                <a href="/database_viewer">Database Viewer</a>
                             </li>
 
                         </ul>
