@@ -121,18 +121,14 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', function(req, res) {
 	if (req.user) {
-		db.enrollUser(req.user.emails[0].value, function () {
-            db.getUserCourses(req.user.emails[0].value, function(courses) {
-                // console.log('courses :' + courses);
-				res.status(200);
-                res.render('dashboard', {
-                    user: req.user,
-                    courses: courses
-                });
-				console.log('200'.green+ ' ' + req.user.emails[0].value +' requested ' + req.url);
-                console.log(courses);
-            });
+        // console.log('courses :' + courses);
+        res.status(200);
+        res.render('dashboard', {
+            user: req.user,
+            courses: courses
         });
+        console.log('200'.green+ ' ' + req.user.emails[0].value +' requested ' + req.url);
+        console.log(courses);
 	} else {
         res.status(200);
 		res.render('index', {
@@ -152,49 +148,34 @@ app.get('/dashboard', function(req, res) {
 
 // Manage Courses
 app.get('/manageCourses', loginVerify, function(req, res) {
-	db.getUserCourses(req.user.emails[0].value, function(courses) {
-		res.status(200);
-
-        // console.log("courses : " + courses);
-
-		res.render('manageCourses', {
-			email: req.user.emails[0].value,
-			courses: courses
-		});
-		console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+	res.status(200);
+	res.render('manageCourses', {
+		email: req.user.emails[0].value,
+		courses: courses
 	});
+	console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
 
 
 // createEvent
 app.get('/createEvent', loginVerify, function(req, res) {
-    db.getUserCourses(req.user.emails[0].value, function(courses) {
-        res.status(200);
-
-        // console.log("courses : " + courses);
-
-        res.render('createEvent', {
-            email: req.user.emails[0].value,
-            courses: courses
-        });
-        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    res.status(200);
+    res.render('createEvent', {
+        email: req.user.emails[0].value,
+        courses: courses
     });
+    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
 // addSubgroup
 app.get('/addSubgroup', loginVerify, function(req, res) {
-    db.getUserCourses(req.user.emails[0].value, function(courses) {
-        res.status(200);
-
-        // console.log("courses : " + courses);
-
-        res.render('addSubgroup', {
-            email: req.user.emails[0].value,
-            courses: courses
-        });
-        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    res.status(200);
+    res.render('addSubgroup', {
+        email: req.user.emails[0].value,
+        courses: courses
     });
+    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
 
@@ -216,10 +197,6 @@ app.get('/course/*/*/events', enrollmentVerify, function(req, res) {
     course = course.substr(0, index);
     index = subgroup.indexOf('/');
     subgroup = subgroup.substr(0, index);
-
-    // Check if course exist/user has permission
-    // Check if subgroup exist/user has permission
-
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
     res.status(200);
     res.render('events', {
@@ -260,10 +237,6 @@ app.get('/course/*/*/event/*', enrollmentVerify, function(req, res) {
 app.get('/course/*/events', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
-        // Course homepage
-
-        // Lookup if class exist/user has permission
-
         console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
         res.status(200);
         res.render('events', {
@@ -308,26 +281,13 @@ app.get('/course/*/event/*', enrollmentVerify, function(req, res) {
 app.get('/course/*', enrollmentVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
-        // Course homepage
-
-        // Lookup if class exist/user has permission
-
-        db.enrollUser(req.user.emails[0].value, function () {
-            db.getUserCourses(req.user.emails[0].value, function (courses) {
-                // console.log('courses :' + courses);
-
-                // console.log("current course: " + course);
-
-                res.status(200);
-                res.render('course', {
-                    user: req.user,
-                    courses: courses,
-                    course: course
-
-                });
-                console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
-            });
+        res.status(200);
+        res.render('course', {
+            user: req.user,
+            courses: courses,
+            course: course
         });
+        console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     } else {
     	res.status(404);
     	res.render('notfound', { url: req.url, layout: false });
