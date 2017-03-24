@@ -308,8 +308,8 @@ app.get('/socket.io/*', function(req, res) {
  * POST REQUESTS
  */
 app.post('/create-course', loginVerify, function(req, res) {
-    console.log("current user: " + req.user.emails[0].value);
-    console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
+    // console.log("current user: " + req.user.emails[0].value);
+    // console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
     db.addClass(
         req.body.coursename,
         req.body.semester,
@@ -319,6 +319,19 @@ app.post('/create-course', loginVerify, function(req, res) {
     res.redirect('/course/' + req.body.coursename);
 });
 
+app.post('/join-class', loginVerify, function(req, res) {
+    db.classAddStudent(
+        req.body.coursename,
+        req.user.email); // db stuff
+    res.redirect('/course/' + req.body.coursename);
+});
+
+app.post('/delete-course', loginVerify, function(req, res) {
+    db.deleteCourse(
+        req.body.delete_course
+    );
+    res.redirect('/manageCourses');
+});
 
 
 /**
