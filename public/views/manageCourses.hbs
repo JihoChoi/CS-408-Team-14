@@ -29,36 +29,6 @@
 
     <div class="row">
         <div class="col-lg-8">
-            <!-- leave course -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    Delete Course
-                </div>
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <form action="/delete-course" method="post">
-                                <div class="form-group">
-                                    <label>Course Title</label>
-                                    <!-- todo change delete course to delete course for that user -->
-
-                                    <select multiple class="form-control" id="delete_course" name="delete_course">
-
-                                        {{# each courses }}
-                                            <option value="{{ this }}">{{ this }}</option>
-                                            <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
-                                        {{/each}}
-
-                                    </select>
-                                </div>
-
-                                <button type="submit" class="btn btn-default">Delete Course</button>
-                                <button type="reset" class="btn btn-default">Cancel</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- join course -->
             <div class="panel panel-default">
@@ -129,7 +99,7 @@
                                     <!--<span class="help-block">Valid Course Title!</span>-->
                                 <!--</div>-->
 
-                                <script>
+                                <script type="text/javascript">
                                     function submit_create_course() {
                                         var coursename = document.forms["create-course-form"]["coursename"].value;
                                         var fullcoursename = document.forms["create-course-form"]["fullcoursename"].value;
@@ -162,7 +132,7 @@
                                     <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>-->
                                     <input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251"
                                            pattern="[A-Z0-9]{5,10}" required>
-                                    <span class="help-block">Course title should be in a form of XXX000 ex) CS180, MATH250, EAPS100 </span>
+                                    <span class="help-block">The course title should be in forms of [XXX000] <br> ex) CS180, MATH250, EAPS100 </span>
 
                                 </div>
 
@@ -175,8 +145,10 @@
                                     <label>Semester</label>
                                     <select multiple class="form-control" id="semester" name="semester">
                                         <option value="Fall 2017">Fall 2017</option>
-                                        <option value="Summer 2017">Summer 2017</option>
-                                        <option value="Spring 2017">Spring 2017</option>
+
+                                        <!--<option value="Summer 2017">Summer 2017</option>-->
+                                        <!--<option value="Spring 2017">Spring 2017</option>-->
+
                                         <!--<option value="Fall 2016">Fall 2016</option>-->
                                         <!--<option value="Summer 2016">Summer 2016</option>-->
                                         <!--<option value="Spring 2016">Spring 2016</option>-->
@@ -190,6 +162,55 @@
                     </div>
                 </div>
             </div>
+
+            <!-- leave course -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Delete Course
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form action="/delete-course" method="post" onsubmit="alert({{ this }} + ' course deleted!')">
+                            <!--<form name="delete-course-form" onsubmit="deleteCourse()">-->
+
+                                <div class="form-group">
+                                    <label>Course Title</label>
+                                    <!-- todo change delete course to delete course for that user -->
+
+                                    <select multiple class="form-control" id="delete_course" name="delete_course">
+                                        {{# each courses }}
+                                            {{#if this }}
+                                                <option value="{{ this }}">{{ this }}</option>
+                                                <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
+                                            {{/if}}
+                                        {{/each}}
+                                    </select>
+                                </div>
+
+
+                                <!--<script type="text/javascript">-->
+                                    <!---->
+                                    <!--function deleteCourse() {-->
+
+                                        <!--var coursename = document.forms["cdelete-course-form"]["delete_course"].value;-->
+
+                                        <!--console.log("delete " + coursename);-->
+                                        <!--alert(" deleted!" + coursename);-->
+                                    <!--}-->
+
+                                <!--</script>-->
+
+
+
+                                <button type="submit" class="btn btn-default">Delete Course</button>
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
