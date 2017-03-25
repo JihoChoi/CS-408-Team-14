@@ -89,7 +89,8 @@ function courseVerify(req, res, next) {
         course = course.substr(0, course.indexOf('/'));
     }
     // Check if course exists
-    if (db.courseExists(course)) {
+    db.courseExists(course, function(bool) {   
+    if (bool) {
         if (req.user.courses.indexOf(course) < 0) {
             req.session.attemptedURL = req.url;
             res.redirect('/notpermitted');
@@ -105,6 +106,7 @@ function courseVerify(req, res, next) {
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
         return;
     }
+    });
 };
 
 // /course/[coursename]/[groupname]
