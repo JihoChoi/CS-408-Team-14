@@ -354,6 +354,8 @@ app.post('/create-course', loginVerify, function(req, res) {
 });
 
 app.post('/join-class', loginVerify, function(req, res) {
+
+    console.log("coursename: " + req.body.join_coursename)
     db.classAddStudent(
         req.body.join_coursename,
         req.user.emails[0].value); // db stuff
