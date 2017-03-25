@@ -107,6 +107,10 @@ function courseVerify(req, res, next) {
     });
 };
 
+function groupVerify(req, res, next) {
+    next();
+};
+
 /**
  * DIRECTORY NAVIGATION
  * Error checking and navigation to User's pages
@@ -191,14 +195,22 @@ app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
-app.get('/course/*/*', loginVerify, courseVerify, function(req, res) {
+app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') != -1) {
         var subgroup = course.substr(course.indexOf('/'));
         if (subgroup.indexOf('/') != -1) {
-            //TODO: render page
-        } else
             res.redirect('/course/' + course);
+            return;
+        }
+        db.getGroup(subgroup, function(subgroup) {
+            res.status(200);
+            res.render('subgroup', {
+                user: user,
+                subgroup: subgroup
+            });
+            console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+        });
     } else {
         res.status(404);
         res.render('notfound', { url: req.url, layout: false });
