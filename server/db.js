@@ -509,7 +509,11 @@ var purgeCourse = function(email) {
 
 var courseExists = function(className) {
 	getClass(className, function(course) {
-		return(Boolean(course));
+		if(course) {
+			return true;
+		} else {
+			return false;
+		}
 	});
 }
 
