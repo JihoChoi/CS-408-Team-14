@@ -3,7 +3,8 @@
 <div id="page-wrapper">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">{{course}}</h1>
+            <!--<h1 class="page-header">{{course}}</h1>-->
+            <h1 class="page-header">{{course.name}} {{course.fullName}} {{course.semester}}</h1>
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -13,8 +14,7 @@
         <div class="col-lg-6">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{course}} co
-
+                    Description
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:240px;overflow:auto;>
@@ -25,25 +25,14 @@
                 <!-- Tab panes -->
                 <div class="tab-content">
                     <div class="tab-pane fade in active" id="home">
-                        <h4>Discription</h4>
-                        <p>Problem solving and algorithms, implementation of algorithms in a high level programming
-                            language, conditionals, the iterative approach and debugging, collections of data,
-                            searching and sorting, solving problems by decomposition, the object-oriented approach,
-                            subclasses of existing classes, handling exceptions that occur when the program is running,
-                            graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
-                            topics from other CS courses.</p>
-                        <p>Problem solving and algorithms, implementation of algorithms in a high level programming
-                            language, conditionals, the iterative approach and debugging, collections of data,
-                            searching and sorting, solving problems by decomposition, the object-oriented approach,
-                            subclasses of existing classes, handling exceptions that occur when the program is running,
-                            graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
-                            topics from other CS courses.</p>
-                        <p>Problem solving and algorithms, implementation of algorithms in a high level programming
-                            language, conditionals, the iterative approach and debugging, collections of data,
-                            searching and sorting, solving problems by decomposition, the object-oriented approach,
-                            subclasses of existing classes, handling exceptions that occur when the program is running,
-                            graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at
-                            topics from other CS courses.</p>
+                        <h4>{{course.description}}</h4>
+                        <!--<p>{{course.description}}Problem solving and algorithms, implementation of algorithms in a high level programming-->
+                            <!--language, conditionals, the iterative approach and debugging, collections of data,-->
+                            <!--searching and sorting, solving problems by decomposition, the object-oriented approach,-->
+                            <!--subclasses of existing classes, handling exceptions that occur when the program is running,-->
+                            <!--graphical user interfaces (GUIs), data stored in files, abstract data types, a glimpse at-->
+                            <!--topics from other CS courses.</p>-->
+                        <!---->
                     </div>
                     <div class="tab-pane fade" id="Links">
                         <h4>Helpful Links</h4>
@@ -83,6 +72,8 @@
                             <td>Korver</td>
                             <td>@3sss4days</td>
                         </tr>
+
+
                         <tr class="info">
                             <td>2</td>
                             <td>J. R.</td>
@@ -95,36 +86,9 @@
                             <td>Irving</td>
                             <td>@irvingKyrie</td>
                         </tr>
-                        <tr class="danger">
-                            <td>4</td>
-                            <td>LeBron</td>
-                            <td>James</td>
-                            <td>@therealLeBron</td>
-                        </tr>
-                        <tr class="success">
-                            <td>5</td>
-                            <td>Kevin</td>
-                            <td>Love</td>
-                            <td>@bigman</td>
-                        </tr>
-                        <tr class="success">
-                            <td>5</td>
-                            <td>Kevin</td>
-                            <td>Love</td>
-                            <td>@bigman</td>
-                        </tr>
-                        <tr class="success">
-                            <td>5</td>
-                            <td>Kevin</td>
-                            <td>Love</td>
-                            <td>@bigman</td>
-                        </tr>
-                        <tr class="success">
-                            <td>5</td>
-                            <td>Kevin</td>
-                            <td>Love</td>
-                            <td>@bigman</td>
-                        </tr>
+
+                        {{course.students}}
+
                         </tbody>
                     </table>
                 </div>
@@ -187,10 +151,10 @@
                 <div class="input-group">
                     <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                     <span class="input-group-btn">
-                                        <button class="btn btn-warning btn-sm" id="btn-chat">
-                                            Post
-                                        </button>
-                                    </span>
+                        <button class="btn btn-warning btn-sm" id="btn-chat">
+                            Post
+                        </button>
+                    </span>
                 </div>
             </div>
 
@@ -208,36 +172,18 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:200px;overflow:auto;">
 
+                {{course.event}}
 
                 <a href="#" class="list-group-item">
-                    <i class="fa fa-tasks fa-fw"></i> Study Session
+                    <i class="fa fa-tasks fa-fw"></i> Temporal Study Session
                     <span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>
                 </a>
                 <a href="#" class="list-group-item">
-                    <i class="fa fa-bolt fa-fw"></i> Second Exam
+                    <i class="fa fa-bolt fa-fw"></i> Temporal Second Exam
                     <span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>
                                         </span>
                 </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/13 10:00 P.M.</em>
-                                        </span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                </a>
+
             </div>
         </div>
 
@@ -251,21 +197,8 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:200px;overflow:auto;">
 
+                {{course.group}}
 
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-tasks fa-fw"></i> Study Session
-                    <span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-bolt fa-fw"></i> Second Exam
-                    <span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>
-                                        </span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/13 10:00 P.M.</em>
-                                        </span>
-                </a>
                 <a href="#" class="list-group-item">
                     <i class="fa fa-comment fa-fw"></i> Group Meeting
                     <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>

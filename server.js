@@ -149,6 +149,9 @@ app.get('/favicon.ico', function(req, res) {
 app.get('/', function(req, res) {
 	if (req.user) {
         // console.log('courses :' + courses);
+
+        console.log(req.user);
+
         res.status(200);
         res.render('dashboard', {
             user: req.user,
@@ -175,11 +178,21 @@ app.get('/dashboard', function(req, res) {
 // Manage Courses
 app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
-	res.render('manageCourses', {
-		email: req.user.emails[0].value,
-		courses: req.user.courses
-	});
-	console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+
+
+    db.getAllCourses(function(allCourses) {
+
+        console.log("this is all courses" + allCourses);
+
+        res.render('manageCourses', {
+            email: req.user.emails[0].value,
+            courses: req.user.courses,
+            allcourse: req.arr
+        });
+        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    })
+
+
 });
 
 // All events of user is in
@@ -328,6 +341,7 @@ app.post('/create-course', loginVerify, function(req, res) {
         req.body.coursename,
         req.body.semester,
         req.body.fullcoursename,
+        req.body.description,
         req.user.emails[0].value 
         );
     res.redirect('/course/' + req.body.coursename);
