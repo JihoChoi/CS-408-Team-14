@@ -52,18 +52,18 @@
                                     <script>
                                         function submit_create_event() {
                                             var eventName = document.forms["create-event-form"]["eventName"].value;
-                                            var eventLocation = document.forms["create-event-form"]["eventLocation"].value;
                                             var eventDes = document.forms["create-event-form"]["eventDes"].value;
+                                            var eventLocation = document.forms["create-event-form"]["eventLocation"].value;
+                                            var courseName = document.forms["create-event-form"]["courseEvnt"].value = {{course.name}};
 
                                             var eventInfo = 'eventDate' + " " + 'eventHour' + " " + 'eventMin' + " " + 'radios';
-                                            var eventDate = document.forms["create-event-form "]["eventDate"].value;
-                                            var eventHour = document.forms["create-event-form "]["eventHour"].value;
-                                            var eventMin = document.forms["create-event-form "]["eventMin"].value;
-                                            var am = document.forms["create-event-form "]["am"].value;
-                                            var pm = document.forms["create-event-form "]["pm"].value;
-                                            var radios = document.getElementsByName('amorpm');
                                             }
-
+                                        var eventDate = document.forms["create-event-form "]["eventDate"].value;
+                                        var eventHour = document.forms["create-event-form "]["eventHour"].value;
+                                        var eventMin = document.forms["create-event-form "]["eventMin"].value;
+                                        var am = document.forms["create-event-form "]["am"].value;
+                                        var pm = document.forms["create-event-form "]["pm"].value;
+                                        var radios = document.getElementsByName('amorpm');
 
                                             // check if it already exist
 
@@ -80,13 +80,14 @@
 
                                     <div class="form-group">
                                         <label>Event Title</label>
-                                        <input class="form-control" id="eventName" name="eventName" placeholder="CS180, MATH251">
+                                        <input class="form-control" id="eventName" name="eventName" placeholder="Study Session, Exam Prep">
                                     </div>
 
                                     <div class="form-group">
                                         <label>Location</label>
                                         <input class="form-control" id="eventLocation" name="eventLocation" placeholder="LWSNB160">
                                     </div>
+
 
                                     <div class="form-group" id="eventDate" name="eventDate">
                                         <label>Date</label>

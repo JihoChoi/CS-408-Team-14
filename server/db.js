@@ -8,7 +8,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
-
+/*
 function liveTime() {
 	var now = new Date();
 	var year = now.getFullYear();
@@ -23,6 +23,7 @@ function liveTime() {
 	var semEnd = new Date(year, month, 28, 0,0,0,0);
 	return parseInt((semEnd-now)/1000/60/60/24) + "d";
 }
+*/
 
 //Usage: createUser("student email", callback function);
 //Cretes a user and adds it to the database. Mostly a helper function. Use at your own discretion
@@ -74,7 +75,7 @@ var addClassHelp = function(name, semester, fullName, description, student) {
 		events: [],
 		subgroups: []
 	});
-	course.ttl=liveTime();
+//	course.ttl=liveTime();
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -158,7 +159,7 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 		startTime: startTime,
 		students: []
 	});
-	event.ttl=liveTime();
+	//event.ttl=liveTime();
 	event.save(function(err) {
 		if(err) throw err;
 	});
@@ -185,7 +186,7 @@ var classAddGroupHelp = function(name, course, student) {
 		className: course,
 		students: []
 	});
-	group.ttl=liveTime();
+	//group.ttl=liveTime();
 	group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
@@ -429,7 +430,7 @@ var createInvite = function(targetEmail, group, student){
 			studentTo: toStudent,
 			studentFrom: student
 		});
-		invite.ttl=liveTime();
+	//	invite.ttl=liveTime();
 		invite.save(function(err){
 			if(err) throw err;
 		});
@@ -508,7 +509,11 @@ var purgeCourse = function(email) {
 
 var courseExists = function(className) {
 	getClass(className, function(course) {
-		return(Boolean(course));
+		if(course) {
+			return true;
+		} else {
+			return false;
+		}
 	});
 }
 
@@ -518,10 +523,13 @@ var getAllCourses = function(callback) {
 		var ret = [];
 		for (var i = 0; i < arr.length; i++) {
 			ret.push(arr[i].name);
+			if(i == arr.length-1) {
+			callback(ret);
+			}
 		}
-		callback(ret);
 	});
 }
+
 
 module.exports = {
 createUser,
@@ -552,8 +560,8 @@ declineInvite,
 deleteCourse,
 getUserCoursesFull,
 classRemoveStudent,
-liveTime,
+//liveTime,
 purgeCourse,
 courseExists,
-getAllCourses
+getAllCourses,
 }; 
