@@ -506,7 +506,7 @@ var purgeCourse = function(email) {
 		}
 	});
 }
-
+//************DOESNT WORK *****************
 var courseExists = function(className) {
 	getClass(className, function(course) {
 		return(Boolean(course));
@@ -558,6 +558,6 @@ getUserCoursesFull,
 classRemoveStudent,
 //liveTime,
 purgeCourse,
-courseExists,
+//courseExists,
 getAllCourses,
 }; 
