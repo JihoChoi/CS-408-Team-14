@@ -107,8 +107,25 @@ function courseVerify(req, res, next) {
     });
 };
 
+// /course/[coursename]/[groupname]
 function groupVerify(req, res, next) {
-    next();
+    var course = req.url.substr(8);
+    if (course.indexOf('/') != -1) {
+        var group = course.substr(course.indexOf('/'));
+        course = course.substr(0, course.indexOf('/'));
+        if (req.user.courses.indexOf(course) == -1) { 
+            req.session.attemptedURL = req.url;
+            res.redirect('/notpermitted');
+            return;
+        } else {
+            next();
+            return;
+        }
+    } else {
+        req.session.attemptedURL = req.url;
+        res.redirect('/notpermitted');
+        return;
+    }
 };
 
 /**
