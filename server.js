@@ -288,6 +288,31 @@ app.post('/delete-course', loginVerify, function(req, res) {
     res.redirect('/manageCourses');
 });
 
+app.post('/create-subgroup', loginVerify, function(req, res) {
+    // console.log("current user: " + req.user.emails[0].value);
+    // console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
+    db.addClass(
+        req.body.subName,
+        req.user.emails[0].value
+    );
+    res.redirect('/course/' + req.body.coursename);
+});
+
+app.post('/create-event', loginVerify, function(req, res) {
+    // console.log("current user: " + req.user.emails[0].value);
+    // console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
+    db.classAddEvent(
+        req.body.eventName,
+        req.body.eventDes,
+        req.body.eventLocation,
+        req.class.course.name,
+        req.body.eventDate
+        //req.user.emails[0].value
+    );
+    res.redirect('/course/*/events' + req.body.coursename);
+});
+
+
 
 /**
  * USER MANAGEMENT

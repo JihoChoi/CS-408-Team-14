@@ -47,27 +47,30 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form name="create-event-form" onsubmit="submit_create_event()">
+                                <form action="/create-event" method="post">
 
                                     <script>
                                         function submit_create_event() {
                                             var eventName = document.forms["create-event-form"]["eventName"].value;
                                             var eventLocation = document.forms["create-event-form"]["eventLocation"].value;
                                             var eventDes = document.forms["create-event-form"]["eventDes"].value;
-                                            var eventDate = document.forms["create-event-form"]["eventDate"].value;
+
+                                            var eventInfo = 'eventDate' + " " + 'eventHour' + " " + 'eventMin' + " " + 'radios';
+                                            var eventDate = document.forms["create-event-form "]["eventDate"].value;
                                             var eventHour = document.forms["create-event-form "]["eventHour"].value;
                                             var eventMin = document.forms["create-event-form "]["eventMin"].value;
                                             var am = document.forms["create-event-form "]["am"].value;
                                             var pm = document.forms["create-event-form "]["pm"].value;
-
+                                            var radios = document.getElementsByName('amorpm');
+                                            }
 
 
                                             // check if it already exist
 
-                                            alert("Event : " + eventName + "\n" +
-                                                    "Location : " + eventLocation + "\n" +
-                                                    "Date : " + eventDate + "\n" +
-                                                    "Event Created Successfully...");
+                                            alert("Event : " + 'eventName' + "\n" +
+                                                    "Location : " + 'eventLocation' + "\n" +
+                                                    "Date : " + 'eventDate' + "\n" +
+                                                    "Event Created Successfully...")
 
                                             // document.getElementById("form_id").getAttribute("class")
                                         }
@@ -118,10 +121,10 @@
                                             <option>30</option>
                                             <option>45</option>
                                         </select>
-                                        <label class="radio-inline" id="am" name="am">
+                                        <label class="radio-inline" id="am" name="amorpm">
                                             <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>AM
                                         </label>
-                                        <label class="radio-inline" id="pm" name="pm">
+                                        <label class="radio-inline" id="pm" name="amorpm">
                                             <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">PM
                                         </label>
 
