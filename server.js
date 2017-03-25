@@ -89,8 +89,8 @@ function courseVerify(req, res, next) {
         course = course.substr(0, course.indexOf('/'));
     }
     // Check if course exists
-    db.courseExists(course, function(bool) {   
-    if (bool) {
+    db.getClass(course, function(bool) {   
+    if (Boolean(bool)) {
         if (req.user.courses.indexOf(course) < 0) {
             req.session.attemptedURL = req.url;
             res.redirect('/notpermitted');
