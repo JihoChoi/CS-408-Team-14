@@ -83,20 +83,28 @@ function loginVerify(req, res, next) {
 	}
 };
 
-function enrollmentVerify(req, res, next) {
-	//TODO: Check if user is enrolled in the class
+function courseVerify(req, res, next) {
     var course = req.url.substr(8);
     if (course.indexOf('/') != -1) {
         course = course.substr(0, course.indexOf('/'));
     }
-	// Check if enrolled
-    if (req.user.courses.indexOf(course) < 0) {
-        req.session.attemptedURL = req.url;
-        res.redirect('/notpermitted');
-        return;
-    } else {
-        next();
-    }
+    // Check if course exists
+    db.getAllCourses(function(courses) {
+        if (courses.indexOf(course) == -1) {            
+            res.status(404);
+            res.render('notfound', { url: req.url, layout: false });
+            console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+            return;
+        }
+        // Check if enrolled
+        if (req.user.courses.indexOf(course) < 0) {
+            req.session.attemptedURL = req.url;
+            res.redirect('/notpermitted');
+            return;
+        } else {
+            next();
+        }
+    });
 };
 
 /**
@@ -152,18 +160,6 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
-// addSubgroup
-app.get('/addSubgroup', loginVerify, function(req, res) {
-    res.status(200);
-    res.render('addSubgroup', {
-        email: req.user.emails[0].value,
-        courses: req.user.courses
-    });
-    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
-});
-
-
-
 // All events of user is in
 app.get('/events', loginVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
@@ -177,7 +173,16 @@ app.get('/events', loginVerify, function(req, res) {
 /* in case of something like http://localhost:3000/course/notacourse */
 
 
-app.get('/course/*/createEvent', loginVerify, function(req, res) {
+app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
+    res.status(200);
+    res.render('addSubgroup', {
+        email: req.user.emails[0].value,
+        courses: req.user.courses
+    });
+    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+});
+
+app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
     res.status(200);
     res.render('createEvent', {
         email: req.user.emails[0].value,
@@ -186,7 +191,7 @@ app.get('/course/*/createEvent', loginVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
-app.get('/course/*/*', loginVerify, enrollmentVerify, function(req, res) {
+app.get('/course/*/*', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') != -1) {
         var subgroup = course.substr(course.indexOf('/'));
@@ -201,7 +206,7 @@ app.get('/course/*/*', loginVerify, enrollmentVerify, function(req, res) {
     }
 });
 
-app.get('/course/*', loginVerify, enrollmentVerify, function(req, res) {
+app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
         db.getCourse(course, function(course) {
@@ -263,8 +268,6 @@ app.get('/notpermitted', function(req, res) {
  * POST REQUESTS
  */
 app.post('/create-course', loginVerify, function(req, res) {
-    // console.log("current user: " + req.user.emails[0].value);
-    // console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
     db.addClass(
         req.body.coursename,
         req.body.semester,
@@ -289,8 +292,6 @@ app.post('/delete-course', loginVerify, function(req, res) {
 });
 
 app.post('/create-subgroup', loginVerify, function(req, res) {
-    // console.log("current user: " + req.user.emails[0].value);
-    // console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
     db.addClass(
         req.body.subName,
         req.user.emails[0].value
@@ -327,13 +328,6 @@ app.get('/callbacks/google', passport.authenticate('google'), function(req, res)
 		console.log('Redirecting ' + req.user.emails[0].value + ' to ' + redirect);
 		res.redirect(redirect);
 });
-
-app.get('/appenddata', function(req, res) {
-	db.getUserCourses(req.user.emails[0].value, function(courses) {
-		req.user.courses = courses;
-	})
-	res.redirect('/');
-})
 
 app.get('/register', function(req, res) {
 	res.redirect('/login');
