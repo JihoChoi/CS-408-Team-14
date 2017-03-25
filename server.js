@@ -53,7 +53,6 @@ passport.serializeUser(function(user, done) {
   	done(null, user);
 });
 passport.deserializeUser(function(user, done) {
-    // console.log('deserializing ' + user.emails[0].value);
     db.getUserGroups(user.emails[0].value, function(groups) {
         user.subgroups = groups;
         db.getUserCourses(user.emails[0].value, function(courses) {
@@ -148,10 +147,6 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', function(req, res) {
 	if (req.user) {
-        // console.log('courses :' + courses);
-
-        console.log(req.user);
-
         res.status(200);
         res.render('dashboard', {
             user: req.user,
