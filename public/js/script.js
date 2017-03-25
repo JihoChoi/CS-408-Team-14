@@ -10,11 +10,37 @@ console.log("========================");
 // console.log("courses.length: " + courses.length);
 // console.log("tempCourse[0]: " + tempCourse[0].name);
 // console.log("tempCourse[1]: " + tempCourse[1].name);
-console.log("========================");
+
+
+// #################################################
+// Manage Courses functions
+
+function join_prompt(){
+    var coursename = document.forms["join-course-form"]["join_course_name"].value;
+
+    alert("Working on Input handling\n join Coursename : "
+        +coursename +
+            "\n\nnow it just request pop method"
+    );
+
+
+    var join_form = document.forms["join-course-form"];
+
+    join_form.submit();
+
+
+}
+
+
+
+
+
+
 
 
 
 // header and navigation bar
+/*
 document.getElementById("header-navigation-bar").innerHTML = 
 
       '<nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">' +
@@ -129,8 +155,7 @@ document.getElementById("header-navigation-bar").innerHTML =
               '</div>' +
           '</div>' +
       '</nav>';
-
-
+*/
 
 
 
