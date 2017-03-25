@@ -16,18 +16,14 @@ console.log("========================");
 // Manage Courses functions
 
 function join_prompt(){
-    var coursename = document.forms["join-course-form"]["join_course_name"].value;
+    var coursename = document.forms["join-course-form"]["join_coursename"].value;
 
     alert("Working on Input handling\n join Coursename : "
         +coursename +
             "\n\nnow it just request pop method"
     );
 
-
-    var join_form = document.forms["join-course-form"];
-
-    join_form.submit();
-
+    document.getElementById("join-course-form").submit();
 
 }
 

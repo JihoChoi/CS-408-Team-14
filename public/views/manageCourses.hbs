@@ -68,7 +68,7 @@
                         <!--</div>-->
 
                         <div class="col-lg-6">
-                            <form name="join-course-form" action="/join-class" method="post">
+                            <form id="join-course-form" name="join-course-form" action="/join-class" method="post">
                                 <!--<div class="form-group">-->
                                     <!--<label>Course Title</label>-->
                                     <!--<input class="form-control" placeholder="CS180, MATH251">-->
@@ -81,7 +81,7 @@
                                 <div class="form-group">
                                     <!--<label>Search Results</label>-->
                                     <label>Existing Courses</label>
-                                    <select size="10" multiple class="form-control" name="join_course_name">
+                                    <select size="10" multiple class="form-control" name="join_coursename">
                                         {{# each allcourse }}
                                             <option value="{{ this }}">{{ this }}</option>
                                             <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
