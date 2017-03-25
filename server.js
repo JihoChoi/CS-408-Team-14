@@ -89,9 +89,6 @@ function courseVerify(req, res, next) {
         course = course.substr(0, course.indexOf('/'));
     }
     // Check if course exists
-    db.getAllCourses(function(courses) {
-        console.log(courses);
-    });
     if (db.courseExists(course)) {
         if (req.user.courses.indexOf(course) < 0) {
             req.session.attemptedURL = req.url;
@@ -102,6 +99,7 @@ function courseVerify(req, res, next) {
             return;
         }
     } else {
+        console.log('course ' + course + ' does not exist');
         res.status(404);
         res.render('notfound', { url: req.url, layout: false });
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
@@ -260,11 +258,11 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
         req.session.lastCourse = course;
         console.log('subgroup: ' + subgroup);
         console.log('user: ' + req.user.emails[0].value);
-        db.getGroup(subgroup, function(subgroup) {
+        db.getGroup(subgroup, function(group) {
             res.status(200);
             res.render('subgroup', {
                 user: req.user,
-                subgroup: subgroup
+                subgroup: group
             });
             console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
         });
