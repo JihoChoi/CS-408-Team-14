@@ -18,10 +18,22 @@ console.log("========================");
 function join_prompt(){
     var coursename = document.forms["join-course-form"]["join_coursename"].value;
 
+    if (coursename.length > 1) {
+        alert("Nice Try :)\n\n" +
+            "Please Select Only One Course!");
+        return;
+
+    }
+
+
+
+
     alert("Working on Input handling\n join Coursename : "
         +coursename +
             "\n\nnow it just request pop method"
     );
+
+
 
     document.getElementById("join-course-form").submit();
 
