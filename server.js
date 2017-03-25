@@ -238,7 +238,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
 app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
-        db.getCourse(course, function(course) {
+        db.getClass(course, function(course) {
             res.status(200);
             res.render('course', {
                 user: req.user,
