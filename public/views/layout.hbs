@@ -137,11 +137,6 @@
                         <a href="#"><i class="fa fa-sitemap fa-fw"></i> Courses<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
 
-                            <li>
-                                <a href="/manageCourses">Manage Courses</a>
-                            </li>
-
-
                             {{# each courses }}
                                 {{#if this }}
                                     <li>
@@ -152,9 +147,13 @@
                             {{/each}}
 
                             <li>
-                                <!--<a href="database_viewer.html">Database Viewer</a>-->
-                                <a href="/database_viewer">Database Viewer</a>
+                                <a href="/manageCourses">Manage Courses</a>
                             </li>
+
+                            <!--<li>-->
+                                <!--&lt;!&ndash;<a href="database_viewer.html">Database Viewer</a>&ndash;&gt;-->
+                                <!--<a href="/database_viewer">Database Viewer</a>-->
+                            <!--</li>-->
 
                         </ul>
                     </li>
