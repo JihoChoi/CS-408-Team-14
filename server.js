@@ -175,11 +175,12 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
 
     db.getAllCourses(function(allCourses) {
-
-        // console.log("this is all courses" + allCourses);
         allCourses.sort();
-        // console.log("this is all courses" + allCourses);
 
+        allCourses.forEach(function(c) {
+            if (req.user.courses.indexOf(c) != -1)
+                delete c;
+        });
 
         res.render('manageCourses', {
             email: req.user.emails[0].value,
@@ -358,8 +359,9 @@ app.post('/delete-course', loginVerify, function(req, res) {
 });
 
 app.post('/create-subgroup', loginVerify, function(req, res) {
-    db.addClass(
+    db.classAddGroup(
         req.body.subName,
+        req.session.lastCourse,
         req.user.emails[0].value
     );
     res.redirect('/course/' + req.session.lastCourse);
