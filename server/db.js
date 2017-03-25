@@ -350,6 +350,8 @@ var parseEvents = function(events, ret, callback) {
 		Event.findById(events[i], function(err, event) {
 			if (event) {
 				ret1.push(event.name);
+			} else {
+				ret1.push("");
 			}
 			parseEvents(events, ret1, callback);
 		});
@@ -408,6 +410,8 @@ var parseInvites = function(invites, ret, callback) {
 				Group.findById(invite.group, function(err, group) {
 					if (group) {
 						ret1.push(group.name);
+					} else {
+						ret1.push("");
 					}
 					parseInvites(invites, ret1, callback);
 				});
