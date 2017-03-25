@@ -9,6 +9,8 @@ var Class1 = new Schema({
 	name: String,
 	semester: String,
 	fullName: String,
+	description: String,
+
 	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}],
 	events: [{type:mongoose.Schema.Types.ObjectId, ref: 'Event'}],
 	subgroups: [{type:mongoose.Schema.Types.ObjectId, ref: 'Group'}]

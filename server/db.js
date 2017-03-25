@@ -55,19 +55,20 @@ var enrollUser = function(email,callback) {
 
 //Usage: addClass("class name", "semester", "full class name", "student email")
 //Create a new class
-var addClass = function(name, semester, fullName, email){
+var addClass = function(name, semester, fullName, description, email){
 	getStudent(email,function(student){
 		if(student) {
-		addClassHelp(name,semester,fullName,student);
+			addClassHelp(name,semester,fullName, description,student);
 		}
 	});
 };
 
-var addClassHelp = function(name, semester, fullName, student) {
+var addClassHelp = function(name, semester, fullName, description, student) {
 	var course = new Class({
 		name: name,
 		semester: semester,
 		fullName: fullName,
+		description: description,
 		students: [],
 		events: [],
 		subgroups: []

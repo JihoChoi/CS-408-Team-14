@@ -148,6 +148,9 @@ app.get('/favicon.ico', function(req, res) {
 app.get('/', function(req, res) {
 	if (req.user) {
         // console.log('courses :' + courses);
+
+        console.log(req.user);
+
         res.status(200);
         res.render('dashboard', {
             user: req.user,
@@ -301,6 +304,7 @@ app.post('/create-course', loginVerify, function(req, res) {
         req.body.coursename,
         req.body.semester,
         req.body.fullcoursename,
+        req.body.description,
         req.user.emails[0].value 
         );
     res.redirect('/course/' + req.body.coursename);
