@@ -8,7 +8,7 @@ body {
 }
 
 #index-wrapper {
-  background-image: url("../../images/background.jpeg");
+  background-image: url("/images/background.jpeg");
   background-size: cover;
   background-attachment: fixed;
   background-position: center;
