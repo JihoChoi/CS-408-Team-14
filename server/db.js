@@ -492,6 +492,17 @@ var courseExists = function(className) {
 	});
 }
 
+var getAllCourses = function(callback) {
+	Class.find({},function(err, courses){
+		var arr = courses;
+		var ret = [];
+		for (var i = 0; i < arr.length; i++) {
+			ret.push(arr[i].name);
+		}
+		callback(ret);
+	});
+}
+
 module.exports = {
 createUser,
 enrollUser,
@@ -521,5 +532,6 @@ getUserCoursesFull,
 classRemoveStudent,
 liveTime,
 purgeCourse,
-courseExists
+courseExists,
+getAllCourses
 }; 
