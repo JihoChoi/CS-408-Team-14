@@ -37,33 +37,35 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <form action="/join-class" method="post">
-                                <div class="form-group">
-                                    <label>Course Title</label>
-                                    <input class="form-control" placeholder="CS180, MATH251">
-                                </div>
-
-                                <button type="submit" class="btn btn-default">Find Class</button>
-
-                                <br><br>
-
+                        <!--<div class="col-lg-6">-->
+                            <!--<form action="/join-class" method="post">-->
                                 <!--<div class="form-group">-->
-                                    <!--&lt;!&ndash;<label>Search Results</label>&ndash;&gt;-->
-                                    <!--<label>Existing Courses</label>-->
-                                    <!--<select multiple class="form-control">-->
-                                        <!--{{# each courses }}-->
-                                            <!--<option value="{{ this }}">{{ this }}</option>-->
-                                            <!--&lt;!&ndash;<option value="{{ this.semester }}">{{ this.semester }}</option>&ndash;&gt;-->
-                                        <!--{{/each}}-->
-                                        <!--&lt;!&ndash;<option>none</option>&ndash;&gt;-->
-                                    <!--</select>-->
+                                    <!--<label>Course Title</label>-->
+                                    <!--<input class="form-control" placeholder="CS180, MATH251">-->
                                 <!--</div>-->
 
-                                <button type="submit" class="btn btn-default">Join Class</button>
-                                <button type="reset" class="btn btn-default">Cancel</button>
-                            </form>
-                        </div>
+                                <!--<button type="submit" class="btn btn-default">Find Class</button>-->
+
+                                <!--<br><br>-->
+
+                                <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                                    <!--&lt;!&ndash;&lt;!&ndash;<label>Search Results</label>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<label>Existing Courses</label>&ndash;&gt;-->
+                                    <!--&lt;!&ndash;<select multiple class="form-control">&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{{# each courses }}&ndash;&gt;-->
+                                            <!--&lt;!&ndash;<option value="{{ this }}">{{ this }}</option>&ndash;&gt;-->
+                                            <!--&lt;!&ndash;&lt;!&ndash;<option value="{{ this.semester }}">{{ this.semester }}</option>&ndash;&gt;&ndash;&gt;-->
+                                        <!--&lt;!&ndash;{{/each}}&ndash;&gt;-->
+                                        <!--&lt;!&ndash;&lt;!&ndash;<option>none</option>&ndash;&gt;&ndash;&gt;-->
+                                    <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+                                <!--&lt;!&ndash;<button type="submit" class="btn btn-default">Join Class</button>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<button type="reset" class="btn btn-default">Cancel</button>&ndash;&gt;-->
+
+
+                            <!--</form>-->
+                        <!--</div>-->
 
                         <div class="col-lg-6">
                             <form action="/join-class" method="post">
@@ -79,8 +81,8 @@
                                 <div class="form-group">
                                     <!--<label>Search Results</label>-->
                                     <label>Existing Courses</label>
-                                    <select multiple class="form-control">
-                                        {{# each courses }}
+                                    <select size="10" multiple class="form-control" name="join_coursename">
+                                        {{# each allcourse }}
                                             <option value="{{ this }}">{{ this }}</option>
                                             <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
                                         {{/each}}

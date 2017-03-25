@@ -174,20 +174,20 @@ app.get('/dashboard', function(req, res) {
 app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
 
-
     db.getAllCourses(function(allCourses) {
 
-        console.log("this is all courses" + allCourses);
+        // console.log("this is all courses" + allCourses);
+        allCourses.sort();
+        // console.log("this is all courses" + allCourses);
+
 
         res.render('manageCourses', {
             email: req.user.emails[0].value,
             courses: req.user.courses,
-            allcourse: req.arr
+            allcourse: allCourses
         });
         console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
     })
-
-
 });
 
 // All events of user is in
@@ -343,10 +343,14 @@ app.post('/create-course', loginVerify, function(req, res) {
 });
 
 app.post('/join-class', loginVerify, function(req, res) {
+
+    console.log("join" + req.body.join_coursename);
+
     db.classAddStudent(
-        req.body.coursename,
+        req.body.join_coursename,
         req.user.email); // db stuff
-    res.redirect('/course/' + req.body.coursename);
+    // res.redirect('/course/' + req.body.join_coursename);
+    res.redirect('/');
 });
 
 app.post('/delete-course', loginVerify, function(req, res) {
