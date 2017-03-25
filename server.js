@@ -177,11 +177,21 @@ app.get('/dashboard', function(req, res) {
 // Manage Courses
 app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
-	res.render('manageCourses', {
-		email: req.user.emails[0].value,
-		courses: req.user.courses
-	});
-	console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+
+
+    db.getAllCourses(function(allCourses) {
+
+        console.log("this is all courses" + allCourses);
+
+        res.render('manageCourses', {
+            email: req.user.emails[0].value,
+            courses: req.user.courses,
+            allcourse: req.arr
+        });
+        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    })
+
+
 });
 
 // All events of user is in
