@@ -343,12 +343,9 @@ app.post('/create-course', loginVerify, function(req, res) {
 });
 
 app.post('/join-class', loginVerify, function(req, res) {
-
-    console.log("join" + req.body.join_coursename);
-
     db.classAddStudent(
         req.body.join_coursename,
-        req.user.email); // db stuff
+        req.user.emails[0].value); // db stuff
     // res.redirect('/course/' + req.body.join_coursename);
     res.redirect('/');
 });
@@ -365,7 +362,7 @@ app.post('/create-subgroup', loginVerify, function(req, res) {
         req.body.subName,
         req.user.emails[0].value
     );
-    res.redirect('/course/' + req.session.lastCourse + '/' + req.body.subName);
+    res.redirect('/course/' + req.session.lastCourse);
 });
 
 app.post('/create-event', loginVerify, function(req, res) {
