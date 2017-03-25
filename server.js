@@ -148,10 +148,17 @@ app.get('/favicon.ico', function(req, res) {
 app.get('/', function(req, res) {
 	if (req.user) {
         res.status(200);
-        res.render('dashboard', {
-            user: req.user,
-            courses: req.user.courses
+
+        var allCourse;
+
+        db.getAllCourses(function(allCourses) {
+            res.render('dashboard', {
+                user: req.user,
+                courses: req.user.courses,
+                allcoursename: allCourses
+            });
         });
+
         console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 	} else {
         res.status(200);
@@ -353,6 +360,7 @@ app.post('/join-class', loginVerify, function(req, res) {
 app.post('/delete-course', loginVerify, function(req, res) {
     db.deleteCourse(
         req.body.delete_course
+
     );
     res.redirect('/manageCourses');
 });
