@@ -89,22 +89,22 @@ function courseVerify(req, res, next) {
         course = course.substr(0, course.indexOf('/'));
     }
     // Check if course exists
-    db.getAllCourses(function(courses) {
-        if (courses.indexOf(course) == -1) {            
-            res.status(404);
-            res.render('notfound', { url: req.url, layout: false });
-            console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
-            return;
-        }
-        // Check if enrolled
+    if (db.courseExists(course)) {
         if (req.user.courses.indexOf(course) < 0) {
             req.session.attemptedURL = req.url;
             res.redirect('/notpermitted');
             return;
         } else {
             next();
+            return;
         }
-    });
+    } else {
+        console.log('course ' + course + ' does not exist');
+        res.status(404);
+        res.render('notfound', { url: req.url, layout: false });
+        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+        return;
+    }
 };
 
 // /course/[coursename]/[groupname]
@@ -182,11 +182,12 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
 
     db.getAllCourses(function(allCourses) {
-
-        // console.log("this is all courses" + allCourses);
         allCourses.sort();
-        // console.log("this is all courses" + allCourses);
 
+        allCourses.forEach(function(c) {
+            if (req.user.courses.indexOf(c) != -1)
+                delete c;
+        });
 
         res.render('manageCourses', {
             email: req.user.emails[0].value,
@@ -257,23 +258,26 @@ app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
 
 app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res) {
     var course = req.url.substr(8);
+    console.log('course: ' + course);
     if (course.indexOf('/') != -1) {
         var subgroup = course.substr(course.indexOf('/'));
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
-        db.getGroup(subgroup, function(subgroup) {
+        console.log('subgroup: ' + subgroup);
+        console.log('user: ' + req.user.emails[0].value);
+        db.getGroup(subgroup, function(group) {
             res.status(200);
             res.render('subgroup', {
                 user: req.user,
-                subgroup: subgroup
+                subgroup: group
             });
             console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
         });
-    } else {
-        res.status(404);
-        res.render('notfound', { url: req.url, layout: false });
-        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+        return;
     }
+    res.status(404);
+    res.render('notfound', { url: req.url, layout: false });
+    console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
 app.get('/course/*', loginVerify, courseVerify, function(req, res) {
@@ -298,7 +302,7 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     }
 });
 
-app.get('/chat/*', loginVerify, function(req, res) {
+app.get('/chat*', loginVerify, function(req, res) {
 	var url = req.url.substr(6);
 	var newurl = url.replace(/[^0-9a-zA-z]/gi, '');
 	if (newurl != url) {
@@ -366,8 +370,9 @@ app.post('/delete-course', loginVerify, function(req, res) {
 });
 
 app.post('/create-subgroup', loginVerify, function(req, res) {
-    db.addClass(
+    db.classAddGroup(
         req.body.subName,
+        req.session.lastCourse,
         req.user.emails[0].value
     );
     res.redirect('/course/' + req.session.lastCourse);
