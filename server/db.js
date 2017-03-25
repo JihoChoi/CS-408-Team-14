@@ -69,6 +69,7 @@ var addClassHelp = function(name, semester, fullName, description, student) {
 		semester: semester,
 		fullName: fullName,
 		description: description,
+		posts: [],
 		students: [],
 		events: [],
 		subgroups: []
@@ -108,6 +109,14 @@ var classAddStudentHelp = function(course, student) {
 	});
 };
 
+var classAddPost = function(className, post) {
+	getClass(courseName, function(course){
+		course.posts.push(post);
+		course.save(function(err){
+			if(err) throw err;
+		});
+	});
+};
 //Remove a studnet from a class
 var classRemoveStudent = function(courseName, email) {
 	getClass(courseName, function(course) {
@@ -188,6 +197,12 @@ var classAddGroupHelp = function(name, course, student) {
 	student.subgroups.push(group);
 	student.save(function(err) {
 		if(err) throw err;
+	});
+};
+
+var classGetPosts = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		callback(course.posts);
 	});
 };
 
@@ -335,6 +350,8 @@ var parseEvents = function(events, ret, callback) {
 		Event.findById(events[i], function(err, event) {
 			if (event) {
 				ret1.push(event.name);
+			} else {
+				ret1.push("");
 			}
 			parseEvents(events, ret1, callback);
 		});
@@ -393,6 +410,8 @@ var parseInvites = function(invites, ret, callback) {
 				Group.findById(invite.group, function(err, group) {
 					if (group) {
 						ret1.push(group.name);
+					} else {
+						ret1.push("");
 					}
 					parseInvites(invites, ret1, callback);
 				});
@@ -511,8 +530,10 @@ addClass,
 getEvent,
 getGroup,
 classAddStudent,
+classAddPost,
 classAddEvent,
 classAddGroup,
+classGetPosts,
 getClass,
 getStudent,
 getEvents,

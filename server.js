@@ -53,6 +53,7 @@ passport.serializeUser(function(user, done) {
   	done(null, user);
 });
 passport.deserializeUser(function(user, done) {
+    // console.log('deserializing ' + user.emails[0].value);
     db.getUserGroups(user.emails[0].value, function(groups) {
         user.subgroups = groups;
         db.getUserCourses(user.emails[0].value, function(courses) {
@@ -208,6 +209,9 @@ app.get('/events', loginVerify, function(req, res) {
 
 
 app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
+    var course = req.url.substr(8);
+    course = course.substr(0, course.indexOf('/'));
+    req.session.lastCourse = course;
     res.status(200);
     res.render('addSubgroup', {
         email: req.user.emails[0].value,
@@ -216,7 +220,31 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
+app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
+    var course = req.url.substr(8);
+    if (course.indexOf('/') != -1) {
+        var evnt = course.substr(course.indexOf('/') + 7);
+        course = course.substr(0, course.indexOf('/'));
+        req.session.lastCourse = course;
+        db.getClass(course, function(course) {
+            db.getEvents(event, function(events) {
+                res.status(200);
+                res.render('event', {
+                    user: req.user,
+                    course: course,
+                    evnt: events
+                });
+                console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+                return;
+            });
+        });
+    }
+    req.session.attemptedURL = req.url;
+    res.redirect('/notpermitted');
+});
+
 app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
+    // var course = req.url.substr
     res.status(200);
     res.render('createEvent', {
         email: req.user.emails[0].value,
@@ -229,10 +257,8 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
     var course = req.url.substr(8);
     if (course.indexOf('/') != -1) {
         var subgroup = course.substr(course.indexOf('/'));
-        if (subgroup.indexOf('/') != -1) {
-            res.redirect('/course/' + course);
-            return;
-        }
+        course = course.substr(0, course.indexOf('/'));
+        req.session.lastCourse = course;
         db.getGroup(subgroup, function(subgroup) {
             res.status(200);
             res.render('subgroup', {
@@ -251,6 +277,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
 app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') == -1) {
+        req.session.lastCourse = course;
         db.getClass(course, function(course) {
             res.status(200);
             res.render('course', {
@@ -269,7 +296,7 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     }
 });
 
-app.get('/chat*', loginVerify, function(req, res) {
+app.get('/chat/*', loginVerify, function(req, res) {
 	var url = req.url.substr(6);
 	var newurl = url.replace(/[^0-9a-zA-z]/gi, '');
 	if (newurl != url) {
@@ -343,7 +370,7 @@ app.post('/create-subgroup', loginVerify, function(req, res) {
         req.body.subName,
         req.user.emails[0].value
     );
-    res.redirect('/course/' + req.body.coursename);
+    res.redirect('/course/' + req.session.lastCourse + '/' + req.body.subName);
 });
 
 app.post('/create-event', loginVerify, function(req, res) {
@@ -357,8 +384,22 @@ app.post('/create-event', loginVerify, function(req, res) {
         req.body.eventDate
         //req.user.emails[0].value
     );
-    res.redirect('/course/*/events' + req.body.coursename);
+    res.redirect('/course/' + req.session.lastCourse + '/events');
 });
+
+app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
+    db.getStudent(req.user.emails[0].value, function(student) {
+        db.createInvite(
+            req.body.invited,
+            req.body.group
+        );
+    });
+    res.redirect('/');
+})
+
+app.post('/accept-invite')
+
+app.post('/decline-invite')
 
 
 
