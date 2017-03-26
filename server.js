@@ -255,7 +255,9 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
 });
 
 app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
-    // var course = req.url.substr
+    var course = req.url.substr(8);
+    course = course.substr(0, course.indexOf('/'));
+    req.session.lastCourse = course;
     res.status(200);
     res.render('createEvent', {
         email: req.user.emails[0].value,
@@ -394,7 +396,7 @@ app.post('/create-event', loginVerify, function(req, res) {
     db.classAddEvent(
         req.body.eventName,
         req.body.eventDes,
-        req.body.eventLocation,
+        req.body.eventType,
         req.body.courseName,
         req.body.eventDate
         //req.user.emails[0].value
