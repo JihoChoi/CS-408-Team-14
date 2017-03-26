@@ -254,23 +254,6 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
     res.redirect('/notpermitted');
 });
 
-app.get('/course/*/events', loginVerify, courseVerify, function(req, res) {
-    var course = req.url.substr(8);
-    course = course.substr(0, indexOf('/'));
-    req.session.lastCourse = course;
-    db.getClass(course, function(classdetail) {
-        db.getEvents(course, function(eventdetail) {
-            res.status(200);
-            res.render('events', {
-                user: req.user,
-                course: coursedetail,
-                evnt: eventdetail
-            });
-            console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
-        });
-    });
-});
-
 app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
     // var course = req.url.substr
     res.status(200);
@@ -416,7 +399,7 @@ app.post('/create-event', loginVerify, function(req, res) {
         req.body.eventDate
         //req.user.emails[0].value
     );
-    res.redirect('/course/' + req.session.lastCourse + '/events');
+    res.redirect('/course/' + req.session.lastCourse);
 });
 
 app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
