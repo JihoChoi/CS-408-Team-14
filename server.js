@@ -254,7 +254,7 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
     res.redirect('/notpermitted');
 });
 
-app.get('/course/*/events', loginVerify, courseVerify function(req, res) {
+app.get('/course/*/events', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     course = course.substr(0, indexOf('/'));
     req.session.lastCourse = course;
