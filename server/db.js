@@ -151,7 +151,7 @@ var classAddEvent = function(name, description, type, courseName, startTime){
 };
 
 var classAddEventHelp = function(name, description, type, course, startTime) {
-	var event = new Event({
+	var event1 = new Event({
 		name: name,
 		description: description,
 		type: type,
@@ -160,7 +160,7 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 		students: []
 	});
 	//event.ttl=liveTime();
-	event.save(function(err) {
+	event1.save(function(err) {
 		if(err) throw err;
 	});
 	course.events.push(event);
