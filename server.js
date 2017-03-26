@@ -394,7 +394,7 @@ app.post('/create-event', loginVerify, function(req, res) {
     db.classAddEvent(
         req.body.eventName,
         req.body.eventDes,
-        req.body.eventLocation,
+        req.body.eventType,
         req.body.courseName,
         req.body.eventDate
         //req.user.emails[0].value
