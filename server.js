@@ -56,7 +56,7 @@ passport.deserializeUser(function(user, done) {
     db.getUserGroups(user.emails[0].value, function(groups) {
         user.subgroups = groups;
         db.getUserCourses(user.emails[0].value, function(courses) {
-            user.courses = courses;
+            user.courses = courses.sort();
             db.getUserEvents(user.emails[0].value, function(events) {
                 user.events = events;
                 db.getUserInvites(user.emails[0].value, function(invites) {
@@ -183,18 +183,24 @@ app.get('/dashboard', function(req, res) {
 app.get('/manageCourses', loginVerify, function(req, res) {
 	res.status(200);
 
-    db.getAllCourses(function(allCourses) {
-        allCourses.sort();
-
-        allCourses.forEach(function(c) {
+    db.getAllCourses(function(all_courses) {
+        all_courses.sort();
+        console.log(all_courses);
+        all_courses.forEach(function(c) {
             if (req.user.courses.indexOf(c) != -1)
                 delete c;
         });
 
+        // todo: remove courses from all_courses
+        join_courses = [];
+
+
+
         res.render('manageCourses', {
             email: req.user.emails[0].value,
             courses: req.user.courses,
-            allcourse: allCourses
+            all_courses: all_courses,
+            join_courses: join_courses
         });
         console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
     })
@@ -357,11 +363,11 @@ app.post('/create-course', loginVerify, function(req, res) {
 
 app.post('/join-class', loginVerify, function(req, res) {
 
-    console.log("coursename: " + req.body.join_coursename)
+    console.log("join course request with course name: " + req.body.join_course_name)
     db.classAddStudent(
-        req.body.join_coursename,
+        req.body.join_course_name,
         req.user.emails[0].value); // db stuff
-    // res.redirect('/course/' + req.body.join_coursename);
+    // res.redirect('/course/' + req.body.join_course_name);
     res.redirect('/');
 });
 

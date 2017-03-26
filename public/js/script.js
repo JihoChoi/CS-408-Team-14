@@ -14,35 +14,43 @@ console.log("========================");
 
 // #################################################
 // Manage Courses functions
+// #################################################
 
-function join_prompt(){
-    var coursename = document.forms["join-course-form"]["join_coursename"].value;
+function join_request_prompt() {
+    var course_name = document.forms["join-course-form"]["join_course_name"].value;
 
-    if (coursename.length > 1) {
-        alert("Nice Try :)\n\n" +
-            "Please Select Only One Course!");
+    if (course_name.length == 0) {
+        alert("Please Select a Course!\n");
+
+        alert("Nice Try! :)\n");
+
         return;
+    }
+
+    if (Array.isArray(course_name)) {
+        alert("Please Select Only One Course!\n\n" +
+            "You Selected " + course_name.length + " Courses.");
+
+        alert("Nice Try! :)\n");
+        return;
+    }
+
+
+    // check if already joined
+
+
+    if (confirm("Do you want to join "+course_name+"?") == true) {
+        alert("You joined "+course_name+"!");
+
+        document.getElementById("join-course-form").submit();
+    } else {
 
     }
 
 
 
-
-    alert("Working on Input handling\n join Coursename : "
-        +coursename +
-            "\n\nnow it just request pop method"
-    );
-
-
-
-    document.getElementById("join-course-form").submit();
-
+    // document.getElementById("join-course-form").submit();
 }
-
-
-
-
-
 
 
 

@@ -81,8 +81,8 @@
                                 <div class="form-group">
                                     <!--<label>Search Results</label>-->
                                     <label>Existing Courses</label>
-                                    <select size="10" multiple class="form-control" name="join_coursename">
-                                        {{# each allcourse }}
+                                    <select size="10" multiple class="form-control" name="join_course_name">
+                                        {{# each all_courses }}
                                             <option value="{{ this }}">{{ this }}</option>
                                             <!--<option value="{{ this.semester }}">{{ this.semester }}</option>-->
                                         {{/each}}
@@ -90,14 +90,10 @@
                                     </select>
                                 </div>
 
-                                <button type="button" class="btn btn-default" onclick="join_prompt()">Join Class</button>
+                                <button type="button" class="btn btn-default" onclick="join_request_prompt()">Join Class</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
                             </form>
-
-
                         </div>
-
-
                     </div>
                     <!-- /.row (nested) -->
                 </div>
