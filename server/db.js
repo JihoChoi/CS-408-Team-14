@@ -163,7 +163,7 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 	event1.save(function(err) {
 		if(err) throw err;
 	});
-	course.events.push(event);
+	course.events.push(event1);
 	course.save(function(err) {
 		if(err) throw err;
 	});
