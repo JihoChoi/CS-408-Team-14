@@ -88,10 +88,10 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <a id="profile" href="javascript:void(0)" onclick="profile_popup('{{user.displayName}}', '{{user.emails.value}}');"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li>
-                        <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <a id="setting" href="javascript:void(0)" onclick="setting_popup();"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
 
                     <li class="divider"></li>
