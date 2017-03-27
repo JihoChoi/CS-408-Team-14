@@ -191,16 +191,11 @@ app.get('/manageCourses', loginVerify, function(req, res) {
                 delete c;
         });
 
-        // todo: remove courses from all_courses and put them in to join courses
-        join_courses = [];
-
-
 
         res.render('manageCourses', {
             email: req.user.emails[0].value,
             courses: req.user.courses,
             all_courses: all_courses,
-            join_courses: join_courses
         });
         console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
     })

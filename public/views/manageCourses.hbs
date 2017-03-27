@@ -53,7 +53,7 @@
                                     </select>
                                 </div>
 
-                                <button type="button" class="btn btn-default" onclick="join_request_prompt()">Join Class</button>
+                                <button type="button" class="btn btn-default" onclick="join_request_prompt('{{courses}}')">Join Class</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
                             </form>
                         </div>
@@ -98,7 +98,7 @@
                                     <input class="form-control" type="text" id="description" name="description" placeholder="The course description">
                                 </div>
 
-                                <button type="button" class="btn btn-default" onclick="create_request_prompt()">Create Course</button>
+                                <button type="button" class="btn btn-default" onclick="create_request_prompt('{{all_courses}}')">Create Course</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
                             </form>
                         </div>

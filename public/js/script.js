@@ -72,17 +72,23 @@ function join_request_prompt(courses) {
         return;
     }
 
-    // TODO check if already joined
-
-    for (var i=0; i<courses.length; i++) {
-        console.log(courses[i]);
+    // checking if courses already joined
+    var json = [];
+    var toSplit = courses.split(",");
+    for (var i = 0; i < toSplit.length; i++) {
+        json.push(toSplit[i]);
     }
-
-
+    // console.log(json);
+    for (var i = 0; i < json.length; i++) {
+        if (json[i] == course_name) {
+            console.log("already has the course");
+            alert("You already joined "+course_name+"!");
+            return;
+        }
+    }
 
     if (confirm("Do you want to join "+course_name+"?") == true) {
         alert("You joined "+course_name+"!");
-
         document.getElementById("join-course-form").submit();
     }
 
@@ -91,7 +97,7 @@ function join_request_prompt(courses) {
 
 
 
-function create_request_prompt() {
+function create_request_prompt(all_courses) {
     var course_name = document.forms["create-course-form"]["create_course_name"].value;
     var course_full_name = document.forms["create-course-form"]["create_course_full_name"].value;
     var semester = document.forms["create-course-form"]["semester"].value;
@@ -104,6 +110,26 @@ function create_request_prompt() {
     console.log("   course_full_name " + course_full_name);
     console.log("   semester         " + semester);
     console.log("   description      " + description);
+
+
+    // checking if courses already joined
+    var json = [];
+    var toSplit = all_courses.split(",");
+    for (var i = 0; i < toSplit.length; i++) {
+        json.push(toSplit[i]);
+    }
+    // console.log(json);
+    for (var i = 0; i < json.length; i++) {
+        if (json[i] == course_name) {
+            console.log("already has the course");
+
+            alert("Cannot create the course!\n" +
+                "There already is "+course_name+"!\n" +
+                "Please Join the Existing Course!");
+            return;
+        }
+    }
+    
 
     if (confirm("Do you want to create "+course_name+" "+semester+"?") == true) {
         alert("You created "+course_name+"!");
