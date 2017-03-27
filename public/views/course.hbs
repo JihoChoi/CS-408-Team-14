@@ -123,25 +123,7 @@
                     <h4>Small Well</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
                 </div>
-                <div class="well well-sm">
-                    <h4>Small Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                </div>
-
-                <div class="well well-sm">
-                    <h4>Small Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                </div>
-                <div class="well well-sm">
-                    <h4>Small Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                </div>
-
-                <div class="well well-sm">
-                    <h4>Small Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                </div>
-
+                
 
                 <!-- /.row -->
             </div>
@@ -170,20 +152,32 @@
                 <a href="/course/{{course.name}}/createEvent">
                     <span class="pull-right" type="button" onclick="alert('Lets create event for {{course.name}}!')">Create Event</span>
                 </a>
-
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:200px;overflow:auto;">
 
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-tasks fa-fw"></i> Temporal Study Session
-                    <span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-bolt fa-fw"></i> Temporal Second Exam
-                    <span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>
-                                        </span>
-                </a>
+
+
+                {{# each course.events }}
+                    {{#if this }}
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-tasks fa-fw"></i> {{this.name}}
+                            <span class="pull-right text-muted small"><em>{{this.starttime}}</em></span>
+                        </a>
+                    {{/if}}
+                {{/each}}
+
+
+
+                <!--<a href="#" class="list-group-item">-->
+                    <!--<i class="fa fa-tasks fa-fw"></i> Temporal Study Session-->
+                    <!--<span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>-->
+                <!--</a>-->
+                <!--<a href="#" class="list-group-item">-->
+                    <!--<i class="fa fa-bolt fa-fw"></i> Temporal Second Exam-->
+                    <!--<span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>-->
+                                        <!--</span>-->
+                <!--</a>-->
 
             </div>
         </div>
@@ -201,21 +195,27 @@
 
                 {{course.group}}
 
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                </a>
-                <a href="#" class="list-group-item">
-                    <i class="fa fa-comment fa-fw"></i> Group Meeting
-                    <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                </a>
+
+                {{# each course.events }}
+                    {{#if this }}
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-comment fa-fw"></i> {{this.name}}
+                        </a>
+                    {{/if}}
+                {{/each}}
+
+
+                <!--<a href="#" class="list-group-item">-->
+                    <!--<i class="fa fa-comment fa-fw"></i> Group Meeting-->
+                    <!--<span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>-->
+                                        <!--</span>-->
+                <!--</a>-->
+                <!--<a href="#" class="list-group-item">-->
+                    <!--<i class="fa fa-comment fa-fw"></i> Group Meeting-->
+                    <!--<span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>-->
+                                        <!--</span>-->
+                <!--</a>-->
+                <!---->
             </div>
         </div>
 
