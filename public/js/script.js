@@ -19,39 +19,80 @@ console.log("========================");
 function join_request_prompt() {
     var course_name = document.forms["join-course-form"]["join_course_name"].value;
 
+    console.log("Join Course");
+    console.log("   course_name      " + course_name);
+
     if (course_name.length == 0) {
         alert("Please Select a Course!\n");
-
-        alert("Nice Try! :)\n");
-
         return;
     }
 
     if (Array.isArray(course_name)) {
         alert("Please Select Only One Course!\n\n" +
             "You Selected " + course_name.length + " Courses.");
-
         alert("Nice Try! :)\n");
         return;
     }
 
-
-    // check if already joined
+    // TODO check if already joined
 
 
     if (confirm("Do you want to join "+course_name+"?") == true) {
         alert("You joined "+course_name+"!");
 
         document.getElementById("join-course-form").submit();
-    } else {
-
     }
-
-
 
     // document.getElementById("join-course-form").submit();
 }
 
+
+
+function create_request_prompt() {
+    var course_name = document.forms["create-course-form"]["create_course_name"].value;
+    var course_full_name = document.forms["create-course-form"]["create_course_full_name"].value;
+    var semester = document.forms["create-course-form"]["semester"].value;
+    var description = document.forms["create-course-form"]["description"].value;
+
+    // TODO check if the course exists
+
+    console.log("Create Course");
+    console.log("   course_name      " + course_name);
+    console.log("   course_full_name " + course_full_name);
+    console.log("   semester         " + semester);
+    console.log("   description      " + description);
+
+    if (confirm("Do you want to create "+course_name+" "+semester+"?") == true) {
+        alert("You created "+course_name+"!");
+
+        document.getElementById("create-course-form").submit();
+    }
+}
+
+
+function delete_request_prompt() {
+    var course_name = document.forms["delete-course-form"]["delete_course_name"].value;
+
+    console.log("Delete Course");
+    console.log("   course_name      " + course_name);
+
+
+    if (Array.isArray(course_name)) {
+        alert("Please Select Only One Course!\n\n" +
+            "You Selected " + course_name.length + " Courses.");
+        return;
+    }
+
+
+
+    if (confirm("Do you want to leave "+course_name+"?") == true) {
+        alert("You joined "+course_name+"!");
+
+        document.getElementById("delete-course-form").submit();
+    }
+
+    // document.getElementById("join-course-form").submit();
+}
 
 
 

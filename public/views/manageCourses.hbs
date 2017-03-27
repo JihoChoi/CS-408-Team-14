@@ -37,46 +37,9 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <!--<div class="col-lg-6">-->
-                            <!--<form action="/join-class" method="post">-->
-                                <!--<div class="form-group">-->
-                                    <!--<label>Course Title</label>-->
-                                    <!--<input class="form-control" placeholder="CS180, MATH251">-->
-                                <!--</div>-->
-
-                                <!--<button type="submit" class="btn btn-default">Find Class</button>-->
-
-                                <!--<br><br>-->
-
-                                <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
-                                    <!--&lt;!&ndash;&lt;!&ndash;<label>Search Results</label>&ndash;&gt;&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<label>Existing Courses</label>&ndash;&gt;-->
-                                    <!--&lt;!&ndash;<select multiple class="form-control">&ndash;&gt;-->
-                                        <!--&lt;!&ndash;{{# each courses }}&ndash;&gt;-->
-                                            <!--&lt;!&ndash;<option value="{{ this }}">{{ this }}</option>&ndash;&gt;-->
-                                            <!--&lt;!&ndash;&lt;!&ndash;<option value="{{ this.semester }}">{{ this.semester }}</option>&ndash;&gt;&ndash;&gt;-->
-                                        <!--&lt;!&ndash;{{/each}}&ndash;&gt;-->
-                                        <!--&lt;!&ndash;&lt;!&ndash;<option>none</option>&ndash;&gt;&ndash;&gt;-->
-                                    <!--&lt;!&ndash;</select>&ndash;&gt;-->
-                                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                                <!--&lt;!&ndash;<button type="submit" class="btn btn-default">Join Class</button>&ndash;&gt;-->
-                                <!--&lt;!&ndash;<button type="reset" class="btn btn-default">Cancel</button>&ndash;&gt;-->
-
-
-                            <!--</form>-->
-                        <!--</div>-->
 
                         <div class="col-lg-6">
                             <form id="join-course-form" name="join-course-form" action="/join-class" method="post">
-                                <!--<div class="form-group">-->
-                                    <!--<label>Course Title</label>-->
-                                    <!--<input class="form-control" placeholder="CS180, MATH251">-->
-                                <!--</div>-->
-
-                                <!--<button type="submit" class="btn btn-default">Find Class</button>-->
-
-                                <!--<br><br>-->
 
                                 <div class="form-group">
                                     <!--<label>Search Results</label>-->
@@ -108,79 +71,25 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <form action="/create-course" method="post">
-
-                            <!--<form name="create-course-form" onsubmit="submit_create_course()">-->
-
-                                <!--<div class="form-group has-warning has-feedback">-->
-                                    <!--<label>Course Title</label>-->
-                                    <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251"-->
-                                           <!--pattern="[A-Z0-9]{5,10}" required>-->
-                                    <!--<span class="help-block">Not A Valid Title: Course title should be in form of MATH123</span>-->
-                                    <!--<span class="glyphicon glyphicon-warning-sign form-control-feedback"></span>-->
-                                <!--</div>-->
-
-                                <!--<div class="form-group has-success has-feedback">-->
-                                    <!--<label>Course Title</label>-->
-                                    <!--&lt;!&ndash;<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>&ndash;&gt;-->
-                                    <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>-->
-                                    <!--<span class="glyphicon glyphicon-ok-sign form-control-feedback"></span>-->
-                                    <!--<span class="help-block">Valid Course Title!</span>-->
-                                <!--</div>-->
-
-                                <script type="text/javascript">
-                                    function submit_create_course() {
-                                        var coursename = document.forms["create-course-form"]["coursename"].value;
-                                        var fullcoursename = document.forms["create-course-form"]["fullcoursename"].value;
-                                        var semester = document.forms["create-course-form"]["semester"].value;
-
-                                        // check if it already exist
-
-                                        alert("Course Title : " + coursename + "\n" +
-                                                "Full Course Name : " + fullcoursename + "\n" +
-                                                "Semester : " + semester + "\n\n" +
-                                                "Course Created Successfully...");
-
-                                        // document.getElementById("form_id").getAttribute("class")
-
-                                        var form = $('<form></form>');;
-                                        var field = $('<input>');;
-                                        field.attr("coursename", coursename);
-
-                                        console.log("coursename is "+coursename);
-
-                                        form.append(field);
-
-                                        $(document.body).append(form);
-                                        form.submit();
-                                    }
-                                </script>
+                            <form id="create-course-form" name="create-course-form" action="/create-course" method="post">
 
                                 <div class="form-group">
                                     <label>Course Title</label>
                                     <!--<input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251" pattern="[A-Z0-9]{5,10}" required>-->
-                                    <input class="form-control" type="text" id="coursename" name="coursename" placeholder="CS180, MATH251"
+                                    <input class="form-control" type="text" id="create_course_name" name="create_course_name" placeholder="CS180, MATH251"
                                            pattern="[A-Z0-9]{5,10}" required>
                                     <span class="help-block">The course title should be in forms of [XXX000] <br> ex) CS180, MATH250, EAPS100 </span>
-
                                 </div>
-
                                 <div class="form-group">
                                     <label>Full Course Name</label>
-                                    <input class="form-control" type="text" id="fullcoursename" name="fullcoursename" placeholder="Systems Programming">
+                                    <input class="form-control" type="text" id="create_course_full_name" name="create_course_full_name" placeholder="Systems Programming">
                                 </div>
 
                                 <div class="form-group">
                                     <label>Semester</label>
                                     <select multiple class="form-control" id="semester" name="semester">
                                         <option value="Fall 2017">Fall 2017</option>
-
                                         <!--<option value="Summer 2017">Summer 2017</option>-->
-                                        <!--<option value="Spring 2017">Spring 2017</option>-->
-
-                                        <!--<option value="Fall 2016">Fall 2016</option>-->
-                                        <!--<option value="Summer 2016">Summer 2016</option>-->
-                                        <!--<option value="Spring 2016">Spring 2016</option>-->
                                     </select>
                                 </div>
 
@@ -189,7 +98,7 @@
                                     <input class="form-control" type="text" id="description" name="description" placeholder="The course description">
                                 </div>
 
-                                <button type="submit" class="btn btn-default">Create Course</button>
+                                <button type="button" class="btn btn-default" onclick="create_request_prompt()">Create Course</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
                             </form>
                         </div>
@@ -205,14 +114,14 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
-                            <form action="/delete-course" method="post" onsubmit="alert({{ this }} + ' course deleted!')">
+                            <form id="delete-course-form" name="delete-course-form" action="/delete-course" method="post" onsubmit="alert({{ this }} + ' course deleted!')">
                             <!--<form name="delete-course-form" onsubmit="deleteCourse()">-->
 
                                 <div class="form-group">
                                     <label>Course Title</label>
                                     <!-- todo change delete course to delete course for that user -->
 
-                                    <select multiple class="form-control" id="delete_course" name="delete_course">
+                                    <select multiple class="form-control" id="delete_course_name" name="delete_course_name">
                                         {{# each courses }}
                                             {{#if this }}
                                                 <option value="{{ this }}">{{ this }}</option>
@@ -222,22 +131,7 @@
                                     </select>
                                 </div>
 
-
-                                <!--<script type="text/javascript">-->
-                                    <!---->
-                                    <!--function deleteCourse() {-->
-
-                                        <!--var coursename = document.forms["cdelete-course-form"]["delete_course"].value;-->
-
-                                        <!--console.log("delete " + coursename);-->
-                                        <!--alert(" deleted!" + coursename);-->
-                                    <!--}-->
-
-                                <!--</script>-->
-
-
-
-                                <button type="submit" class="btn btn-default">Delete Course</button>
+                                <button type="button" class="btn btn-default" onclick="delete_request_prompt()">Delete Course</button>
                                 <button type="reset" class="btn btn-default">Cancel</button>
                             </form>
                         </div>

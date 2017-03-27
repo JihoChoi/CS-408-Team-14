@@ -191,7 +191,7 @@ app.get('/manageCourses', loginVerify, function(req, res) {
                 delete c;
         });
 
-        // todo: remove courses from all_courses
+        // todo: remove courses from all_courses and put them in to join courses
         join_courses = [];
 
 
@@ -352,13 +352,13 @@ app.get('/notpermitted', function(req, res) {
  */
 app.post('/create-course', loginVerify, function(req, res) {
     db.addClass(
-        req.body.coursename,
+        req.body.create_course_name,
         req.body.semester,
-        req.body.fullcoursename,
+        req.body.create_course_full_name,
         req.body.description,
         req.user.emails[0].value 
         );
-    res.redirect('/course/' + req.body.coursename);
+    res.redirect('/course/' + req.body.create_course_name);
 });
 
 app.post('/join-class', loginVerify, function(req, res) {
