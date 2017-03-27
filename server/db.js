@@ -226,9 +226,9 @@ var getStudent = function(email,callback) {
 };
 
 var getEvent = function(name, callback) {
-	Event.findOne({name:name}, function(err, event){
+	Event.findOne({name:name}, function(err, event1){
 		if(err) throw err;
-		callback(event);
+		callback(event1);
 	});
 }
 
