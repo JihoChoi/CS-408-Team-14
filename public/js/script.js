@@ -86,7 +86,7 @@ function delete_request_prompt() {
 
 
     if (confirm("Do you want to leave "+course_name+"?") == true) {
-        alert("You joined "+course_name+"!");
+        alert("You leaved "+course_name+"!");
 
         document.getElementById("delete-course-form").submit();
     }

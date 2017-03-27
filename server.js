@@ -375,8 +375,7 @@ app.post('/join-class', loginVerify, function(req, res) {
 
 app.post('/delete-course', loginVerify, function(req, res) {
     db.deleteCourse(
-        req.body.delete_course
-
+        req.body.delete_course_name
     );
     res.redirect('/manageCourses');
 });
