@@ -377,7 +377,7 @@ app.post('/delete-course', loginVerify, function(req, res) {
     db.deleteCourse(
         req.body.delete_course_name
     );
-    res.redirect('/manageCourses');
+    res.redirect('/');
 });
 
 app.post('/create-subgroup', loginVerify, function(req, res) {
