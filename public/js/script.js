@@ -12,14 +12,52 @@ console.log("========================");
 // console.log("tempCourse[1]: " + tempCourse[1].name);
 
 
+
+
+
+// #################################################
+// Layout
+// #################################################
+
+
+function profile_popup(user, email) {
+
+    console.log(user);
+
+    // alert("Profile Pop-up");
+    alert(
+        "+=============================\n" +
+        "| Profile" + "\n" +
+        "+=============================\n" +
+        "| name  : " + user + "\n" +
+        // "| email : " + email + "\n" +
+        "+=============================");
+
+
+}
+
+function setting_popup() {
+    // alert("Setting Pop-up");
+
+    alert(
+        "+=============================\n" +
+        "| Setting Coming Soon" + "\n" +
+        "+=============================");
+
+
+}
+
+
 // #################################################
 // Manage Courses functions
 // #################################################
 
-function join_request_prompt() {
+function join_request_prompt(courses) {
     var course_name = document.forms["join-course-form"]["join_course_name"].value;
 
+
     console.log("Join Course");
+    console.log(courses);
     console.log("   course_name      " + course_name);
 
     if (course_name.length == 0) {
@@ -35,6 +73,11 @@ function join_request_prompt() {
     }
 
     // TODO check if already joined
+
+    for (var i=0; i<courses.length; i++) {
+        console.log(courses[i]);
+    }
+
 
 
     if (confirm("Do you want to join "+course_name+"?") == true) {
