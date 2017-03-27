@@ -348,9 +348,9 @@ var parseEvents = function(events, ret, callback) {
 	if(i == events.length) {
 		callback(ret);
 	} else {
-		Event.findById(events[i], function(err, event) {
-			if (event) {
-				ret1.push(event.name);
+		Event.findById(events[i], function(err, event1) {
+			if (event1) {
+				ret1.push(event1.name);
 			} else {
 				ret1.push("");
 			}
@@ -524,6 +524,29 @@ var getAllCourses = function(callback) {
 			}
 		}
 	});
+}
+
+var getStudents = function(className, callback) {
+	Class.findOne({name:className}, function(err, course) {
+		parseStudents(course.students,[],callback);
+	});
+}
+
+var parseStudents = function(students,ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(i==students.length) {
+		callback(ret);
+	} else {
+		Student.findById(students[i], function(err, student){
+			if(student) {
+				ret1.push(student.email);
+			} else {
+				ret1.push("");
+			}
+			parseStudents(students, ret1, callback);
+		});
+	}
 }
 
 
