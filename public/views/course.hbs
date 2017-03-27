@@ -167,12 +167,13 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-bell fa-fw"></i> Events
-                <span class="pull-right" type="button" onclick="alert('Under Construction Yo')">Create Event</span>
+                <a href="/course/{{course.name}}/createEvent">
+                    <span class="pull-right" type="button" onclick="alert('Lets create event for {{course.name}}!')">Create Event</span>
+                </a>
+
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:200px;overflow:auto;">
-
-                {{course.event}}
 
                 <a href="#" class="list-group-item">
                     <i class="fa fa-tasks fa-fw"></i> Temporal Study Session
@@ -191,8 +192,9 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <i class="fa fa-globe fa-fw"></i> Subgroups
-                <span href="/createSubgroup" class="pull-right" type="button" onclick="alert('Under Construction Yo')">Create Subgroup</span>
-                <!--<span href="/createSubgroup" class="pull-right" type="button" onclick="alert('Under Construction Yo')">Create Subgroup</span>-->
+                <a href="/course/{{course.name}}/addSubgroup">
+                    <span href="/createSubgroup" class="pull-right" type="button" onclick="alert('Lets create subgroup for {{course.name}}!')">Create Subgroup</span>
+                </a>
             </div>
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:200px;overflow:auto;">
