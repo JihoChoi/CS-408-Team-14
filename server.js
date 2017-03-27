@@ -271,12 +271,15 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
         console.log('subgroup: ' + subgroup);
         console.log('user: ' + req.user.emails[0].value);
         db.getGroup(subgroup, function(group) {
-            res.status(200);
-            res.render('subgroup', {
-                user: req.user,
-                subgroup: group
+            db.getClass(course, function(course) {
+                res.status(200);
+                res.render('subgroup', {
+                    user: req.user,
+                    subgroup: group,
+                    course: course
+                });
+                console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
             });
-            console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
         });
         return;
     }
