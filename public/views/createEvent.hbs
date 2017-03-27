@@ -53,12 +53,12 @@
                                         function submit_create_event() {
                                             var eventName = document.forms["create-event-form"]["eventName"].value;
                                             var eventDes = document.forms["create-event-form"]["eventDes"].value;
-                                            var eventLocation = document.forms["create-event-form"]["eventLocation"].value;
+                                            var eventType = document.forms["create-event-form"]["eventLocation"].value;
                                             var courseName = document.forms["create-event-form"]["courseEvnt"].value = {{course.name}};
 
-                                            var eventInfo = 'eventDate' + " " + 'eventHour' + " " + 'eventMin' + " " + 'radios';
-                                            }
-                                        var eventDate = document.forms["create-event-form "]["eventDate"].value;
+                                            var eventDate = 'eventDay' + " " + 'eventHour' + " " + 'eventMin' + " " + 'radios';
+                                        }
+                                        var eventDay = document.forms["create-event-form "]["eventDate"].value;
                                         var eventHour = document.forms["create-event-form "]["eventHour"].value;
                                         var eventMin = document.forms["create-event-form "]["eventMin"].value;
                                         var am = document.forms["create-event-form "]["am"].value;
@@ -73,7 +73,6 @@
                                                     "Event Created Successfully...")
 
                                             // document.getElementById("form_id").getAttribute("class")
-                                        }
                                     </script>
 
 
