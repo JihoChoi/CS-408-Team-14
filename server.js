@@ -233,9 +233,9 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
-            db.getEvents(event, function(events) {
+            db.getEvents(evnt, function(events) {
                 res.status(200);
-                res.render('event', {
+                res.render('events', {
                     user: req.user,
                     course: course,
                     evnt: events
