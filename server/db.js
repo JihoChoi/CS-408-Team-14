@@ -560,6 +560,79 @@ var parseStudents = function(students,ret, callback) {
 	}
 }
 
+var parseGroupFull = function(groups, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if( i==groups.length) {
+		callback(ret);
+	} else {
+	Group.findById(groups[i], function(err,group) {
+		if(group) {
+			ret1.push(group);
+		} else { 
+			ret1.push("");
+		}
+		parseGroupFull(groups, ret1, callback);
+	});
+	}
+}
+var parseEventFull = function(events, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if( i==events.length) {
+		callback(ret);
+	} else {
+	Event.findById(events[i], function(err,event1) {
+		if(event1) {
+			ret1.push(event1);
+		} else { 
+			ret1.push("");
+		}
+		parseEventFull(event1, ret1, callback);
+	});
+	}
+}
+var parseStudentFull = function(students, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if( i==students.length) {
+		callback(ret);
+	} else {
+	Student.findById(students[i], function(err,student) {
+		if(student) {
+			ret1.push(student);
+		} else { 
+			ret1.push("");
+		}
+		parseGroup(students, ret1, callback);
+	});
+	}
+}
+
+var getClassEvents = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		if(course) {
+		parseEventFull(course.events, [], callback);
+		}
+	});
+}
+
+var getClassGroups = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		if(course) {
+		parseGroupFull(course.subgroups, [], callback);
+		}
+	});
+}
+
+var getClassStudent = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		if(course) {
+		parseStudentFull(course.students, [], callback);
+		}
+	});
+}
+
 
 module.exports = {
 createUser,
@@ -594,5 +667,8 @@ classRemoveStudent,
 purgeCourse,
 //courseExists,
 getAllCourses,
-classGetStudents
+classGetStudents,
+getClassEvents,
+getClassGroups,
+getClassStudent
 }; 
