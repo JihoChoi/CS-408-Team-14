@@ -427,13 +427,23 @@ app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
 
 app.post('/accept-invite', loginVerify, function(req, res) {
     db.acceptInvite(req.body.invite);
-    res.reidrect('/events');
+    res.reidrect('/');
 })
 
 app.post('/decline-invite', loginVerify, function(req, res) {
     db.declineInvite(req.body.invite);
-    res.redirect('/events');
+    res.redirect('/');
 });
+
+app.post('/add-rsvp', loginVerify, function(req, res) {
+    db.eventAddStudent(req.body.invite, req.user.emails[0].value);
+    res.redirect('/');
+})
+
+app.post('/remove-rsvp', loginVerify, function(req, res) {
+    db.eventRemoveStudent(req.body.invite, req.user.emails[0].value);
+    res.redirect('/');
+})
 
 app.post('/create-post', loginVerify, courseVerify, function(req, res) {
     db.classAddPost(req.body.course_name, req.body.text_input);
