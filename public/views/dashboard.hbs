@@ -41,7 +41,9 @@
                             <i class="fa fa-tasks fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">{{allcoursename.length}}</div>
+
+                            <div class="huge" >{{allcoursename.length}}</div>
+
                             <div>Join Existing Courses!</div>
 
                         </div>
@@ -82,28 +84,28 @@
                 </a>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6">
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-3">
-                            <i class="fa fa-comments fa-5x"></i>
-                        </div>
-                        <div class="col-xs-9 text-right">
-                            <div class="huge">26</div>
-                            <div>New Feeds</div>
-                        </div>
-                    </div>
-                </div>
-                <a href="#">
-                    <div class="panel-footer">
-                        <span class="pull-left">View Details</span>
-                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                        <div class="clearfix"></div>
-                    </div>
-                </a>
-            </div>
-        </div>
+        <!--<div class="col-lg-3 col-md-6">-->
+            <!--<div class="panel panel-primary">-->
+                <!--<div class="panel-heading">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col-xs-3">-->
+                            <!--<i class="fa fa-comments fa-5x"></i>-->
+                        <!--</div>-->
+                        <!--<div class="col-xs-9 text-right">-->
+                            <!--<div class="huge">26</div>-->
+                            <!--<div>New Feeds</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<a href="#">-->
+                    <!--<div class="panel-footer">-->
+                        <!--<span class="pull-left">View Details</span>-->
+                        <!--<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>-->
+                        <!--<div class="clearfix"></div>-->
+                    <!--</div>-->
+                <!--</a>-->
+            <!--</div>-->
+        <!--</div>-->
 
 
     </div>
@@ -117,27 +119,22 @@
                 </div>
                 <!-- /.panel-heading -->
 
+
+
                 <div class="panel-body" style="height:500px;overflow:auto;">
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
+
+                    
+                    {{# each user.posts }}
+                        <div class="well well-sm">
+                            <h4>{{this}}</h4>
+                        </div>
+                    {{/each}}
+
+
+                    <!--<div class="well well-sm">-->
+                        <!--<h4>Small Well</h4>-->
+                        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>-->
+                    <!--</div>-->
 
 
                     <!-- /.row -->
@@ -166,35 +163,17 @@
                         <!--document.write("Hello World!");-->
                     <!--</script>-->
 
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-tasks fa-fw"></i> Study Session
-                        <span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-bolt fa-fw"></i> Second Exam
-                        <span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/13 10:00 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                    </a>
+
+                    {{# each user.events}}
+                        {{#if this}}
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-tasks fa-fw"></i> {{this}}
+                                <span class="pull-right text-muted small"><em>{{this.starttime}}</em></span>
+                            </a>
+                        {{/if}}
+                    {{/each}}
+
+
                 </div>
             </div>
 
@@ -205,42 +184,20 @@
                     <!--<a href="/addSubgroup">-->
                         <!--<span class="pull-right" type="button" onclick="alert('Add Subgroup Page')">Create Subgroup</span>-->
                     <!--</a>-->
+
+
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:200px;overflow:auto;">
 
+                    {{# each user.subgroups }}
+                        {{#if this}}
+                            <a href="#" class="list-group-item">
+                                <i class="fa fa-comment fa-fw"></i> {{this.name}}
+                            </a>
+                        {{/if}}
+                    {{/each}}
 
-
-
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-tasks fa-fw"></i> Study Session
-                        <span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-bolt fa-fw"></i> Second Exam
-                        <span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/13 10:00 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                    </a>
-                    <a href="#" class="list-group-item">
-                        <i class="fa fa-comment fa-fw"></i> Group Meeting
-                        <span class="pull-right text-muted small"><em>3/20 10:00 P.M.</em>
-                                        </span>
-                    </a>
                 </div>
             </div>
 

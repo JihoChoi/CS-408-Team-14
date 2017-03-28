@@ -47,6 +47,20 @@ function setting_popup() {
 
 }
 
+function countCourse(allcoursename) {
+
+    console.log(allcoursename);
+
+    var counter = 0;
+    for (var i=0; i< allcoursename.length; i++) {
+        if (allcoursename != null) {
+            counter++;
+        }
+    }
+    document.getElementById("count").innerHTML = 5 + 6;
+
+}
+
 
 // #################################################
 // Manage Courses functions
@@ -111,6 +125,14 @@ function create_request_prompt(all_courses) {
     console.log("   semester         " + semester);
     console.log("   description      " + description);
 
+    if ( course_name != course_name.toUpperCase() ) {
+        alert("course name cannot contain lowercase!");
+        return;
+    }
+    if( !parseInt(course_name) ) {
+        alert("course name should contain number!");
+        return
+    }
 
     // checking if courses already joined
     var json = [];

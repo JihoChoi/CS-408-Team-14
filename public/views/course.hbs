@@ -171,7 +171,7 @@
 
 
                 {{# each course.events }}
-                    {{#if this }}
+                    {{#if this}}
                         <a href="#" class="list-group-item">
                             <i class="fa fa-tasks fa-fw"></i> {{this.name}}
                             <span class="pull-right text-muted small"><em>{{this.starttime}}</em></span>
@@ -207,8 +207,8 @@
 
                 {{course.group}}
 
-
-                {{# each course.events }}
+                {{course.group}}
+                {{# each course.group }}
                     {{#if this }}
                         <a href="#" class="list-group-item">
                             <i class="fa fa-comment fa-fw"></i> {{this.name}}
