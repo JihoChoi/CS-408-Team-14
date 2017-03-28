@@ -146,16 +146,17 @@ var classRemoveStudentHelp = function(course, student) {
 
 //Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
-var classAddEvent = function(name, description, type, courseName, startTime){
-	console.log("name: " + name + "; desc: " + description + "; type: " + type + "; courseName:" + courseName + "; time: " + startTime);
+var classAddEvent = function(name, description, type, courseName, startTime,email){
 	getClass(courseName, function(course){
-		if(course) {
-		classAddEventHelp(name,description,type,course,startTime);
+	getStudent(email, function(student) {
+		if(course && student) {
+		classAddEventHelp(name,description,type,course,startTime, student);
 		}
+		});
 	});
 };
 
-var classAddEventHelp = function(name, description, type, course, startTime) {
+var classAddEventHelp = function(name, description, type, course, startTime, student) {
 	var event1 = new Event({
 		name: name,
 		description: description,
@@ -165,11 +166,16 @@ var classAddEventHelp = function(name, description, type, course, startTime) {
 		students: []
 	});
 	//event.ttl=liveTime();
+	event1.students.push(student);
 	event1.save(function(err) {
 		if(err) throw err;
 	});
 	course.events.push(event1);
 	course.save(function(err) {
+		if(err) throw err;
+	});
+	student.events.push(event1);
+	student.save(function(err) {
 		if(err) throw err;
 	});
 };
