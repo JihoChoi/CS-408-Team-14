@@ -431,9 +431,10 @@ app.post('/decline-invite', loginVerify, function(req, res) {
 });
 
 app.post('/create-post', loginVerify, courseVerify, function(req, res) {
-    db.classAddPost(req.session.lastCourse, req.body.content);
+    db.classAddPost(req.body.course_name, req.body.text_input);
+
     res.redirect('/course/' + req.session.lastCourse);
-})
+});
 
 
 
