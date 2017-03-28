@@ -374,8 +374,9 @@ app.post('/join-class', loginVerify, function(req, res) {
 });
 
 app.post('/delete-course', loginVerify, function(req, res) {
-    db.deleteCourse(
-        req.body.delete_course_name
+    db.classRemoveStudent(
+        req.body.delete_course_name,
+        req.user.emails[0].value
     );
     res.redirect('/');
 });
@@ -416,6 +417,15 @@ app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
 app.post('/accept-invite')
 
 app.post('/decline-invite')
+
+
+
+
+// app.post('/post-note', loginVerify, courseVerify, function (req, res) {
+//     db.classAddPost(req.body.cour, req.body.text-input);
+//
+// });
+
 
 
 

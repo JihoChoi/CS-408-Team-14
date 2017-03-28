@@ -131,11 +131,14 @@
 
             <div class="panel-footer">
                 <div class="input-group">
-                    <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                    <input id="text-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
                     <span class="input-group-btn">
-                        <button class="btn btn-warning btn-sm" id="btn-chat">
-                            Post
-                        </button>
+                        <form id="post-note-form" name="post-note-form" action="/post-note" method="post">
+
+                            <button class="btn btn-warning btn-sm" id="btn-chat" onclick="add_post('{{course.name}}')">
+                                Post
+                            </button>
+                        </form>
                     </span>
                 </div>
             </div>

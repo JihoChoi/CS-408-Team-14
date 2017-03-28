@@ -129,7 +129,7 @@ function create_request_prompt(all_courses) {
             return;
         }
     }
-    
+
 
     if (confirm("Do you want to create "+course_name+" "+semester+"?") == true) {
         alert("You created "+course_name+"!");
@@ -153,9 +153,8 @@ function delete_request_prompt() {
     }
 
 
-
     if (confirm("Do you want to leave "+course_name+"?") == true) {
-        alert("You leaved "+course_name+"!");
+        alert("You left "+course_name+"!");
 
         document.getElementById("delete-course-form").submit();
     }
@@ -165,6 +164,24 @@ function delete_request_prompt() {
 
 
 
+// #################################################
+// Courses functions
+// #################################################
+
+
+function add_post(course) {
+
+    var text = document.forms["post-note-form"]["text-input"].value;
+
+    alert(course + text);
+
+    if (confirm("Do you want to post?") == true) {
+        alert("Note Posted!");
+
+        // document.getElementById("post-note-form").submit();
+    }
+
+}
 // header and navigation bar
 /*
 document.getElementById("header-navigation-bar").innerHTML = 
