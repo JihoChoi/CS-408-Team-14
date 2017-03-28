@@ -237,6 +237,7 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
         db.getClass(course, function(course) {
             db.getEventName(evnt, function(events) {
                 res.status(200);
+                console.log(events);
                 res.render('events', {
                     user: req.user,
                     course: course,
@@ -246,9 +247,10 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
                 return;
             });
         });
+    } else {
+        req.session.attemptedURL = req.url;
+        res.redirect('/notpermitted');
     }
-    req.session.attemptedURL = req.url;
-    res.redirect('/notpermitted');
 });
 
 app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
