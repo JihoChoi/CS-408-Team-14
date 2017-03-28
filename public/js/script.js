@@ -175,7 +175,7 @@ function add_post() {
     var course_name = document.forms["post-note-form"]["course_name"].value;
     var user_name = document.forms["post-note-form"]["user_name"].value;
 
-    alert(course_name + user_name + text);
+    // alert(course_name + user_name + text);
 
     if (confirm("Do you want to post?") == true) {
         alert("Note Posted!");

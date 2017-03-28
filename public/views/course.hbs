@@ -109,15 +109,21 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:500px;overflow:auto;">
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
-                    <div class="well well-sm">
-                        <h4>Small Well</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                    </div>
 
+                    <!--<div class="well well-sm">-->
+                        <!--<h4>Small Well</h4>-->
+                        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>-->
+                    <!--</div>-->
+                    <!--<div class="well well-sm">-->
+                        <!--<h4>Small Well</h4>-->
+                        <!--<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>-->
+                    <!--</div>-->
+
+                    {{# each course.posts }}
+                        <div class="well well-sm">
+                            <h4>{{this}}</h4>
+                        </div>
+                    {{/each}}
 
                     <!-- /.row -->
                 </div>
@@ -130,7 +136,6 @@
 
                                     <input type="hidden" name="course_name" value="{{course.name}}" />
                                     <input type="hidden" name="user_name" value="{{user.displayName}}" />
-
 
                                     <input type="button" class="btn btn-warning btn-sm" id="btn-chat" onclick="add_post()">
                                     <!--<button class="btn btn-warning btn-sm" id="btn-chat" onclick="add_post()">-->
