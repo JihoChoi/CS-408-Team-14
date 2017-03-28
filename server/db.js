@@ -71,11 +71,13 @@ var addClassHelp = function(name, semester, fullName, description, student) {
 		fullName: fullName,
 		description: description,
 		posts: [],
+		emails:[],
 		students: [],
 		events: [],
 		subgroups: []
 	});
 //	course.ttl=liveTime();
+	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -100,6 +102,7 @@ var classAddStudent = function (courseName, email) {
 };
 
 var classAddStudentHelp = function(course, student) {
+	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -130,6 +133,7 @@ var classRemoveStudent = function(courseName, email) {
 };
 
 var classRemoveStudentHelp = function(course, student) {
+	course.emails.splice(course.emails.indexOf(student.email),1);
 	course.students.splice(course.students.indexOf(student._id), 1);
 	course.save(function(err) {
 		if(err) throw err;
@@ -226,9 +230,9 @@ var getStudent = function(email,callback) {
 };
 
 var getEvent = function(name, callback) {
-	Event.findOne({name:name}, function(err, event){
+	Event.findOne({name:name}, function(err, event1){
 		if(err) throw err;
-		callback(event);
+		callback(event1);
 	});
 }
 
@@ -526,7 +530,7 @@ var getAllCourses = function(callback) {
 	});
 }
 
-var getStudents = function(className, callback) {
+var classGetStudents = function(className, callback) {
 	Class.findOne({name:className}, function(err, course) {
 		parseStudents(course.students,[],callback);
 	});
@@ -583,4 +587,5 @@ classRemoveStudent,
 purgeCourse,
 //courseExists,
 getAllCourses,
+classGetStudents
 }; 

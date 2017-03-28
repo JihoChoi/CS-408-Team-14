@@ -9,7 +9,7 @@ var EventSchema = new Schema({
 	description: String,
 	type: String,
 	className: {type:mongoose.Schema.Types.ObjectId, ref: 'Class'},
-	startTime: Date,
+	startTime: String,
 	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}]
 });
 
