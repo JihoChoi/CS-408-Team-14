@@ -563,7 +563,9 @@ var parseStudents = function(students,ret, callback) {
 var parseGroupFull = function(groups, ret, callback) {
 	var i = ret.length;
 	var ret1 = ret;
-	if( i==groups.length) {
+	if(groups==null) {
+		callback(null);
+	}else if( i==groups.length) {
 		callback(ret);
 	} else {
 	Group.findById(groups[i], function(err,group) {
@@ -579,7 +581,9 @@ var parseGroupFull = function(groups, ret, callback) {
 var parseEventFull = function(events, ret, callback) {
 	var i = ret.length;
 	var ret1 = ret;
-	if( i==events.length) {
+	if(events == null) {
+		callback(null);
+	} else if( i==events.length) {
 		callback(ret);
 	} else {
 	Event.findById(events[i], function(err,event1) {
@@ -595,7 +599,9 @@ var parseEventFull = function(events, ret, callback) {
 var parseStudentFull = function(students, ret, callback) {
 	var i = ret.length;
 	var ret1 = ret;
-	if( i==students.length) {
+	if(students == null) {
+		callback(null);
+	} else 	if( i==students.length) {
 		callback(ret);
 	} else {
 	Student.findById(students[i], function(err,student) {
