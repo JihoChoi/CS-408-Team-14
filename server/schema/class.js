@@ -11,6 +11,7 @@ var Class1 = new Schema({
 	fullName: String,
 	description: String,
 	posts: [String],
+	emails:[String],
 	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}],
 	events: [{type:mongoose.Schema.Types.ObjectId, ref: 'Event'}],
 	subgroups: [{type:mongoose.Schema.Types.ObjectId, ref: 'Group'}]
