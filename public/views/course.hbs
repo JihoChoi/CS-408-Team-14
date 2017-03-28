@@ -57,35 +57,36 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>#</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Username</th>
+                            <!--<th>#</th>-->
+                            <th>Email</th>
+                            <!--<th>Last Name</th>-->
+                            <!--<th>Username</th>-->
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="success">
-                            <td>1</td>
-                            <td>Kyle</td>
-                            <td>Korver</td>
-                            <td>@3sss4days</td>
-                        </tr>
+                        <!--<tr class="success">-->
+                            <!--<td>1</td>-->
+                            <!--<td>Kyle</td>-->
+                            <!--<td>Korver</td>-->
+                            <!--<td>@3sss4days</td>-->
+                        <!--</tr>-->
 
 
-                        <tr class="info">
-                            <td>2</td>
-                            <td>J. R.</td>
-                            <td>Smith</td>
-                            <td>@failure</td>
-                        </tr>
-                        <tr class="warning">
-                            <td>3</td>
-                            <td>Kyrie</td>
-                            <td>Irving</td>
-                            <td>@irvingKyrie</td>
-                        </tr>
+                        <!--<tr class="info">-->
+                            <!--<td>2</td>-->
+                            <!--<td>J. R.</td>-->
+                            <!--<td>Smith</td>-->
+                            <!--<td>@failure</td>-->
+                        <!--</tr>-->
 
-                        {{course.students}}
+
+                        {{# each course.emails }}
+                            <tr class="info">
+                                <td></td>
+                                <td>{{this}}</td>
+                            </tr>
+                        {{/each}}
+
 
                         </tbody>
                     </table>
@@ -124,6 +125,7 @@
                             <h4>{{this}}</h4>
                         </div>
                     {{/each}}
+
 
                     <!-- /.row -->
                 </div>
