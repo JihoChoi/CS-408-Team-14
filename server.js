@@ -235,7 +235,7 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
-            db.getEvents(evnt, function(events) {
+            db.getEvent(evnt, function(events) {
                 res.status(200);
                 res.render('events', {
                     user: req.user,
@@ -255,10 +255,13 @@ app.get('/course/*/createEvent', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     course = course.substr(0, course.indexOf('/'));
     req.session.lastCourse = course;
-    res.status(200);
-    res.render('createEvent', {
-        email: req.user.emails[0].value,
-        courses: req.user.courses
+    db.getClass(course, function(course) {
+        res.status(200);
+        res.render('createEvent', {
+            email: req.user.emails[0].value,
+            courses: req.user.courses,
+            course: course
+        });
     });
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
@@ -401,10 +404,10 @@ app.post('/create-event', loginVerify, courseVerify, function(req, res) {
         req.body.eventDes,
         req.body.eventLocation,
         req.body.courseName,
-        req.body.eventDate
-        //req.user.emails[0].value
+        req.body.eventDate,
+        req.user.emails[0].value
     );
-    res.redirect('/course/' + req.session.lastCourse);
+    res.redirect('/course/' + req.session.lastCourse );
 });
 
 app.post('/invite-group', loginVerify, courseVerify, function(req, res) {

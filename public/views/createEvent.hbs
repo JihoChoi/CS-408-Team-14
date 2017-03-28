@@ -21,165 +21,118 @@
 
 
 
-    <div id="page-wrapper">
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Create Event</h1>
-            </div>
-            <!-- /.col-lg-12 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Create Event</h1>
         </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-12">
-                <!-- /.panel -->
-            </div>
-            <!-- /.col-lg-12 -->
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- /.panel -->
         </div>
-        <!-- /.row -->
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
 
-        <div class="row">
-            <div class="col-lg-8">
+    <div class="row">
+        <div class="col-lg-8">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Create Event
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <form action="/create-event" method="post">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Create Event
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form id="create-event-form" name="create-event-form" action="/create-event" method="post">
+                                <div class="form-group">
+                                    <label>Event Title</label>
+                                    <input class="form-control" id="eventName" name="eventName" placeholder="Study Session, Exam Prep">
+                                </div>
 
-                                    <script>
-                                        function submit_create_event() {
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input class="form-control" id="eventLocation" name="eventLocation" placeholder="LWSNB160">
+                                </div>
 
-
-
-                                            var eventDay = document.forms["create-event-form "]["eventDate"].value;
-                                            var eventHour = document.forms["create-event-form "]["eventHour"].value;
-                                            var eventMin = document.forms["create-event-form "]["eventMin"].value;
-                                            var am = document.forms["create-event-form "]["am"].value;
-                                            var pm = document.forms["create-event-form "]["pm"].value;
-                                            var radios = document.getElementsByName('amorpm');
-
-                                            var eventDate = 'eventDay' + " " + 'eventHour' + " " + 'eventMin' + " " + 'radios';
-
-                                            var eventName = document.forms["create-event-form"]["eventName"].value;
-                                            var eventDes = document.forms["create-event-form"]["eventDes"].value;
-                                            var eventType = document.forms["create-event-form"]["eventLocation"].value;
-                                            var courseName = {{course.name}};
-
-
-                                            alert("Event : " + 'eventName' + "\n" +
-                                                    "Location : " + 'eventLocation' + "\n" +
-                                                    "Date : " + 'eventDate' + "\n" +
-                                                    "Event Created Successfully...");
-
-                                            // check if it already exist
-                                            // document.getElementById("form_id").getAttribute("class")
-
-
-
-
-                                        }
-
-
-
-
-                                    </script>
-
-
-
-                                    <div class="form-group">
-                                        <label>Event Title</label>
-                                        <input class="form-control" id="eventName" name="eventName" placeholder="Study Session, Exam Prep">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Location</label>
-                                        <input class="form-control" id="eventLocation" name="eventLocation" placeholder="LWSNB160">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label>Location</label>
-                                        <input class="form-control" id="courseEvnt" name="courseEvnt" {{course.name}}>
-                                    </div>
-
-                                    <div class="form-group" id="eventDate" name="eventDate">
-                                        <label>Date</label>
-                                        <input type="date"/>
-                                    </div>
-
-
-                                    <div class="form-group">
-                                        <label>Time</label>
-                                        <style type="text/css">
-                                            div.inline { float:left; }
-                                            .clearBoth { clear:both; }
-                                        </style>
-                                        <select class="form-control, inline"  id="eventHour" name="eventHour">
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
-                                            <option>4</option>
-                                            <option>5</option>
-                                            <option>6</option>
-                                            <option>7</option>
-                                            <option>8</option>
-                                            <option>9</option>
-                                            <option>10</option>
-                                            <option>11</option>
-                                            <option>12</option>
-                                        </select>
-                                        <label>:</label>
-                                        <select class="form-control, inline" id="eventMin" name="eventMin">
-                                            <option>00</option>
-                                            <option>15</option>
-                                            <option>30</option>
-                                            <option>45</option>
-                                        </select>
-                                        <label class="radio-inline" id="am" name="amorpm">
-                                            <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline1" value="option1" checked>AM
-                                        </label>
-                                        <label class="radio-inline" id="pm" name="amorpm">
-                                            <input type="radio" name="optionsRadiosInline" id="optionsRadiosInline2" value="option2">PM
-                                        </label>
-
-                                        <input type="hidden" name="courseName" value="{{course}}" />
-
-                                        <!--<input class="form-control" placeholder="15">-->
-
-                                    </div>
-
-                                    <button type="button" class="btn btn-default" onclick="submit_create_event()">Create Event</button>
-                                    <button type="reset" class="btn btn-default">Cancel</button>
-                                </form>
-                            </div>
-                            <!-- /.col-lg-6 (nested) -->
-                            <div class="col-lg-6">
-
-                                <div class="form-group" id="eventDes" name="eventDes">
-                                    <label>Description</label>
-                                    <textarea class="form-control" rows="5" style="resize: none;"></textarea>
+                                <div class="form-group" >
+                                    <label>Date</label>
+                                    <input type="date" id="eventDate" name="eventDate">
                                 </div>
 
 
-                            </div>
-                            <!-- /.col-lg-6 (nested) -->
-                        </div>
-                        <!-- /.row (nested) -->
-                    </div>
-                    <!-- /.panel-body -->
-                </div>
+                                <div class="form-group">
+                                    <label>Time</label>
+                                    <style type="text/css">
+                                        div.inline { float:left; }
+                                        .clearBoth { clear:both; }
+                                    </style>
+                                    <select class="form-control, inline"  id="eventHour" name="eventHour">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                        <option>6</option>
+                                        <option>7</option>
+                                        <option>8</option>
+                                        <option>9</option>
+                                        <option>10</option>
+                                        <option>11</option>
+                                        <option>12</option>
+                                    </select>
+                                    <label>:</label>
+                                    <select class="form-control, inline" id="eventMin" name="eventMin">
+                                        <option>00</option>
+                                        <option>15</option>
+                                        <option>30</option>
+                                        <option>45</option>
+                                    </select>
+                                    <label class="radio-inline" id="am" name="amorpm">
+                                        <input type="radio" name="am" id="optionsRadiosInline1" value="option1" checked>AM
+                                    </label>
+                                    <label class="radio-inline" id="pm" name="amorpm">
+                                        <input type="radio" name="pm" id="optionsRadiosInline2" value="option2">PM
+                                    </label>
 
+                                    <input type="hidden" id="courseName" name="courseName" value="{{course.name}}" />
+
+                                    <!--<input class="form-control" placeholder="15">-->
+
+                                </div>
+
+
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control" id="eventDes" name="eventDes" rows="5" style="resize: none;"></textarea>
+                                    </div>
+
+                                <button type="button" class="btn btn-default" onclick="submit_create_event()">Create Event</button>
+                                <button type="reset" class="btn btn-default">Cancel</button>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
             </div>
 
-
-
-
-            <!-- /.col-lg-4 -->
         </div>
 
-        <!-- /#page-wrapper -->
+
+
+
+        <!-- /.col-lg-4 -->
+    </div>
+
+    <!-- /#page-wrapper -->
 
 
 
