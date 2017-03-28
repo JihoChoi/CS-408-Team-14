@@ -235,7 +235,7 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
-            db.getEvent(evnt, function(events) {
+            db.getEventName(evnt, function(events) {
                 res.status(200);
                 res.render('events', {
                     user: req.user,
@@ -300,13 +300,16 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     if (course.indexOf('/') == -1) {
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
+	db.getClassGroups(course.name, function(groups) {
             res.status(200);
             res.render('course', {
                 user: req.user,
                 courses: req.user.courses,
-                course: course
+                course: course,
+		groups: groups
             });
             console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+	    });
         });
     } else if (course.indexOf(course.length - 1) == '/') {
         res.redirect(req.url.substr(0, req.url.length - 1));
