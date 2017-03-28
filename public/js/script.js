@@ -169,16 +169,18 @@ function delete_request_prompt() {
 // #################################################
 
 
-function add_post(course) {
+function add_post() {
 
-    var text = document.forms["post-note-form"]["text-input"].value;
+    var text = document.forms["post-note-form"]["text_input"].value;
+    var course_name = document.forms["post-note-form"]["course_name"].value;
+    var user_name = document.forms["post-note-form"]["user_name"].value;
 
-    alert(course + text);
+    alert(course_name + user_name + text);
 
     if (confirm("Do you want to post?") == true) {
         alert("Note Posted!");
 
-        // document.getElementById("post-note-form").submit();
+        document.getElementById("post-note-form").submit();
     }
 
 }

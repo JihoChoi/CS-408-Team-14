@@ -1,6 +1,4 @@
-
-
-<div id="page-wrapper">
+<div id="page-wrapper" xmlns="http://www.w3.org/1999/html">
     <div class="row">
         <div class="col-lg-12">
             <!--<h1 class="page-header">{{course}}</h1>-->
@@ -104,47 +102,51 @@
 <div class="row">
     <div class="col-lg-8">
 
+        <form id="post-note-form" name="post-note-form" action="/create-post" method="post">
+            <div class="panel panel-default" >
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Posts
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body" style="height:500px;overflow:auto;">
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
+                    <div class="well well-sm">
+                        <h4>Small Well</h4>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                    </div>
 
-        <div class="panel panel-default" >
-            <div class="panel-heading">
-                <i class="fa fa-bar-chart-o fa-fw"></i> Posts
 
-            </div>
-            <!-- /.panel-heading -->
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-body -->
 
-            <div class="panel-body" style="height:500px;overflow:auto;">
+                <div class="panel-footer">
+                    <div class="input-group">
+                            <input id="text-input" name="text_input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
 
-                <div class="well well-sm">
-                    <h4>Small Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                                    <input type="hidden" name="course_name" value="{{course.name}}" />
+                                    <input type="hidden" name="user_name" value="{{user.displayName}}" />
+
+
+                                    <input type="button" class="btn btn-warning btn-sm" id="btn-chat" onclick="add_post()">
+                                    <!--<button class="btn btn-warning btn-sm" id="btn-chat" onclick="add_post()">-->
+                                        Post
+                                    <!--</button>-->
+                                    </input>
+
+                            </span>
+
+                    </div>
                 </div>
 
-                <div class="well well-sm">
-                    <h4>Small Well</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                </div>
-
-
-                <!-- /.row -->
             </div>
-            <!-- /.panel-body -->
+            <!-- /.panel -->
+        </form>
 
-            <div class="panel-footer">
-                <div class="input-group">
-                    <input id="text-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                    <span class="input-group-btn">
-                        <form id="post-note-form" name="post-note-form" action="/post-note" method="post">
-
-                            <button class="btn btn-warning btn-sm" id="btn-chat" onclick="add_post('{{course.name}}')">
-                                Post
-                            </button>
-                        </form>
-                    </span>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.panel -->
 
     </div>
     <div class="col-lg-4">

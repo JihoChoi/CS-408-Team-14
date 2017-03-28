@@ -114,7 +114,7 @@ var classAddStudentHelp = function(course, student) {
 };
 
 var classAddPost = function(className, post) {
-	getClass(courseName, function(course){
+	getClass(className, function(course){
 		course.posts.push(post);
 		course.save(function(err){
 			if(err) throw err;
