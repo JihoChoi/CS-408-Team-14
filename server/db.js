@@ -639,6 +639,13 @@ var getClassStudent = function(courseName, callback) {
 	});
 }
 
+var getEventName = function(eventName, callback) {
+	Event.findOne({name: eventName}, function(err, event1) {
+		if(err) throw err;
+		callback(event1);
+	});
+}
+
 
 module.exports = {
 createUser,
