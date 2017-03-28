@@ -129,10 +129,10 @@ function create_request_prompt(all_courses) {
         alert("course name cannot contain lowercase!");
         return;
     }
-    if( !parseInt(course_name) ) {
-        alert("course name should contain number!");
-        return
-    }
+    // if( !parseInt(course_name) ) {
+    //     alert("course name should contain number!");
+    //     return
+    // }
 
     // checking if courses already joined
     var json = [];
