@@ -683,5 +683,6 @@ getAllCourses,
 classGetStudents,
 getClassEvents,
 getClassGroups,
-getClassStudent
+getClassStudent,
+getEventName
 }; 
