@@ -147,6 +147,7 @@ var classRemoveStudentHelp = function(course, student) {
 //Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
 var classAddEvent = function(name, description, type, courseName, startTime){
+	console.log("name: " + name + "; desc: " + description + "; type: " + type + "; courseName:" + courseName + "; time: " + startTime);
 	getClass(courseName, function(course){
 		if(course) {
 		classAddEventHelp(name,description,type,course,startTime);
