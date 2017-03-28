@@ -275,9 +275,11 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
                 res.status(200);
                 res.render('subgroup', {
                     user: req.user,
+                    courses: req.user.courses,
                     subgroup: group,
                     course: course
                 });
+                // console.log("this is course"+course);
                 console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
             });
         });
@@ -393,7 +395,7 @@ app.post('/create-event', loginVerify, function(req, res) {
     db.classAddEvent(
         req.body.eventName,
         req.body.eventDes,
-        req.body.eventType,
+        req.body.eventLocation,
         req.body.courseName,
         req.body.eventDate
         //req.user.emails[0].value

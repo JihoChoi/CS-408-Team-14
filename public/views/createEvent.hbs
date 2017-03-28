@@ -54,7 +54,7 @@
                                             var eventName = document.forms["create-event-form"]["eventName"].value;
                                             var eventDes = document.forms["create-event-form"]["eventDes"].value;
                                             var eventType = document.forms["create-event-form"]["eventLocation"].value;
-                                            var courseName = document.forms["create-event-form"]["courseEvnt"].value = {{course.name}};
+                                            var courseName = {{course.name}};
 
                                             var eventDate = 'eventDay' + " " + 'eventHour' + " " + 'eventMin' + " " + 'radios';
                                         }
@@ -87,6 +87,10 @@
                                         <input class="form-control" id="eventLocation" name="eventLocation" placeholder="LWSNB160">
                                     </div>
 
+                                    <div class="form-group">
+                                        <label>Location</label>
+                                        <input class="form-control" id="courseEvnt" name="courseEvnt" {{course.name}}>
+                                    </div>
 
                                     <div class="form-group" id="eventDate" name="eventDate">
                                         <label>Date</label>
