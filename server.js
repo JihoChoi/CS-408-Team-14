@@ -88,6 +88,8 @@ function courseVerify(req, res, next) {
     if (course.indexOf('/') != -1) {
         course = course.substr(0, course.indexOf('/'));
     }
+    if (req.session.lastCourse)
+        course = req.session.lastCourse;
     // Check if course exists
     db.getClass(course, function(bool) {   
     if (Boolean(bool)) {
@@ -377,11 +379,12 @@ app.post('/delete-course', loginVerify, function(req, res) {
     db.classRemoveStudent(
         req.body.delete_course_name,
         req.user.emails[0].value
+
     );
     res.redirect('/');
 });
 
-app.post('/create-subgroup', loginVerify, function(req, res) {
+app.post('/create-subgroup', loginVerify, courseVerify, function(req, res) {
     db.classAddGroup(
         req.body.subName,
         req.session.lastCourse,
@@ -390,7 +393,7 @@ app.post('/create-subgroup', loginVerify, function(req, res) {
     res.redirect('/course/' + req.session.lastCourse);
 });
 
-app.post('/create-event', loginVerify, function(req, res) {
+app.post('/create-event', loginVerify, courseVerify, function(req, res) {
     // console.log("current user: " + req.user.emails[0].value);
     // console.log("create course: " + req.body.coursename + "/" + req.body.semester + "/" + req.body.fullcoursename);
     db.classAddEvent(
@@ -414,10 +417,20 @@ app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
     res.redirect('/');
 })
 
-app.post('/accept-invite')
+app.post('/accept-invite', loginVerify, function(req, res) {
+    db.acceptInvite(req.body.invite);
+    res.reidrect('/events');
+})
 
-app.post('/decline-invite')
+app.post('/decline-invite', loginVerify, function(req, res) {
+    db.declineInvite(req.body.invite);
+    res.redirect('/events');
+});
 
+app.post('/create-post', loginVerify, courseVerify, function(req, res) {
+    db.classAddPost(req.session.lastCourse, req.body.content);
+    res.redirect('/course/' + req.session.lastCourse);
+})
 
 
 
