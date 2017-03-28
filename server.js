@@ -382,7 +382,7 @@ app.post('/delete-course', loginVerify, courseVerify, function(req, res) {
     res.redirect('/');
 });
 
-app.post('/create-subgroup', loginVerify, courseVerify function(req, res) {
+app.post('/create-subgroup', loginVerify, courseVerify, function(req, res) {
     db.classAddGroup(
         req.body.subName,
         req.session.lastCourse,
@@ -416,16 +416,19 @@ app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
 })
 
 app.post('/accept-invite', loginVerify, function(req, res) {
-    db.acceptInvite()
+    db.acceptInvite(req.body.invite);
+    res.reidrect('/events');
 })
 
-app.post('/decline-invite')
+app.post('/decline-invite', loginVerify, function(req, res) {
+    db.declineInvite(req.body.invite);
+    res.redirect('/events');
+});
 
 app.post('/create-post', loginVerify, courseVerify, function(req, res) {
     db.classAddPost(req.session.lastCourse, req.body.content);
     res.redirect('/course/' + req.session.lastCourse);
 })
-
 
 
 /**
