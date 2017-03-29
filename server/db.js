@@ -610,7 +610,7 @@ var parseStudentFull = function(students, ret, callback) {
 		} else { 
 			ret1.push("");
 		}
-		parseGroup(students, ret1, callback);
+		parseStudentFull(students, ret1, callback);
 	});
 	}
 }
