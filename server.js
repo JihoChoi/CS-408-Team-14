@@ -151,19 +151,16 @@ app.get('/favicon.ico', function(req, res) {
 // Landing page
 app.get('/', function(req, res) {
 	if (req.user) {
-        res.status(200);
-
         var allCourse;
-
         db.getAllCourses(function(allCourses) {
+            res.status(200);            
             res.render('dashboard', {
                 user: req.user,
                 courses: req.user.courses,
                 allcoursename: allCourses
             });
+            console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
         });
-
-        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 	} else {
         res.status(200);
 		res.render('index', {
@@ -235,9 +232,8 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
-            db.getEventName(evnt, function(events) {
+            db.getEvent(evnt, function(events) {
                 res.status(200);
-                console.log(events);
                 res.render('events', {
                     user: req.user,
                     course: course,
@@ -302,16 +298,24 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     if (course.indexOf('/') == -1) {
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
-	db.getClassGroups(course.name, function(groups) {
-            res.status(200);
-            res.render('course', {
-                user: req.user,
-                courses: req.user.courses,
-                course: course,
-		groups: groups
+	        db.getClassGroups(course.name, function(groups) {
+                db.getEvents(course.name, function(events) {
+                    res.status(200);
+                    console.log(events);
+                    events.forEach(function(e) {
+                        e.course = course.name;
+                    })
+                    console.log(events);
+                    res.render('course', {
+                        user: req.user,
+                        courses: req.user.courses,
+                        course: course,
+                        groups: groups,
+                        events: events
+                    });
+                    console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+                })
             });
-            console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
-	    });
         });
     } else if (course.indexOf(course.length - 1) == '/') {
         res.redirect(req.url.substr(0, req.url.length - 1));
