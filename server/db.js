@@ -361,7 +361,7 @@ var parseEvents = function(events, ret, callback) {
 	} else {
 		Event.findById(events[i], function(err, event1) {
 			if (event1) {
-				ret1.push(event1.name);
+				ret1.push(event1);
 			} else {
 				ret1.push("");
 			}
