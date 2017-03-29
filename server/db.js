@@ -161,7 +161,7 @@ var classAddEventHelp = function(name, description, type, course, startTime, stu
 		name: name,
 		description: description,
 		type: type,
-		className: course,
+		className: course.name,
 		startTime: startTime,
 		students: []
 	});

@@ -299,12 +299,8 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
         req.session.lastCourse = course;
         db.getClass(course, function(course) {
 	        db.getClassGroups(course.name, function(groups) {
-                db.getEvents(course.name, function(events) {
+                db.getClassEvents(course.name, function(events) {
                     res.status(200);
-                    console.log(events);
-                    events.forEach(function(e) {
-                        e.course = course.name;
-                    })
                     console.log(events);
                     res.render('course', {
                         user: req.user,
