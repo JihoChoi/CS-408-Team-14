@@ -313,7 +313,7 @@ var eventAddStudent = function(email, event1, callback) {
 
 var eventAddStudentHelp = function(event1, student,callback) {
 	if(student.events.indexOf(event1._id) != -1) {
-		callback()
+		callback();
 	} else {
 	event1.students.push(student);
 	event1.save(function(err) {
@@ -364,6 +364,9 @@ var eventRemoveStudent = function(event1, email,callback) {
 };
 
 var eventRemoveStudentHelp = function(event1, student, callback) {
+	if(student.events.indexOf(event1._id) ==-1) {
+	callback();
+	} else {
 	event1.students.splice(event1.students.indexOf(student._id), 1);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -373,6 +376,7 @@ var eventRemoveStudentHelp = function(event1, student, callback) {
 		if(err) throw err;
 		callback();
 	});
+	}
 };
 
 //Usage: getUserEvents("student email", function(events){*whatever you want to do with the events*}) ***note that the item returned by this function is an array of event documents
