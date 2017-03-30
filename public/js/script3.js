@@ -15,8 +15,7 @@ function submit_create_rsvp() {
 
 
 
-    alert("Invite : " + invite + "\n" +
-        "Event Created Successfully...");
+    alert("Yes, Your going!");
 
     // check if it already exist
 
