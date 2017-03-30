@@ -639,7 +639,7 @@ var parseStudentFull = function(students, ret, callback) {
 		parseStudentFull(students, ret1, callback);
 	});
 	}
-}
+};
 
 var getClassEvents = function(courseName, callback) {
 	getClass(courseName, function(course) {
@@ -647,7 +647,7 @@ var getClassEvents = function(courseName, callback) {
 		parseEventFull(course.events, [], callback);
 		}
 	});
-}
+};
 
 var getClassGroups = function(courseName, callback) {
 	getClass(courseName, function(course) {
@@ -655,7 +655,7 @@ var getClassGroups = function(courseName, callback) {
 		parseGroupFull(course.subgroups, [], callback);
 		}
 	});
-}
+};
 
 var getClassStudents = function(courseName, callback) {
 	getClass(courseName, function(course) {
@@ -663,7 +663,15 @@ var getClassStudents = function(courseName, callback) {
 		parseStudentFull(course.students, [], callback);
 		}
 	});
-}
+};
+
+var getEventStudents = function(eventid, callback) {
+	Event.findById(eventid, function(err, event1) {
+		if(event1) {
+		parseStudentFull(event1.sutdents, [], callback);
+		}
+	});
+};
 
 var getEventName = function(eventName, callback) {
 	Event.findOne({name: eventName}, function(err, event1) {
@@ -733,5 +741,6 @@ getClassEvents,
 getClassGroups,
 getClassStudents,
 getEventName,
-getSummary
+getSummary,
+getEventStudents
 }; 
