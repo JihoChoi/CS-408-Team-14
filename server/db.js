@@ -668,7 +668,7 @@ var getClassStudents = function(courseName, callback) {
 var getEventStudents = function(eventid, callback) {
 	Event.findById(eventid, function(err, event1) {
 		if(event1) {
-		parseStudentFull(event1.sutdents, [], callback);
+		parseStudentFull(event1.students, [], callback);
 		}
 	});
 };
