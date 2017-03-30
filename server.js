@@ -110,7 +110,7 @@ function courseVerify(req, res, next) {
         } else {
             console.log('course ' + course + ' does not exist');
             res.status(404);
-            res.render('notfound', { url: req.url, layout: false });
+            //res.render('notfound', { url: req.url, layout: false });
             console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
             return;
         }
@@ -151,7 +151,7 @@ function eventCourseVerify(req, res, next) {
     } else {
         console.log('event ' + events + ' does not exist in class ' + course);
         res.status(404);
-        res.render('notfound', { url: req.url, layout: false });
+        //res.render('notfound', { url: req.url, layout: false });
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
         return;
     }
@@ -322,7 +322,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
         return;
     }
     res.status(404);
-    res.render('notfound', { url: req.url, layout: false });
+    //res.render('notfound', { url: req.url, layout: false });
     console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
@@ -351,7 +351,7 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
         res.redirect(req.url.substr(0, req.url.length - 1));
     } else {
         res.status(404);
-        res.render('notfound', { url: req.url, layout: false });
+        //res.render('notfound', { url: req.url, layout: false });
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     }
 });
@@ -551,7 +551,7 @@ app.get('/database_viewer', loginVerify, function(req, res) {
 // Send 404
 app.get('*', function(req, res) {
     res.status(404);
-    res.render('notfound', { url: req.url, layout: false });
+    //res.render('notfound', { url: req.url, layout: false });
     if (req.user) {
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     } else {
