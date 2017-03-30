@@ -88,8 +88,8 @@ function courseVerify(req, res, next) {
     if (course.indexOf('/') != -1) {
         course = course.substr(0, course.indexOf('/'));
     }
-    if (req.session.lastCourse)
-        course = req.session.lastCourse;
+    //if (req.session.lastCourse)
+        //course = req.session.lastCourse;
     // Check if course exists
     db.getClass(course, function(bool) {   
     if (Boolean(bool)) {
@@ -131,6 +131,26 @@ function groupVerify(req, res, next) {
         return;
     }
 };
+
+function eventCourseVerify(req, res, next) {
+    var course = req.url.substr(8);
+    if (course.indexOf('/') != -1) {
+        var events = course.substr(course.indexOf('/') + 7);
+        course = course.substr(0, course.indexOf('/'));
+        db.getClass(course, function (course) {
+            if (course.events.indexOf(events) != -1) {
+                next();
+                return;
+            }
+        });
+    } else {
+        console.log('event ' + events + ' does not exist in class ' + course);
+        res.status(404);
+        res.render('notfound', { url: req.url, layout: false });
+        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+        return;
+    }
+}
 
 /**
  * DIRECTORY NAVIGATION
@@ -200,15 +220,6 @@ app.get('/manageCourses', loginVerify, function(req, res) {
     })
 });
 
-// All events of user is in
-app.get('/events', loginVerify, function(req, res) {
-    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
-    res.status(200);
-    res.render('events', {
-        user: req.user
-    });
-});
-
 /* TODO might want to check if the course for the url is existing */
 /* in case of something like http://localhost:3000/course/notacourse */
 
@@ -225,7 +236,7 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
-app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
+app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     if (course.indexOf('/') != -1) {
         var evnt = course.substr(course.indexOf('/') + 7);
@@ -234,6 +245,8 @@ app.get('/course/*/event/*', loginVerify, courseVerify, function(req, res) {
         db.getClass(course, function(course) {
             db.getEvent(evnt, function(events) {
                 res.status(200);
+                console.log(course);
+                console.log(events);
                 res.render('events', {
                     user: req.user,
                     course: course,
