@@ -8,7 +8,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
 
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
-
+/*
  function liveTime() {
  var now = new Date();
  var year = now.getFullYear();
@@ -23,6 +23,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
  var semEnd = new Date(year, month, 28, 0,0,0,0);
  return parseInt((semEnd-now)/1000/60/60/24) + "d";
  }
+ */
  
 
 //Usage: createUser("student email", callback function);
@@ -76,7 +77,7 @@ var addClassHelp = function(name, semester, fullName, description, student,callb
 		events: [],
 		subgroups: []
 	});
-	course.ttl=liveTime();
+	//course.ttl=liveTime();
 	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
@@ -169,7 +170,7 @@ var classAddEventHelp = function(name, description, type, course, startTime, stu
 		startTime: startTime,
 		students: []
 	});
-	event.ttl=liveTime();
+	//event.ttl=liveTime();
 	event1.students.push(student);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -202,7 +203,7 @@ var classAddGroupHelp = function(name, course, student,callback) {
 		className: course.name,
 		students: []
 	});
-	group.ttl=liveTime();
+	//group.ttl=liveTime();
 	group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
@@ -467,7 +468,7 @@ var createInvite = function(targetEmail, group, student){
 			studentTo: toStudent,
 			studentFrom: student
 		});
-			invite.ttl=liveTime();
+			//invite.ttl=liveTime();
 		invite.save(function(err){
 			if(err) throw err;
 		});
@@ -755,7 +756,7 @@ module.exports = {
 	deleteCourse,
 	getUserCoursesFull,
 	classRemoveStudent,
-	liveTime,
+	//liveTime,
 	purgeCourse,
 //courseExists,
 	getAllCourses,
