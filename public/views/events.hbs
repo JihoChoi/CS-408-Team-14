@@ -69,17 +69,22 @@
                                     </span>
                                 </p>
                             </div>
+
+                            <form name="create-antirsvp-form" id="create-antirsvp-form" action="/remove-rsvp" method="post">
+                                <input type="hidden" name="invite2" id="invite2" value="{{evnt._id}}"/>
+                            </form>
                             <form name="create-rsvp-form" id="create-rsvp-form" action="/add-rsvp" method="post">
 
-                                <input type="hidden" name="invite" id="invite" value="{{evnt._id}}" />
+                                <input type="hidden" name="invite" id="invite" value="{{evnt._id}}"/>
 
-
+                            </form>
                             <div class="tab-pane fade in active" id="Schedule">
                                 <h4></h4>
-                                <a href="#" class="button" onclick="submit_create_rsvp()">RSVP for Event</a>
-                                <a href="#" class="button pull-right" onclick="alert('You have been removed from the Attendees List')">Remove my RSVP</a>
+                                <a href="#" onclick="submit_create_rsvp()">RSVP for Event</a>
+                                <a href="#" class="button pull-right" onclick="submit_remove_rsvp()">Remove my RSVP</a>
                             </div>
-                            </form>
+
+
                         </div>
                     </div>
                     <!-- /.panel-body -->

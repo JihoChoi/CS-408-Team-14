@@ -74,61 +74,15 @@ passport.deserializeUser(function(user, done) {
  */
 
 function loginVerify(req, res, next) {
-	if (req.user) {
-		next();
-	} else {
-		req.session.returnTo = req.url;
-		//console.log('Guest requested ' + req.url + ' without logging in.');
-		res.redirect('/login');
-	}
+	next();
 };
 
 function courseVerify(req, res, next) {
-    var course = req.url.substr(8);
-    if (course.indexOf('/') != -1) {
-        course = course.substr(0, course.indexOf('/'));
-    }
-    if (req.method == 'POST' && req.session.lastCourse)
-        course = req.session.lastCourse;
-    // Check if course exists
-    db.getClass(course, function(bool) {   
-    if (Boolean(bool)) {
-        if (req.user.courses.indexOf(course) < 0) {
-            req.session.attemptedURL = req.url;
-            res.redirect('/notpermitted');
-            return;
-        } else {
-            next();
-            return;
-        }
-    } else {
-        console.log('course ' + course + ' does not exist');
-        res.status(404);
-        res.render('notfound', { url: req.url, layout: false });
-        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
-        return;
-    }
-    });
+    next();
 };
 
 function groupVerify(req, res, next) {
-    var course = req.url.substr(8);
-    if (course.indexOf('/') != -1) {
-        var group = course.substr(course.indexOf('/'));
-        course = course.substr(0, course.indexOf('/'));
-        if (req.user.courses.indexOf(course) == -1) { 
-            req.session.attemptedURL = req.url;
-            res.redirect('/notpermitted');
-            return;
-        } else {
-            next();
-            return;
-        }
-    } else {
-        req.session.attemptedURL = req.url;
-        res.redirect('/notpermitted');
-        return;
-    }
+    next();
 };
 
 function eventCourseVerify(req, res, next) {
@@ -146,7 +100,6 @@ function eventCourseVerify(req, res, next) {
         console.log('event ' + events + ' does not exist in class ' + course);
         res.status(404);
         res.render('notfound', { url: req.url, layout: false });
-        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
         return;
     }
 }
@@ -169,25 +122,15 @@ app.get('/favicon.ico', function(req, res) {
 
 // Landing page
 app.get('/', function(req, res) {
-	if (req.user) {
         var allCourse;
         db.getAllCourses(function(allCourses) {
             console.log(req.user.subgroups);
             res.status(200);            
             res.render('dashboard', {
-                user: req.user,
-                courses: req.user.courses,
                 allcoursename: allCourses
             });
-            console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+            console.log('200'.green + ' ' + req.url);
         });
-	} else {
-        res.status(200);
-		res.render('index', {
-			layout: false
-		});
-		console.log('200'.green+ ' guest requested ' + req.url);
-	}
 });
 
 app.get('/index', function(req, res) {
@@ -212,11 +155,9 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 
 
         res.render('manageCourses', {
-            email: req.user.emails[0].value,
-            courses: req.user.courses,
             all_courses: all_courses,
         });
-        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+        console.log('200'.green + ' ' + req.url);
     })
 });
 
@@ -233,7 +174,7 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
         email: req.user.emails[0].value,
         courses: req.user.courses
     });
-    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    console.log('200'.green + ' ' + req.url);
 });
 
 app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, function(req, res) {
@@ -294,12 +235,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
                     user: req.user,
                     courses: req.user.courses,
                     subgroup: group,
-                    course: group.name,
-
-                    room: group.name || 'global' ,
-                    email: req.user.emails[0].value,
-                    chatserver: process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com'
-
+                    course: course
                 });
                 // console.log("this is course"+course);
                 console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
@@ -322,13 +258,11 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
                     res.status(200);
                     console.log(events);
                     res.render('course', {
-                        user: req.user,
-                        courses: req.user.courses,
                         course: course,
                         groups: groups,
                         events: events
                     });
-                    console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+                    console.log('200'.green + ' ' + req.url);
                 })
             });
         });
@@ -337,7 +271,6 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     } else {
     	res.status(404);
     	res.render('notfound', { url: req.url, layout: false });
-        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     }
 });
 
@@ -456,13 +389,13 @@ app.post('/decline-invite', loginVerify, function(req, res) {
 
 app.post('/add-rsvp', loginVerify, function(req, res) {
     db.eventAddStudent(req.user.emails[0].value, req.body.invite,
-        function() {res.redirect(req.session.eventurl)}
+        function() {res.redirect('/' + req.session.eventurl)}
     );
 })
 
 app.post('/remove-rsvp', loginVerify, function(req, res) {
     db.eventRemoveStudent(req.user.emails[0].value, req.body.invite,
-        function() {res.redirect(req.session.eventurl)}
+        function() {res.redirect('/' + req.session.eventurl)}
     );
 })
 
