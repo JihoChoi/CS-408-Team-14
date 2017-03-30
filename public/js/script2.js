@@ -21,6 +21,11 @@ function submit_create_event() {
     var eventDes = document.forms["create-event-form"]["eventDes"].value;
     var courseName = document.forms["create-event-form"]["courseName"].value;
 
+    if (eventName.length == 0 || eventName.length == 0 || eventDes.length == 0 || courseName.length == 0) {
+        alert("Please fill out all entries!"){
+            return;
+        }
+    }
 
 
     alert("Event : " + eventName + "\n" +
