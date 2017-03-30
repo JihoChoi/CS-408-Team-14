@@ -330,8 +330,8 @@ var groupRemoveStudent = function(group, email,callback) {
 		Group.findById(group, function(err, group1) {
 			if(group1 && student) {
 			groupRemoveStudentHelp(group1,student,callback);
-			});
-		}
+			}
+		});
 	});
 };
 
@@ -355,7 +355,7 @@ var eventRemoveStudent = function(event1, email,callback) {
 		if(event2 && student) {
 		eventRemoveStudentHelp(event2,student,callback);
 		}
-		}
+		});
 	});
 };
 
