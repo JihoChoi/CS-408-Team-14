@@ -349,12 +349,12 @@ app.get('/chat*', loginVerify, function(req, res) {
 		layout: false,
 		room: url || 'global',
 		email: req.user.emails[0].value,
-		chatserver: process.env.CHATSERVER
+		chatserver: process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com'
 	});
 });
 
 app.get('/socket.io/*', function(req, res) {
-	res.redirect(301, process.env.CHATSERVER + req.url);
+	res.redirect(301, (process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com') + req.url);
 });
 
 app.get('/notpermitted', function(req, res) {
