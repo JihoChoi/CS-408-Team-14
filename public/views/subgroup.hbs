@@ -8,27 +8,10 @@
         <!--<h1 class="page-header"></h1>-->
         <h1 class="page-header"> {{subgroup.name}} <button class="pull-right" style="background-color: #bcddff;border: none;font-size: large" onclick=location.href="/course/{{course.name}}/invite">Invite Member</button></h1>
 
-
         <!-- /.col-lg-12 -->
     </div>
     <!-- /.row -->
 
-
-
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i>
-                    <button style="background-color: #bcddff;border: none;font-size: large" onclick="location.href='/invite-group'">Invite Member</button>
-                </div>
-                <!-- /.panel-heading -->
-                <!-- /.panel-body -->
-            </div>
-            <!-- /.panel -->
-        </div>
-
-    </div>
 
 
     <div class="row">
@@ -89,15 +72,22 @@
         </div>
 
         <div class="col-lg-4">
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>
+                    <button style="background-color: #bcddff;border: none;font-size: large" onclick="location.href='/invite-group'">Invite Member</button>
+                </div>
+            </div>
+
+
+
+
             <!-- Events -->
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <i class="fa fa-bell fa-fw"></i> Events
-
-                    <!--<a href="/createEvent">-->
-                    <!--<span class="pull-right" type="button" onclick="alert('Create Event Page')">Create Event</span>-->
-                    <!--</a>-->
-
+                    <i class="fa fa-bell fa-fw"></i> Members
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body" style="height:200px;overflow:auto;">
@@ -108,39 +98,14 @@
                     <!--</script>-->
 
 
-                    {{# each user.events}}
+                    {{# each user.subgroups}}
                         {{#if this}}
                             <a href="#" class="list-group-item">
-                                <i class="fa fa-tasks fa-fw"></i> {{this.name}}
-                                <span class="pull-right text-muted small"><em>{{this.starttime}}</em></span>
+                                <i class="fa fa-tasks fa-fw"></i> {{this}}
                             </a>
                         {{/if}}
                     {{/each}}
 
-
-                </div>
-            </div>
-
-            <!-- Subgroups -->
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-globe fa-fw"></i> Subgroups
-                    <!--<a href="/addSubgroup">-->
-                    <!--<span class="pull-right" type="button" onclick="alert('Add Subgroup Page')">Create Subgroup</span>-->
-                    <!--</a>-->
-
-
-                </div>
-                <!-- /.panel-heading -->
-                <div class="panel-body" style="height:200px;overflow:auto;">
-
-                    {{# each user.subgroups }}
-                        {{#if this}}
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> {{this.name}}
-                            </a>
-                        {{/if}}
-                    {{/each}}
 
                 </div>
             </div>
