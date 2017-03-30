@@ -80,16 +80,16 @@ function submit_create_subgroup() {
         return;
     }
 
-
     if ( subgroupname.indexOf(' ') >= 0 ) {
         alert("You cannot include space to subgroup name!\n");
         return;
     }
 
     if (confirm("Do you want to create "+subgroupname+"?") == true) {
-        alert("You created "+subgroupname+"!");
+        alert("You created " + subgroupname + "!");
         document.getElementById("create-subgroup-form").submit();
     }
+
 
 
 }
@@ -240,6 +240,7 @@ function add_post() {
     }
 
 }
+
 // header and navigation bar
 /*
 document.getElementById("header-navigation-bar").innerHTML = 
