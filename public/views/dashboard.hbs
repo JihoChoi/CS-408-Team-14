@@ -166,7 +166,7 @@
 
                     {{# each user.events}}
                         {{#if this}}
-                            <a href="#" class="list-group-item">
+                            <a href="/course/{{this.className}}/event/{{this._id}}" class="list-group-item">
                                 <i class="fa fa-tasks fa-fw"></i> {{this.name}}
                                 <span class="pull-right text-muted small"><em>{{this.startTime}}</em></span>
                             </a>

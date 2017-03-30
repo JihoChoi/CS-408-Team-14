@@ -111,7 +111,6 @@ function courseVerify(req, res, next) {
     });
 };
 
-// /course/[coursename]/[groupname]
 function groupVerify(req, res, next) {
     var course = req.url.substr(8);
     if (course.indexOf('/') != -1) {
