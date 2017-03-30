@@ -312,6 +312,9 @@ var eventAddStudent = function(email, event1, callback) {
 };
 
 var eventAddStudentHelp = function(event1, student,callback) {
+	if(student.events.indexOf(event1._id) != -1) {
+		callback()
+	} else {
 	event1.students.push(student);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -321,6 +324,7 @@ var eventAddStudentHelp = function(event1, student,callback) {
 		if(err) throw err;
 		callback();
 	});
+	}
 };
 
 //Usage: groupRemoveStudent(Group document, "student email")
