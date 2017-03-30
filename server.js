@@ -268,7 +268,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
     var course = req.url.substr(8);
     console.log('course: ' + course);
     if (course.indexOf('/') != -1) {
-        var subgroup = course.substr(course.indexOf('/'));
+        var subgroup = course.substr(course.indexOf('/') + 1);
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
         console.log('subgroup: ' + subgroup);
