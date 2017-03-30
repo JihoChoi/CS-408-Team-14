@@ -183,14 +183,21 @@ function create_request_prompt(all_courses) {
     console.log("   semester         " + semester);
     console.log("   description      " + description);
 
-    if ( course_name != course_name.toUpperCase() ) {
-        alert("course name cannot contain lowercase!");
+
+    if ( course_name.indexOf(' ') >= 0 ) {
+        alert("Course name cannot contain space!\n");
+        return;
+    }
+   if ( course_name != course_name.toUpperCase() ) {
+        alert("Course name cannot contain lowercase!");
         return;
     }
     // if( !parseInt(course_name) ) {
     //     alert("course name should contain number!");
     //     return
     // }
+
+
 
     // checking if courses already joined
     var json = [];
