@@ -300,26 +300,31 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
         console.log('subgroup: ' + subgroup);
         console.log('user: ' + req.user.emails[0].value);
         db.getGroup(subgroup, function(group) {
+            if (group) {
             // group.sort();
-            db.getClass(course, function(course) {
-                res.status(200);
-                var chat_domain = course.name + "_" + group.name;
-
-                res.render('subgroup', {
-                    user: req.user,
-                    courses: req.user.courses,
-                    subgroup: group,
-                    course: course,
-                    chat_domain:chat_domain,
-
-                    // room: group.name || 'global' ,
-                    room: chat_domain || 'global' ,
-                    email: req.user.emails[0].value,
-                    chatserver: process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com'
+                db.getClass(course, function(course) {
+                    res.status(200);
+                    var chat_domain = course.name + "_" + group.name;
+                    res.render('subgroup', {
+                        user: req.user,
+                        courses: req.user.courses,
+                        subgroup: group,
+                        course: course,
+                        chat_domain:chat_domain,
+    
+                        // room: group.name || 'global' ,
+                        room: chat_domain || 'global' ,
+                        email: req.user.emails[0].value,
+                        chatserver: process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com'
+                    });
+                    // console.log("this is course"+course);
+                    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
                 });
-                // console.log("this is course"+course);
-                console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
-            });
+            } else {
+                res.status(404);
+                res.render('notfound', { url: req.url, layout: false });
+                console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+            }
         });
         return;
     }
