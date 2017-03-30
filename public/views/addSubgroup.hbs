@@ -27,7 +27,7 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-lg-6">
-                                <form action="/create-subgroup" method="post">
+                                <form name="create-subgroup-form" id="create-subgroup-form" action="/create-subgroup" method="post">
                                     <script>
                                         function submit_create_subgroup() {
                                             var subName = document.forms["create-subgroup-form"]["subName"].value;
@@ -44,13 +44,13 @@
                                     <div class="form-group">
                                         <label>Subgroup Name</label>
                                         <input class="form-control" id="subName" name="subName" placeholder="CS381-Thursday, MATH252-kewlKids">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Invite Member</label>
-                                        <input class="form-control" id="addStudent" name="addStudent" placeholder="dvalenti@purdue.edu">
-                                    </div>
+                                    <!--</div>-->
+                                    <!--<div class="form-group">-->
+                                        <!--<label>Invite Member</label>-->
+                                        <!--<input class="form-control" id="addStudent" name="addStudent" placeholder="dvalenti@purdue.edu">-->
+                                    <!--</div>-->
 
-                                    <button type="submit" class="btn btn-default">Create Subgroup</button>
+                                    <button type="button" class="btn btn-default" onclick="submit_create_subgroup()">Create Subgroup</button>
                                     <button type="reset" class="btn btn-default">Cancel</button>
                                 </form>
                             </div>

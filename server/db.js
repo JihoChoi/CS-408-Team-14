@@ -359,7 +359,7 @@ var eventRemoveStudent = function(event1, email,callback) {
 	});
 };
 
-var eventRemoveStudentHelp = function(event1, student) {
+var eventRemoveStudentHelp = function(event1, student, callback) {
 	event1.students.splice(event1.students.indexOf(student._id), 1);
 	event1.save(function(err) {
 		if(err) throw err;

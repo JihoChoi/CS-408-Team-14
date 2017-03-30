@@ -59,9 +59,12 @@ passport.deserializeUser(function(user, done) {
             user.courses = courses.sort();
             db.getUserEvents(user.emails[0].value, function(events) {
                 user.events = events;
-                db.getUserInvites(user.emails[0].value, function(invites) {
-                    user.invites = invites;
-                    done(null, user);
+                db.getSummary(user.emails[0].value, function (summary) {
+                    user.summary = summary;
+                    db.getUserInvites(user.emails[0].value, function(invites) {
+                        user.invites = invites;
+                        done(null, user);
+                    });
                 });
             });
         });
@@ -461,7 +464,7 @@ app.post('/add-rsvp', loginVerify, function(req, res) {
 })
 
 app.post('/remove-rsvp', loginVerify, function(req, res) {
-    db.eventRemoveStudent(req.user.emails[0].value, req.body.invite,
+    db.eventRemoveStudent( req.body.invite, req.user.emails[0].value,
         function() {res.redirect(req.session.eventurl)}
     );
 })

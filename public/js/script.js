@@ -15,6 +15,8 @@ console.log("========================");
 
 
 
+
+
 // #################################################
 // Layout
 // #################################################
@@ -47,6 +49,12 @@ function setting_popup() {
 
 }
 
+
+
+
+
+
+
 function countCourse(allcoursename) {
 
     console.log(allcoursename);
@@ -60,6 +68,32 @@ function countCourse(allcoursename) {
     document.getElementById("count").innerHTML = 5 + 6;
 
 }
+
+
+
+function submit_create_subgroup() {
+
+    var subgroupname = document.forms["create-subgroup-form"]["subName"].value;
+
+    if (subgroupname.length == 0) {
+        alert("Please input a subgroup name!\n");
+        return;
+    }
+
+
+    if ( subgroupname.indexOf(' ') >= 0 ) {
+        alert("You cannot include space to subgroup name!\n");
+        return;
+    }
+
+    if (confirm("Do you want to create "+subgroupname+"?") == true) {
+        alert("You created "+subgroupname+"!");
+        document.getElementById("create-subgroup-form").submit();
+    }
+
+
+}
+
 
 
 // #################################################
