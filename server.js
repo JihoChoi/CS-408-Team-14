@@ -88,8 +88,8 @@ function courseVerify(req, res, next) {
     if (course.indexOf('/') != -1) {
         course = course.substr(0, course.indexOf('/'));
     }
-    //if (req.session.lastCourse)
-        //course = req.session.lastCourse;
+    if (req.method == 'POST' && req.session.lastCourse)
+        course = req.session.lastCourse;
     // Check if course exists
     db.getClass(course, function(bool) {   
     if (Boolean(bool)) {
@@ -401,19 +401,18 @@ app.post('/join-class', loginVerify, function(req, res) {
 app.post('/delete-course', loginVerify, function(req, res) {
     db.classRemoveStudent(
         req.body.delete_course_name,
-        req.user.emails[0].value
-
+        req.user.emails[0].value,
+        res.redirect('/')
     );
-    res.redirect('/')
 });
 
 app.post('/create-subgroup', loginVerify, courseVerify, function(req, res) {
     db.classAddGroup(
         req.body.subName,
         req.session.lastCourse,
-        req.user.emails[0].value
+        req.user.emails[0].value,
+        res.redirect('/course/' + req.session.lastCourse)
     );
-    res.redirect('/course/' + req.session.lastCourse);
 });
 
 app.post('/create-event', loginVerify, courseVerify, function(req, res) {
@@ -425,24 +424,24 @@ app.post('/create-event', loginVerify, courseVerify, function(req, res) {
         req.body.eventLocation,
         req.body.courseName,
         req.body.eventDate,
-        req.user.emails[0].value
+        req.user.emails[0].value,
+        res.redirect('/course/' + req.session.lastCourse)
     );
-    res.redirect('/course/' + req.session.lastCourse );
 });
 
 app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
     db.getStudent(req.user.emails[0].value, function(student) {
         db.createInvite(
             req.body.invited,
-            req.body.group
+            req.body.group,
+            res.redirect('/')
         );
     });
-    res.redirect('/');
 })
 
 app.post('/accept-invite', loginVerify, function(req, res) {
     db.acceptInvite(req.body.invite);
-    res.reidrect('/');
+    res.redirect('/');
 })
 
 app.post('/decline-invite', loginVerify, function(req, res) {
