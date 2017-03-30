@@ -242,6 +242,7 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
         var evnt = course.substr(course.indexOf('/') + 7);
         course = course.substr(0, course.indexOf('/'));
         req.session.lastCourse = course;
+        req.session.eventurl = req.url;
         db.getClass(course, function(course) {
             db.getEvent(evnt, function(events) {
                 res.status(200);
@@ -387,7 +388,6 @@ app.post('/create-course', loginVerify, function(req, res) {
 });
 
 app.post('/join-class', loginVerify, function(req, res) {
-
     console.log("join course request with course name: " + req.body.join_course_name)
     db.classAddStudent(
         req.body.join_course_name,
@@ -450,14 +450,14 @@ app.post('/decline-invite', loginVerify, function(req, res) {
 });
 
 app.post('/add-rsvp', loginVerify, function(req, res) {
-    db.eventAddStudent(req.body.invite, req.user.emails[0].value,
-        function() {res.redirect('/')}
+    db.eventAddStudent(req.user.emails[0].value, req.body.invite,
+        function() {res.redirect('/' + req.session.eventurl)}
     );
 })
 
 app.post('/remove-rsvp', loginVerify, function(req, res) {
-    db.eventRemoveStudent(req.body.invite, req.user.emails[0].value,
-        function() {res.redirect('/')}
+    db.eventRemoveStudent(req.user.emails[0].value, req.body.invite,
+        function() {res.redirect('/' + req.session.eventurl)}
     );
 })
 
