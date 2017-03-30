@@ -62,7 +62,7 @@ passport.deserializeUser(function(user, done) {
                 db.getUserEvents(user.emails[0].value, function(events) {
                     user.events = events;
                     db.getSummary(user.emails[0].value, function (summary) {
-                        user.summary = summary;
+                        user.summary = ["No posts yet! Try joining some classes!"];
                         db.getUserInvites(user.emails[0].value, function(invites) {
                             user.invites = invites;
                             done(null, user);

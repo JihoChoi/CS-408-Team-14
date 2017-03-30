@@ -42,20 +42,18 @@
                         </div>
                         <div class="col-xs-9 text-right">
 
-                            <div class="huge" >{{allcoursename.length}}</div>
+                            <div class="huge" >0</div>
 
                             <div>Join Existing Courses!</div>
 
                         </div>
                     </div>
                 </div>
-                <a href="/manageCourses">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
-                </a>
             </div>
         </div>
 
@@ -75,13 +73,11 @@
                         </div>
                     </div>
                 </div>
-                <a href="/manageCourses">
                     <div class="panel-footer">
                         <span class="pull-left">Add Courses</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                         <div class="clearfix"></div>
                     </div>
-                </a>
             </div>
         </div>
         <!--<div class="col-lg-3 col-md-6">-->
@@ -167,7 +163,7 @@
                     {{# each user.events}}
                         {{#if this}}
                             <a href="/course/{{this.className}}/event/{{this._id}}" class="list-group-item">
-                                <i class="fa fa-tasks fa-fw"></i> {{this.name}}
+                                <i class="fa fa-tasks fa-fw"></i> {{this}}
                                 <span class="pull-right text-muted small"><em>{{this.startTime}}</em></span>
                             </a>
                         {{/if}}
