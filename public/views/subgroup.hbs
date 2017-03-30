@@ -6,7 +6,7 @@
 
 
         <!--<h1 class="page-header"></h1>-->
-        <h1 class="page-header"> {{subgroup.name}}</h1>
+        <h1 class="page-header">{{course.name}} {{subgroup.name}} </h1>
 
         <!-- /.col-lg-12 -->
     </div>
@@ -21,13 +21,12 @@
             <form id="post-note-form" name="post-note-form" action="/create-post" method="post">
                 <div class="panel panel-default" >
                     <div class="panel-heading">
-                        <i class="fa fa-bar-chart-o fa-fw"></i> Chat
+                        <i class="fa fa-bar-chart-o fa-fw"></i> Chat: {{chat_domain}}
                     </div>
                     <!-- /.panel-heading -->
                     <div id="chat-div" class="panel-body" style="height:500px;overflow:auto;">
 
                         <ul id="messages"></ul>
-
 
                         <script src="{{{chatserver}}}/socket.io/socket.io.js">var io = require('socket.io-client')</script>
                         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
