@@ -248,16 +248,19 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
         req.session.eventurl = req.url;
         db.getClass(course, function(course) {
             db.getEvent(evnt, function(events) {
-                res.status(200);
-                console.log(course);
-                console.log(events);
-                res.render('events', {
-                    user: req.user,
-                    course: course,
-                    evnt: events
-                });
-                console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
-                return;
+                db.getEventStudents(events._id, function(students) {
+                    res.status(200);
+                    console.log(course);
+                    console.log(events);
+                    res.render('events', {
+                        user: req.user,
+                        course: course,
+                        evnt: events,
+                        students: students
+                    });
+                    console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+                    return;
+                }
             });
         });
     } else {
