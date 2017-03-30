@@ -280,7 +280,11 @@ var getGroups = function(className, callback) {
 //Add a new student to a group
 var groupAddStudent = function(email, group) {
 	getStudent(email,function(student){
-		groupAddStudentHelp(student,group);
+		Group.findById(group, function(err,group1) {
+			if(student && group1) {
+				groupAddStudentHelp(student,group1);
+			}
+		}
 	});
 };
 
@@ -299,7 +303,11 @@ var groupAddStudentHelp = function(student, group) {
 //Add a new student to an Event
 var eventAddStudent = function(email, event1, callback) {
 	getStudent(email,function(student){
-		eventAddStudentHelp(event1,student,callback);
+		Event.findById(event1, function(err, event2) {
+			if(student && event2) {
+			eventAddStudentHelp(event1,student,callback);
+			}
+		});
 	});
 };
 
@@ -670,7 +678,7 @@ var getSummaryHelp = function(courses, ret, callback, i) {
 		callback(ret);
 	} else {
 	Class.findById(courses[i], function(err, course) {
-		if(course) {
+		if(course && course.posts.length > 0) {
 			ret.push(course.name + ": " + course.posts[course.posts.length-1]);
 		}
 		getSummaryHelp(courses, ret1, callback, i+1);
