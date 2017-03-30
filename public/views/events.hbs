@@ -24,7 +24,7 @@
     <div id="page-wrapper">
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Name</h1>
+                <h1 class="page-header">{{evnt.name}}</h1>
             </div>
             <!-- /.col-lg-12 -->
         </div>
@@ -56,20 +56,16 @@
                         <div class="tab-content">
                             <div class="tab-pane fade" id="home">
                                 <h4>About Event</h4>
-                                <p>Need to Add title</p>
+                                <p>{{evnt.description}}</p>
                             </div>
                             <div class="tab-pane fade" id="Links">
                                 <h4>Specifics</h4>
                                 <p>Where:
-                                    <span class="pull-right"><em>Add Location</em>
+                                    <span class="pull-right"><em>{{evnt.type}}</em>
                                     </span>
                                 </p>
                                 <p>When:
-                                    <span class="pull-right"><em>Add Date</em>
-                                    </span>
-                                </p>
-                                <p>Additional Info:
-                                    <span class="pull-right"><em>Add Description</em>
+                                    <span class="pull-right"><em>{{evnt.startTime}}</em>
                                     </span>
                                 </p>
                             </div>
