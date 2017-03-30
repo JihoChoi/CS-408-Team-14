@@ -15,7 +15,7 @@ function submit_create_rsvp() {
 
 
 
-    alert("Yes, Your going!");
+    alert("Yes, you are going!");
 
     // check if it already exist
 

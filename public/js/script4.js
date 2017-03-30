@@ -14,7 +14,7 @@ function submit_remove_rsvp() {
     // var eventHour = document.forms["create-event-form"]["eventHour"].value;
 
 
-    alert("Okay, You are not going!");
+    alert("Okay, you are not going!");
 
     // check if it already exist
 
