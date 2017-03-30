@@ -180,17 +180,6 @@
                 {{/each}}
 
 
-
-                <!--<a href="#" class="list-group-item">-->
-                    <!--<i class="fa fa-tasks fa-fw"></i> Temporal Study Session-->
-                    <!--<span class="pull-right text-muted small"><em>Tuesday 6:00 P.M.</em></span>-->
-                <!--</a>-->
-                <!--<a href="#" class="list-group-item">-->
-                    <!--<i class="fa fa-bolt fa-fw"></i> Temporal Second Exam-->
-                    <!--<span class="pull-right text-muted small"><em>Wednesday 8:30 P.M.</em>-->
-                                        <!--</span>-->
-                <!--</a>-->
-
             </div>
         </div>
 
@@ -205,12 +194,12 @@
             <!-- /.panel-heading -->
             <div class="panel-body" style="height:200px;overflow:auto;">
 
-                {{course.group}}
 
-                {{course.group}}
-                {{# each course.group }}
+
+
+                {{# each groups }}
                     {{#if this }}
-                        <a href="#" class="list-group-item">
+                        <a href="/course/{{this.className}}/{{this.name}}" class="list-group-item">
                             <i class="fa fa-comment fa-fw"></i> {{this.name}}
                         </a>
                     {{/if}}
