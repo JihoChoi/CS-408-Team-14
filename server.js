@@ -260,7 +260,7 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
                     });
                     console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
                     return;
-                }
+                });
             });
         });
     } else {
