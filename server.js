@@ -52,7 +52,9 @@ app.use(passport.session());
 passport.serializeUser(function(user, done) {
   	done(null, user);
 });
+
 passport.deserializeUser(function(user, done) {
+db.enrollUser(user.emails[0].value, function() {
     db.getUserGroups(user.emails[0].value, function(groups) {
         user.subgroups = groups;
         db.getUserCourses(user.emails[0].value, function(courses) {
@@ -68,6 +70,7 @@ passport.deserializeUser(function(user, done) {
                 });
             });
         });
+    });
     });
 });
 
