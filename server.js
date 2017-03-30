@@ -234,14 +234,16 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
     var course = req.url.substr(8);
     course = course.substr(0, course.indexOf('/'));
     req.session.lastCourse = course;
-    res.status(200);
-
-    res.render('addSubgroup', {
-        email: req.user.emails[0].value,
-        courses: req.user.courses
+    db.getClassGroups(course, function(groups) {
+        console.log(groups);
+        res.status(200);
+        res.render('addSubgroup', {
+            email: req.user.emails[0].value,
+            courses: req.user.courses,
+            groups: groups
+        });
+        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
     });
-
-    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
 app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, function(req, res) {
@@ -346,7 +348,6 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
                         user: req.user,
                         courses: req.user.courses,
                         course: course,
-                        groups: req.user.subgroups,
                         groups: groups,
                         events: events
                     });
