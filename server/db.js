@@ -327,7 +327,11 @@ var eventAddStudentHelp = function(event1, student,callback) {
 //Remove a student from a group
 var groupRemoveStudent = function(group, email,callback) {
 	getStudent(email,function(student){
-		groupRemoveStudentHelp(group,student,callback);
+		Group.findById(group, function(err, group1) {
+			if(group1 && student) {
+			groupRemoveStudentHelp(group1,student,callback);
+			}
+		}
 	});
 };
 
@@ -347,7 +351,11 @@ var groupRemoveStudentHelp = function(group, student,callback) {
 //Remove a student from an event
 var eventRemoveStudent = function(event1, email,callback) {
 	getStudent(email,function(student){
-		eventRemoveStudentHelp(event1,student,callback);
+		Event.findById(event1, function(err, event2) {
+		if(event2 && student) {
+		eventRemoveStudentHelp(event2,student,callback);
+		}
+		}
 	});
 };
 
