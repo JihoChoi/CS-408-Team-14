@@ -284,7 +284,7 @@ var groupAddStudent = function(email, group) {
 			if(student && group1) {
 				groupAddStudentHelp(student,group1);
 			}
-		}
+		});
 	});
 };
 
