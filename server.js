@@ -232,12 +232,10 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
     course = course.substr(0, course.indexOf('/'));
     req.session.lastCourse = course;
     res.status(200);
-    db.getGroup(subgroup, function(group) {
 
-        res.render('addSubgroup', {
-            email: req.user.emails[0].value,
-            courses: req.user.courses
-        });
+    res.render('addSubgroup', {
+        email: req.user.emails[0].value,
+        courses: req.user.courses
     });
 
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
