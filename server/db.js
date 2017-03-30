@@ -24,6 +24,7 @@ var ObjectId = require('mongoose').Types.ObjectId;
  return parseInt((semEnd-now)/1000/60/60/24) + "d";
  }
  */
+ 
 
 //Usage: createUser("student email", callback function);
 //Cretes a user and adds it to the database. Mostly a helper function. Use at your own discretion
@@ -76,7 +77,7 @@ var addClassHelp = function(name, semester, fullName, description, student,callb
 		events: [],
 		subgroups: []
 	});
-//	course.ttl=liveTime();
+	//course.ttl=liveTime();
 	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
@@ -203,7 +204,7 @@ var classAddGroupHelp = function(name, course, student,callback) {
 		students: []
 	});
 	//group.ttl=liveTime();
-	group.students.push(student);
+	//group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
 	});
@@ -467,7 +468,7 @@ var createInvite = function(targetEmail, group, student){
 			studentTo: toStudent,
 			studentFrom: student
 		});
-		//	invite.ttl=liveTime();
+			//invite.ttl=liveTime();
 		invite.save(function(err){
 			if(err) throw err;
 		});
@@ -722,6 +723,12 @@ var getSummaryHelp = function(courses, ret, callback, i) {
 	}
 };
 
+var eventGetStudentsWrong = function(event1, callback) {
+	Event.findById(event1, function(err, event2) {
+		callback(event2.students);
+	});
+};
+
 
 module.exports = {
 	createUser,
@@ -752,7 +759,7 @@ module.exports = {
 	deleteCourse,
 	getUserCoursesFull,
 	classRemoveStudent,
-//liveTime,
+	//liveTime,
 	purgeCourse,
 //courseExists,
 	getAllCourses,
@@ -762,5 +769,6 @@ module.exports = {
 	getClassStudents,
 	getEventName,
 	getSummary,
-	getEventStudents
+	getEventStudents,
+	eventGetStudentsWrong
 }; 

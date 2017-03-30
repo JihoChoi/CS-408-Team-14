@@ -62,7 +62,7 @@ passport.deserializeUser(function(user, done) {
                 db.getUserEvents(user.emails[0].value, function(events) {
                     user.events = events;
                     db.getSummary(user.emails[0].value, function (summary) {
-                        user.summary = summary;
+                        user.summary = ["No posts yet! Try joining some classes!"];
                         db.getUserInvites(user.emails[0].value, function(invites) {
                             user.invites = invites;
                             done(null, user);
@@ -110,7 +110,7 @@ function courseVerify(req, res, next) {
         } else {
             console.log('course ' + course + ' does not exist');
             res.status(404);
-            res.render('notfound', { url: req.url, layout: false });
+            //res.render('notfound', { url: req.url, layout: false });
             console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
             return;
         }
@@ -151,7 +151,7 @@ function eventCourseVerify(req, res, next) {
     } else {
         console.log('event ' + events + ' does not exist in class ' + course);
         res.status(404);
-        res.render('notfound', { url: req.url, layout: false });
+        //res.render('notfound', { url: req.url, layout: false });
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
         return;
     }
@@ -253,7 +253,7 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
         req.session.eventurl = req.url;
         db.getClass(course, function(course) {
             db.getEvent(evnt, function(events) {
-                db.getEventStudents(events._id, function(students) {
+                db.eventGetStudentsWrong(events._id, function(students) {
                     res.status(200);
                     console.log(course);
                     console.log(events);
@@ -307,13 +307,13 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
 
                 res.render('subgroup', {
                     user: req.user,
-                    courses: req.user.courses,
+                    //courses: req.user.courses,
                     subgroup: group,
                     course: course,
                     chat_domain:chat_domain,
 
                     // room: group.name || 'global' ,
-                    room: chat_domain || 'global' ,
+                    room: course.name || 'global' ,
                     email: req.user.emails[0].value,
                     chatserver: process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com'
                 });
@@ -324,7 +324,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
         return;
     }
     res.status(404);
-    res.render('notfound', { url: req.url, layout: false });
+    //res.render('notfound', { url: req.url, layout: false });
     console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
@@ -353,7 +353,7 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
         res.redirect(req.url.substr(0, req.url.length - 1));
     } else {
         res.status(404);
-        res.render('notfound', { url: req.url, layout: false });
+        //res.render('notfound', { url: req.url, layout: false });
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     }
 });
@@ -530,10 +530,15 @@ app.get('/register', function(req, res) {
 
 // Logout attempt
 app.get('/logout', function(req, res) {
-    req.logout();
+    //req.logout();
     res.redirect('/');
 });
 
+// Logout attempt two
+app.get('/logout22', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
 
 /**
  * DEVELOPER SECRET PAGES
@@ -553,7 +558,7 @@ app.get('/database_viewer', loginVerify, function(req, res) {
 // Send 404
 app.get('*', function(req, res) {
     res.status(404);
-    res.render('notfound', { url: req.url, layout: false });
+    //res.render('notfound', { url: req.url, layout: false });
     if (req.user) {
         console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     } else {
