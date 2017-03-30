@@ -6,7 +6,7 @@
 
 
         <!--<h1 class="page-header"></h1>-->
-        <h1 class="page-header"> {{subgroup.name}} <button class="pull-right" style="background-color: #bcddff;border: none;font-size: large" onclick=location.href="/course/{{course.name}}/invite">Invite Member</button></h1>
+        <h1 class="page-header"> {{subgroup.name}}</h1>
 
         <!-- /.col-lg-12 -->
     </div>
@@ -47,7 +47,6 @@
                                 });
                             });
                         </script>
-                        <ul id="messages"></ul>
 
                         <!-- /.row -->
                     </div>
@@ -56,7 +55,7 @@
                     <div class="panel-footer">
                         <div class="input-group">
                             <form action="">
-                                <input id="m" name="text_input" type="text" class="form-control input-sm" autocomplete="off" /><span class="input-group-btn"><button class="btn btn-warning btn-sm" id="btn-chat" >Send</button>                            </span>
+                                <input id="m" name="text_input" type="text" class="form-control input-sm" autocomplete="off" /><span class="input-group-btn"><button class="btn btn-warning btn-sm" id="btn-chat" >Send</button></span>
 
                             </form>
 
@@ -74,12 +73,34 @@
         <div class="col-lg-4">
 
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <i class="fa fa-bar-chart-o fa-fw"></i>
-                    <button style="background-color: #bcddff;border: none;font-size: large" onclick="location.href='/invite-group'">Invite Member</button>
-                </div>
-            </div>
+            <!--<div class="panel panel-default">-->
+                <!--<div class="panel-heading">-->
+
+                    <!--<form id="brute-force-invite-form" name="brute-force-invite-form" action="/delete-course" method="post" onsubmit="alert({{ this }} + ' course deleted!')">-->
+                        <!--&lt;!&ndash;<form name="delete-course-form" onsubmit="deleteCourse()">&ndash;&gt;-->
+
+                        <!--<div class="form-group">-->
+                            <!--<label>Invite Classmate to the Subgroup</label>-->
+                            <!--&lt;!&ndash; todo change delete course to delete course for that user &ndash;&gt;-->
+                            <!--<input type="hidden" id="myemail" name="myemail" value="{{user.emails.value}}" />-->
+
+                            <!--<select multiple class="form-control" id="invite_email" name="invite_email">-->
+                                <!--{{# each course.emails }}-->
+                                    <!--{{#if this }}-->
+                                        <!--<option value="{{ this }}">{{ this }}</option>-->
+                                        <!--&lt;!&ndash;<option value="{{ this.semester }}">{{ this.semester }}</option>&ndash;&gt;-->
+                                    <!--{{/if}}-->
+                                <!--{{/each}}-->
+                            <!--</select>-->
+                        <!--</div>-->
+
+                        <!--<button type="button" class="btn btn-default" onclick="brute_force_invite_group()">Invite</button>-->
+                        <!--<button type="reset" class="btn btn-default">Cancel</button>-->
+                    <!--</form>-->
+
+                    <!--&lt;!&ndash;<i class="fa fa-bar-chart-o fa-fw"></i>&ndash;&gt;-->
+                <!--</div>-->
+            <!--</div>-->
 
 
 

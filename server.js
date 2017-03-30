@@ -235,10 +235,14 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
     course = course.substr(0, course.indexOf('/'));
     req.session.lastCourse = course;
     res.status(200);
-    res.render('addSubgroup', {
-        email: req.user.emails[0].value,
-        courses: req.user.courses
+    db.getGroup(subgroup, function(group) {
+
+        res.render('addSubgroup', {
+            email: req.user.emails[0].value,
+            courses: req.user.courses
+        });
     });
+
     console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
 });
 
@@ -259,7 +263,8 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
                         user: req.user,
                         course: course,
                         evnt: events,
-                        students: students
+                        students: students,
+                        courses: req.user.courses
                     });
                     console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
                     return;
@@ -297,13 +302,15 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
         console.log('subgroup: ' + subgroup);
         console.log('user: ' + req.user.emails[0].value);
         db.getGroup(subgroup, function(group) {
+            group.sort();
+
             db.getClass(course, function(course) {
                 res.status(200);
                 res.render('subgroup', {
                     user: req.user,
                     courses: req.user.courses,
                     subgroup: group,
-                    course: group.name,
+                    course: course,
 
                     room: group.name || 'global' ,
                     email: req.user.emails[0].value,
@@ -334,6 +341,7 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
                         user: req.user,
                         courses: req.user.courses,
                         course: course,
+                        groups: req.user.subgroups,
                         groups: groups,
                         events: events
                     });
@@ -442,6 +450,17 @@ app.post('/create-event', loginVerify, courseVerify, function(req, res) {
         function() {res.redirect('/course/' + req.session.lastCourse)}
     );
 });
+
+
+app.post('/brute-force-invite-group', loginVerify, courseVerify, function(req, res) {
+    db.getStudent(req.user.emails[0].value, function(student) {
+        db.groupAddStudent(
+            req.body.invite_email,
+            req.body.group,
+            function() {res.redirect('/')}
+        );
+    });
+})
 
 app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
     db.getStudent(req.user.emails[0].value, function(student) {

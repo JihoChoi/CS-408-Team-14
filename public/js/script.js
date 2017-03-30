@@ -69,7 +69,29 @@ function countCourse(allcoursename) {
 
 }
 
+function brute_force_invite_group() {
+    var email = document.forms["brute-force-invite-form"]["invite_email"].value;
+    var myemail = document.forms["brute-force-invite-form"]["myemail"].value;
 
+    alert(email+myemail);
+
+    if (email.localeCompare(myemail) == 0) {
+        alert("You cannot invite you");
+        return;
+    }
+
+    // TODO check if the user is alreay in this subgroup
+
+
+
+
+    if (confirm("Do you want to invite "+email+"?") == true) {
+        alert("You invited " + email + "!");
+        document.getElementById("brute-force-invite-form").submit();
+    }
+
+
+}
 
 function submit_create_subgroup() {
 
@@ -85,8 +107,10 @@ function submit_create_subgroup() {
         return;
     }
 
+
+
     if (confirm("Do you want to create "+subgroupname+"?") == true) {
-        alert("You created " + subgroupname + "!");
+        alert("You joined " + subgroupname + "!");
         document.getElementById("create-subgroup-form").submit();
     }
 
