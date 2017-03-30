@@ -238,7 +238,8 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
         res.status(200);
         res.render('addSubgroup', {
             email: req.user.emails[0].value,
-            courses: req.user.courses
+            courses: req.user.courses,
+            groups: groups
         });
         console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
     });
