@@ -100,7 +100,6 @@ function eventCourseVerify(req, res, next) {
         console.log('event ' + events + ' does not exist in class ' + course);
         res.status(404);
         res.render('notfound', { url: req.url, layout: false });
-        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
         return;
     }
 }
@@ -123,25 +122,15 @@ app.get('/favicon.ico', function(req, res) {
 
 // Landing page
 app.get('/', function(req, res) {
-	if (req.user) {
         var allCourse;
         db.getAllCourses(function(allCourses) {
             console.log(req.user.subgroups);
             res.status(200);            
             res.render('dashboard', {
-                user: req.user,
-                courses: req.user.courses,
                 allcoursename: allCourses
             });
-            console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+            console.log('200'.green + ' ' + req.url);
         });
-	} else {
-        res.status(200);
-		res.render('index', {
-			layout: false
-		});
-		console.log('200'.green+ ' guest requested ' + req.url);
-	}
 });
 
 app.get('/index', function(req, res) {
@@ -166,11 +155,9 @@ app.get('/manageCourses', loginVerify, function(req, res) {
 
 
         res.render('manageCourses', {
-            email: req.user.emails[0].value,
-            courses: req.user.courses,
             all_courses: all_courses,
         });
-        console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+        console.log('200'.green + ' ' + req.url);
     })
 });
 
@@ -187,7 +174,7 @@ app.get('/course/*/addSubgroup', loginVerify, courseVerify, function(req, res) {
         email: req.user.emails[0].value,
         courses: req.user.courses
     });
-    console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
+    console.log('200'.green + ' ' + req.url);
 });
 
 app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, function(req, res) {
@@ -271,13 +258,11 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
                     res.status(200);
                     console.log(events);
                     res.render('course', {
-                        user: req.user,
-                        courses: req.user.courses,
                         course: course,
                         groups: groups,
                         events: events
                     });
-                    console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
+                    console.log('200'.green + ' ' + req.url);
                 })
             });
         });
@@ -286,7 +271,6 @@ app.get('/course/*', loginVerify, courseVerify, function(req, res) {
     } else {
     	res.status(404);
     	res.render('notfound', { url: req.url, layout: false });
-        console.log('404'.red + ' ' + req.user.emails[0].value + ' requested ' + req.url);
     }
 });
 

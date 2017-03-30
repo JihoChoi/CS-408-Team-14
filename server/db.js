@@ -305,7 +305,7 @@ var eventAddStudent = function(email, event1, callback) {
 	getStudent(email,function(student){
 		Event.findById(event1, function(err, event2) {
 			if(student && event2) {
-			eventAddStudentHelp(event1,student,callback);
+			eventAddStudentHelp(event2,student,callback);
 			}
 		});
 	});
