@@ -496,7 +496,7 @@ var getUserInvites = function(email, callback) {
 
 var getUserGroups = function(email, callback) {
 	getStudent(email, function(student){
-		parseGroupFull(student.groups, [], callback);
+		parseGroupFull(student.subgroups, [], callback);
 	});
 };
 
