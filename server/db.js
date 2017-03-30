@@ -244,6 +244,7 @@ var getEvent = function(name, callback) {
 }
 
 var getGroup = function(name, callback) {
+	console.log(name);
 	Group.findOne({name:name}, function(err, group){
 		if(err) throw err;
 		callback(group);
@@ -646,6 +647,28 @@ var getEventName = function(eventName, callback) {
 	});
 }
 
+var getSummary = function(email, callback) {
+	getStudent(email, function(student) {
+		getSummaryHelp(student.courses, [], callback, 0);
+	});
+};
+
+var getSummaryHelp = function(courses, ret, callback, i) {
+	var ret1 = ret;
+	if(courses == null) {
+		ret.push("No posts yet!");
+	} else  if(i == courses.length){
+		callback(ret);
+	} else {
+	Class.findById(courses[i], function(err, course) {
+		if(course) {
+			ret.push(course.name + ": " + course.posts[course.posts.length-1]);
+		}
+		getSummaryHelp(courses, ret1, callback, i+1);
+	});
+	}
+};
+
 
 module.exports = {
 createUser,
@@ -684,5 +707,6 @@ getAllCourses,
 getClassEvents,
 getClassGroups,
 getClassStudents,
-getEventName
+getEventName,
+getSummary
 }; 

@@ -8,7 +8,7 @@ var EventSchema = new Schema({
 	name: String,
 	description: String,
 	type: String,
-	className: {type:mongoose.Schema.Types.ObjectId, ref: 'Class'},
+	className: String,
 	startTime: String,
 	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}]
 });
