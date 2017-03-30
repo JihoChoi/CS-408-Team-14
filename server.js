@@ -138,7 +138,7 @@ function eventCourseVerify(req, res, next) {
         var events = course.substr(course.indexOf('/') + 7);
         course = course.substr(0, course.indexOf('/'));
         db.getClass(course, function (course) {
-            if (course.events.indexOf(events) != -1) {
+            if (course.events && course.events.indexOf(events) != -1) {
                 next();
                 return;
             }
@@ -381,9 +381,9 @@ app.post('/create-course', loginVerify, function(req, res) {
         req.body.semester,
         req.body.create_course_full_name,
         req.body.description,
-        req.user.emails[0].value 
+        req.user.emails[0].value,
+        res.redirect('/course/' + req.body.create_course_name) 
         );
-    res.redirect('/course/' + req.body.create_course_name);
 });
 
 app.post('/join-class', loginVerify, function(req, res) {
@@ -391,9 +391,11 @@ app.post('/join-class', loginVerify, function(req, res) {
     console.log("join course request with course name: " + req.body.join_course_name)
     db.classAddStudent(
         req.body.join_course_name,
-        req.user.emails[0].value); // db stuff
+        req.user.emails[0].value,
+        res.redirect('/course/' + req.body.join_course_name)
+        ); // db stuff
     // res.redirect('/course/' + req.body.join_course_name);
-    res.redirect('/');
+    //res.redirect('/');
 });
 
 app.post('/delete-course', loginVerify, function(req, res) {
@@ -402,7 +404,7 @@ app.post('/delete-course', loginVerify, function(req, res) {
         req.user.emails[0].value
 
     );
-    res.redirect('/');
+    res.redirect('/')
 });
 
 app.post('/create-subgroup', loginVerify, courseVerify, function(req, res) {
