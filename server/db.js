@@ -56,50 +56,53 @@ var enrollUser = function(email,callback) {
 
 //Usage: addClass("class name", "semester", "full class name", "student email")
 //Create a new class
-var addClass = function(name, semester, fullName, description, email, callback){
+var addClass = function(name, semester, fullName, description, email){
 	getStudent(email,function(student){
 		if(student) {
-			addClassHelp(name,semester,fullName, description,student, callback);
+			addClassHelp(name,semester,fullName, description,student);
 		}
 	});
 };
 
-var addClassHelp = function(name, semester, fullName, description, student, callback) {
+var addClassHelp = function(name, semester, fullName, description, student) {
 	var course = new Class({
 		name: name,
 		semester: semester,
 		fullName: fullName,
 		description: description,
 		posts: [],
+		emails:[],
 		students: [],
 		events: [],
 		subgroups: []
 	});
 //	course.ttl=liveTime();
+	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
+		console.log('Student saved');
 	});
 	student.courses.push(course);
 	student.save(function(err){
 		if(err) throw err;
-		callback();
 	});
 };
 
 //Usage: classAddStudent("course name", "student email")
 //Add a new student to a class
-var classAddStudent = function (courseName, email, callback) {
+var classAddStudent = function (courseName, email) {
 	getClass(courseName,function(course) {
 	getStudent(email,function(student){
 		if(course && student) {
-		classAddStudentHelp(course,student, callback);
+		classAddStudentHelp(course,student);
 		}
 	});
 	});
 };
 
-var classAddStudentHelp = function(course, student, callback) {
+var classAddStudentHelp = function(course, student) {
+	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
 		if(err) throw err;
@@ -107,31 +110,30 @@ var classAddStudentHelp = function(course, student, callback) {
 	student.courses.push(course);
 	student.save(function(err) {
 		if(err) throw err;
-		callback();
 	});
 };
 
-var classAddPost = function(className, post, callback) {
-	getClass(courseName, function(course){
+var classAddPost = function(className, post) {
+	getClass(className, function(course){
 		course.posts.push(post);
 		course.save(function(err){
 			if(err) throw err;
-			callback();
 		});
 	});
 };
 //Remove a studnet from a class
-var classRemoveStudent = function(courseName, email, callback) {
+var classRemoveStudent = function(courseName, email) {
 	getClass(courseName, function(course) {
 		getStudent(email, function(student) {
 			if(course && student) {
-			classRemoveStudentHelp(course, student, callback);
+			classRemoveStudentHelp(course, student);
 			}
 		});
 	});
 };
 
-var classRemoveStudentHelp = function(course, student, callback) {
+var classRemoveStudentHelp = function(course, student) {
+	course.emails.splice(course.emails.indexOf(student.email),1);
 	course.students.splice(course.students.indexOf(student._id), 1);
 	course.save(function(err) {
 		if(err) throw err;
@@ -139,52 +141,57 @@ var classRemoveStudentHelp = function(course, student, callback) {
 	student.courses.splice(student.courses.indexOf(course._id), 1);
 	student.save(function(err) {
 		if(err) throw err;
-		calllback();
 	});
 };
 
 //Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
-var classAddEvent = function(name, description, type, courseName, startTime, callback){
+var classAddEvent = function(name, description, type, courseName, startTime,email){
 	getClass(courseName, function(course){
-		if(course) {
-		classAddEventHelp(name,description,type,course,startTime, callback);
+	getStudent(email, function(student) {
+		if(course && student) {
+		classAddEventHelp(name,description,type,course,startTime, student);
 		}
+		});
 	});
 };
 
-var classAddEventHelp = function(name, description, type, course, startTime, callback) {
+var classAddEventHelp = function(name, description, type, course, startTime, student) {
 	var event1 = new Event({
 		name: name,
 		description: description,
 		type: type,
-		className: course,
+		className: course.name,
 		startTime: startTime,
 		students: []
 	});
 	//event.ttl=liveTime();
+	event1.students.push(student);
 	event1.save(function(err) {
 		if(err) throw err;
 	});
 	course.events.push(event1);
 	course.save(function(err) {
 		if(err) throw err;
-		callback();
+	});
+	student.events.push(event1);
+	student.save(function(err) {
+		if(err) throw err;
 	});
 };
 
 //Usage: classAddGroup("group name", "course name", "student email")
 //Add a new subgroup to a class
-var classAddGroup = function(name, courseName, email, callback) {
+var classAddGroup = function(name, courseName, email) {
 	getClass(courseName,function(course) {
 	getStudent(email,function(student){
 		if(course && student) {
-		classAddGroupHelp(name,course,student,callback);
+		classAddGroupHelp(name,course,student);
 		}
 	});
 	});
 };
-var classAddGroupHelp = function(name, course, student,callback) {
+var classAddGroupHelp = function(name, course, student) {
 	var group = new Group({
 		name: name,
 		className: course,
@@ -202,7 +209,6 @@ var classAddGroupHelp = function(name, course, student,callback) {
 	student.subgroups.push(group);
 	student.save(function(err) {
 		if(err) throw err;
-		callback();
 	});
 };
 
@@ -231,13 +237,14 @@ var getStudent = function(email,callback) {
 };
 
 var getEvent = function(name, callback) {
-	Event.findOne({name:name}, function(err, event){
+	Event.findById(name, function(err, event1){
 		if(err) throw err;
-		callback(event);
+		callback(event1);
 	});
 }
 
 var getGroup = function(name, callback) {
+	console.log(name);
 	Group.findOne({name:name}, function(err, group){
 		if(err) throw err;
 		callback(group);
@@ -284,13 +291,13 @@ var groupAddStudentHelp = function(student, group) {
 
 //Usage: eventAddStudent("student email", Event document)
 //Add a new student to an Event
-var eventAddStudent = function(email, event1, callback) {
+var eventAddStudent = function(email, event1) {
 	getStudent(email,function(student){
-		eventAddStudentHelp(event1,student, callback);
+		eventAddStudentHelp(event1,student);
 	});
 };
 
-var eventAddStudentHelp = function(event1, student, callback) {
+var eventAddStudentHelp = function(event1, student) {
 	event1.students.push(student);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -298,7 +305,6 @@ var eventAddStudentHelp = function(event1, student, callback) {
 	student.events.push(event1);
 	student.save(function(err) {
 		if(err) throw err;
-		callback();
 	});
 };
 
@@ -323,13 +329,13 @@ var groupRemoveStudentHelp = function(group, student) {
 
 //Usage: eventRemoveStudent(Event document, "student email")
 //Remove a student from an event
-var eventRemoveStudent = function(event1, email, callback) {
+var eventRemoveStudent = function(event1, email) {
 	getStudent(email,function(student){
-		eventRemoveStudentHelp(event1,student, callback);
+		eventRemoveStudentHelp(event1,student);
 	});
 };
 
-var eventRemoveStudentHelp = function(event1, student, callback) {
+var eventRemoveStudentHelp = function(event1, student) {
 	event1.students.splice(event1.students.indexOf(student._id), 1);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -337,7 +343,6 @@ var eventRemoveStudentHelp = function(event1, student, callback) {
 	student.events.splice(student.events.indexOf(event1._id), 1);
 	student.save(function(err){
 		if(err) throw err;
-		callback();
 	});
 };
 
@@ -355,9 +360,9 @@ var parseEvents = function(events, ret, callback) {
 	if(i == events.length) {
 		callback(ret);
 	} else {
-		Event.findById(events[i], function(err, event) {
-			if (event) {
-				ret1.push(event.name);
+		Event.findById(events[i], function(err, event1) {
+			if (event1) {
+				ret1.push(event1);
 			} else {
 				ret1.push("");
 			}
@@ -513,10 +518,10 @@ var purgeCourse = function(email) {
 		}
 	});
 }
-
-var courseExists = function(className,callback) {
+//************DOESNT WORK *****************
+var courseExists = function(className) {
 	getClass(className, function(course) {
-		callback(Boolean(course));
+		return(Boolean(course));
 	});
 }
 
@@ -532,6 +537,137 @@ var getAllCourses = function(callback) {
 		}
 	});
 }
+
+var classGetStudents = function(className, callback) {
+	Class.findOne({name:className}, function(err, course) {
+		parseStudents(course.students,[],callback);
+	});
+}
+
+var parseStudents = function(students,ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(i==students.length) {
+		callback(ret);
+	} else {
+		Student.findById(students[i], function(err, student){
+			if(student) {
+				ret1.push(student.email);
+			} else {
+				ret1.push("");
+			}
+			parseStudents(students, ret1, callback);
+		});
+	}
+}
+
+var parseGroupFull = function(groups, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(groups==null) {
+		callback(null);
+	}else if( i==groups.length) {
+		callback(ret);
+	} else {
+	Group.findById(groups[i], function(err,group) {
+		if(group) {
+			ret1.push(group);
+		} else { 
+			ret1.push("");
+		}
+		parseGroupFull(groups, ret1, callback);
+	});
+	}
+}
+var parseEventFull = function(events, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(events == null) {
+		callback(null);
+	} else if( i==events.length) {
+		callback(ret);
+	} else {
+	Event.findById(events[i], function(err,event1) {
+		if(event1) {
+			ret1.push(event1);
+		} else { 
+			ret1.push("");
+		}
+		parseEventFull(events, ret1, callback);
+	});
+	}
+}
+var parseStudentFull = function(students, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(students == null) {
+		callback(null);
+	} else 	if( i==students.length) {
+		callback(ret);
+	} else {
+	Student.findById(students[i], function(err,student) {
+		if(student) {
+			ret1.push(student);
+		} else { 
+			ret1.push("");
+		}
+		parseStudentFull(students, ret1, callback);
+	});
+	}
+}
+
+var getClassEvents = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		if(course) {
+		parseEventFull(course.events, [], callback);
+		}
+	});
+}
+
+var getClassGroups = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		if(course) {
+		parseGroupFull(course.subgroups, [], callback);
+		}
+	});
+}
+
+var getClassStudents = function(courseName, callback) {
+	getClass(courseName, function(course) {
+		if(course) {
+		parseStudentFull(course.students, [], callback);
+		}
+	});
+}
+
+var getEventName = function(eventName, callback) {
+	Event.findOne({name: eventName}, function(err, event1) {
+		if(err) throw err;
+		callback(event1);
+	});
+}
+
+var getSummary = function(email, callback) {
+	getStudent(email, function(student) {
+		getSummaryHelp(student.courses, [], callback, 0);
+	});
+};
+
+var getSummaryHelp = function(courses, ret, callback, i) {
+	var ret1 = ret;
+	if(courses == null) {
+		ret.push("No posts yet!");
+	} else  if(i == courses.length){
+		callback(ret);
+	} else {
+	Class.findById(courses[i], function(err, course) {
+		if(course) {
+			ret.push(course.name + ": " + course.posts[course.posts.length-1]);
+		}
+		getSummaryHelp(courses, ret1, callback, i+1);
+	});
+	}
+};
 
 
 module.exports = {
@@ -565,6 +701,12 @@ getUserCoursesFull,
 classRemoveStudent,
 //liveTime,
 purgeCourse,
-courseExists,
+//courseExists,
 getAllCourses,
+//classGetStudents,
+getClassEvents,
+getClassGroups,
+getClassStudents,
+getEventName,
+getSummary
 }; 
