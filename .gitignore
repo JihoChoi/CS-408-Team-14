@@ -16,3 +16,6 @@ node_modules/
 
 # Environment variabels so that it won't mess Heroku setup
 .env
+
+#test file for database
+server/tost.js

@@ -592,7 +592,7 @@ var parseEventFull = function(events, ret, callback) {
 		} else { 
 			ret1.push("");
 		}
-		parseEventFull(event1, ret1, callback);
+		parseEventFull(events, ret1, callback);
 	});
 	}
 }
@@ -631,7 +631,7 @@ var getClassGroups = function(courseName, callback) {
 	});
 }
 
-var getClassStudent = function(courseName, callback) {
+var getClassStudents = function(courseName, callback) {
 	getClass(courseName, function(course) {
 		if(course) {
 		parseStudentFull(course.students, [], callback);
@@ -680,9 +680,9 @@ classRemoveStudent,
 purgeCourse,
 //courseExists,
 getAllCourses,
-classGetStudents,
+//classGetStudents,
 getClassEvents,
 getClassGroups,
-getClassStudent,
+getClassStudents,
 getEventName
 }; 
