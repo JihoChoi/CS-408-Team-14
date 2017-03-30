@@ -451,13 +451,13 @@ app.post('/decline-invite', loginVerify, function(req, res) {
 
 app.post('/add-rsvp', loginVerify, function(req, res) {
     db.eventAddStudent(req.user.emails[0].value, req.body.invite,
-        function() {res.redirect('/' + req.session.eventurl)}
+        function() {res.redirect(req.session.eventurl)}
     );
 })
 
 app.post('/remove-rsvp', loginVerify, function(req, res) {
     db.eventRemoveStudent(req.user.emails[0].value, req.body.invite,
-        function() {res.redirect('/' + req.session.eventurl)}
+        function() {res.redirect(req.session.eventurl)}
     );
 })
 
