@@ -4,26 +4,26 @@ var Event = require("./schema/event.js");
 var Group = require("./schema/group.js");
 var Class = require("./schema/class.js");
 var Invite = require("./schema/invite.js");
-var ObjectId = require('mongoose').Types.ObjectId; 
+var ObjectId = require('mongoose').Types.ObjectId;
 
 //DocumentArrays have a special id method for looking up a document by its _id
 //link here: http://mongoosejs.com/docs/subdocs.html
 /*
-function liveTime() {
-	var now = new Date();
-	var year = now.getFullYear();
-	var month = now.getMonth();
-	if (month < 5) {
-		month = 4;
-	} else if (month < 8) {
-		month = 7;
-	} else {
-		month = 11;
-	}
-	var semEnd = new Date(year, month, 28, 0,0,0,0);
-	return parseInt((semEnd-now)/1000/60/60/24) + "d";
-}
-*/
+ function liveTime() {
+ var now = new Date();
+ var year = now.getFullYear();
+ var month = now.getMonth();
+ if (month < 5) {
+ month = 4;
+ } else if (month < 8) {
+ month = 7;
+ } else {
+ month = 11;
+ }
+ var semEnd = new Date(year, month, 28, 0,0,0,0);
+ return parseInt((semEnd-now)/1000/60/60/24) + "d";
+ }
+ */
 
 //Usage: createUser("student email", callback function);
 //Cretes a user and adds it to the database. Mostly a helper function. Use at your own discretion
@@ -46,12 +46,12 @@ var createUser = function(email, callback) {
 var enrollUser = function(email,callback) {
 	getStudent(email, function(student){
 		if(student) {
-		callback();
+			callback();
 		} else {
-		createUser(email, callback);
+			createUser(email, callback);
 		}
 	});
-	
+
 };
 
 //Usage: addClass("class name", "semester", "full class name", "student email")
@@ -94,11 +94,11 @@ var addClassHelp = function(name, semester, fullName, description, student,callb
 //Add a new student to a class
 var classAddStudent = function (courseName, email,callback) {
 	getClass(courseName,function(course) {
-	getStudent(email,function(student){
-		if(course && student) {
-		classAddStudentHelp(course,student,callback);
-		}
-	});
+		getStudent(email,function(student){
+			if(course && student) {
+				classAddStudentHelp(course,student,callback);
+			}
+		});
 	});
 };
 
@@ -129,7 +129,7 @@ var classRemoveStudent = function(courseName, email, callback) {
 	getClass(courseName, function(course) {
 		getStudent(email, function(student) {
 			if(course && student) {
-			classRemoveStudentHelp(course, student,callback);
+				classRemoveStudentHelp(course, student,callback);
 			}
 		});
 	});
@@ -152,10 +152,10 @@ var classRemoveStudentHelp = function(course, student,callback) {
 //Add a new event to a class
 var classAddEvent = function(name, description, type, courseName, startTime,email,callback){
 	getClass(courseName, function(course){
-	getStudent(email, function(student) {
-		if(course && student) {
-		classAddEventHelp(name,description,type,course,startTime, student,callback);
-		}
+		getStudent(email, function(student) {
+			if(course && student) {
+				classAddEventHelp(name,description,type,course,startTime, student,callback);
+			}
 		});
 	});
 };
@@ -189,11 +189,11 @@ var classAddEventHelp = function(name, description, type, course, startTime, stu
 //Add a new subgroup to a class
 var classAddGroup = function(name, courseName, email,callback) {
 	getClass(courseName,function(course) {
-	getStudent(email,function(student){
-		if(course && student) {
-		classAddGroupHelp(name,course,student,callback);
-		}
-	});
+		getStudent(email,function(student){
+			if(course && student) {
+				classAddGroupHelp(name,course,student,callback);
+			}
+		});
 	});
 };
 var classAddGroupHelp = function(name, course, student,callback) {
@@ -305,7 +305,7 @@ var eventAddStudent = function(email, event1, callback) {
 	getStudent(email,function(student){
 		Event.findById(event1, function(err, event2) {
 			if(student && event2) {
-			eventAddStudentHelp(event2,student,callback);
+				eventAddStudentHelp(event2,student,callback);
 			}
 		});
 	});
@@ -329,7 +329,7 @@ var groupRemoveStudent = function(group, email,callback) {
 	getStudent(email,function(student){
 		Group.findById(group, function(err, group1) {
 			if(group1 && student) {
-			groupRemoveStudentHelp(group1,student,callback);
+				groupRemoveStudentHelp(group1,student,callback);
 			}
 		});
 	});
@@ -352,9 +352,9 @@ var groupRemoveStudentHelp = function(group, student,callback) {
 var eventRemoveStudent = function(event1, email,callback) {
 	getStudent(email,function(student){
 		Event.findById(event1, function(err, event2) {
-		if(event2 && student) {
-		eventRemoveStudentHelp(event2,student,callback);
-		}
+			if(event2 && student) {
+				eventRemoveStudentHelp(event2,student,callback);
+			}
 		});
 	});
 };
@@ -467,7 +467,7 @@ var createInvite = function(targetEmail, group, student){
 			studentTo: toStudent,
 			studentFrom: student
 		});
-	//	invite.ttl=liveTime();
+		//	invite.ttl=liveTime();
 		invite.save(function(err){
 			if(err) throw err;
 		});
@@ -511,18 +511,18 @@ var getUserGroups = function(email, callback) {
 var deleteCourse = function(name) {
 	Class.findOne({name: name}, function(err, course) {
 		if(course) {
-		for (var i = 0; i < course.students.length; i++) {
-			Student.findById(course.students[i], function(err, student){
-				if (student) {
-					classRemoveStudent(course.name, student.email);
-				}
-				if(i == course.students.length-1) {
-					Class.findOneAndRemove({name:name}, function(err){
-						if(err) throw err;
-					});
-				}
-			});
-		}
+			for (var i = 0; i < course.students.length; i++) {
+				Student.findById(course.students[i], function(err, student){
+					if (student) {
+						classRemoveStudent(course.name, student.email);
+					}
+					if(i == course.students.length-1) {
+						Class.findOneAndRemove({name:name}, function(err){
+							if(err) throw err;
+						});
+					}
+				});
+			}
 		}
 	});
 };
@@ -557,7 +557,7 @@ var getAllCourses = function(callback) {
 		for (var i = 0; i < arr.length; i++) {
 			ret.push(arr[i].name);
 			if(i == arr.length-1) {
-			callback(ret);
+				callback(ret);
 			}
 		}
 	});
@@ -594,14 +594,14 @@ var parseGroupFull = function(groups, ret, callback) {
 	}else if( i==groups.length) {
 		callback(ret);
 	} else {
-	Group.findById(groups[i], function(err,group) {
-		if(group) {
-			ret1.push(group);
-		} else { 
-			ret1.push("");
-		}
-		parseGroupFull(groups, ret1, callback);
-	});
+		Group.findById(groups[i], function(err,group) {
+			if(group) {
+				ret1.push(group);
+			} else {
+				ret1.push("");
+			}
+			parseGroupFull(groups, ret1, callback);
+		});
 	}
 }
 var parseEventFull = function(events, ret, callback) {
@@ -612,14 +612,14 @@ var parseEventFull = function(events, ret, callback) {
 	} else if( i==events.length) {
 		callback(ret);
 	} else {
-	Event.findById(events[i], function(err,event1) {
-		if(event1) {
-			ret1.push(event1);
-		} else { 
-			ret1.push("");
-		}
-		parseEventFull(events, ret1, callback);
-	});
+		Event.findById(events[i], function(err,event1) {
+			if(event1) {
+				ret1.push(event1);
+			} else {
+				ret1.push("");
+			}
+			parseEventFull(events, ret1, callback);
+		});
 	}
 }
 var parseStudentFull = function(students, ret, callback) {
@@ -630,14 +630,14 @@ var parseStudentFull = function(students, ret, callback) {
 	} else 	if( i==students.length) {
 		callback(ret);
 	} else {
-	Student.findById(students[i], function(err,student) {
-		if(student) {
-			ret1.push(student);
-		} else { 
-			ret1.push("");
-		}
-		parseStudentFull(students, ret1, callback);
-	});
+		Student.findById(students[i], function(err,student) {
+			if(student) {
+				ret1.push(student);
+			} else {
+				ret1.push("");
+			}
+			parseStudentFull(students, ret1, callback);
+		});
 	}
 };
 var parseStudentEmail = function(students, ret, callback) {
@@ -648,20 +648,20 @@ var parseStudentEmail = function(students, ret, callback) {
 	} else 	if( i==students.length) {
 		callback(ret);
 	} else {
-	Student.findById(students[i], function(err,student) {
-		if(student) {
-			ret1.push(student.email);
-		} else { 
-			ret1.push("");
-		}
-		parseStudentEmail(students, ret1, callback);
-	});
+		Student.findById(students[i], function(err,student) {
+			if(student) {
+				ret1.push(student.email);
+			} else {
+				ret1.push("");
+			}
+			parseStudentEmail(students, ret1, callback);
+		});
 	}
 };
 var getClassEvents = function(courseName, callback) {
 	getClass(courseName, function(course) {
 		if(course) {
-		parseEventFull(course.events, [], callback);
+			parseEventFull(course.events, [], callback);
 		}
 	});
 };
@@ -669,7 +669,7 @@ var getClassEvents = function(courseName, callback) {
 var getClassGroups = function(courseName, callback) {
 	getClass(courseName, function(course) {
 		if(course) {
-		parseGroupFull(course.subgroups, [], callback);
+			parseGroupFull(course.subgroups, [], callback);
 		}
 	});
 };
@@ -677,7 +677,7 @@ var getClassGroups = function(courseName, callback) {
 var getClassStudents = function(courseName, callback) {
 	getClass(courseName, function(course) {
 		if(course) {
-		parseStudentFull(course.students, [], callback);
+			parseStudentFull(course.students, [], callback);
 		}
 	});
 };
@@ -685,7 +685,7 @@ var getClassStudents = function(courseName, callback) {
 var getEventStudents = function(eventid, callback) {
 	Event.findById(eventid, function(err, event1) {
 		if(event1) {
-		parseStudentEmail(event1.students, [], callback);
+			parseStudentEmail(event1.students, [], callback);
 		}
 	});
 };
@@ -710,54 +710,54 @@ var getSummaryHelp = function(courses, ret, callback, i) {
 	} else  if(i == courses.length){
 		callback(ret);
 	} else {
-	Class.findById(courses[i], function(err, course) {
-		if(course && course.posts.length > 0) {
-			ret.push(course.name + ": " + course.posts[course.posts.length-1]);
-		}
-		getSummaryHelp(courses, ret1, callback, i+1);
-	});
+		Class.findById(courses[i], function(err, course) {
+			if(course && course.posts.length > 0) {
+				ret.push(course.name + ": " + course.posts[course.posts.length-1]);
+			}
+			getSummaryHelp(courses, ret1, callback, i+1);
+		});
 	}
 };
 
 
 module.exports = {
-createUser,
-enrollUser,
-addClass,
-getEvent,
-getGroup,
-classAddStudent,
-classAddPost,
-classAddEvent,
-classAddGroup,
-classGetPosts,
-getClass,
-getStudent,
-getEvents,
-getGroups,
-groupAddStudent,
-eventAddStudent,
-groupRemoveStudent,
-eventRemoveStudent,
-getUserEvents,
-getUserCourses,
-getUserInvites,
-getUserGroups,
-createInvite,
-acceptInvite,
-declineInvite,
-deleteCourse,
-getUserCoursesFull,
-classRemoveStudent,
+	createUser,
+	enrollUser,
+	addClass,
+	getEvent,
+	getGroup,
+	classAddStudent,
+	classAddPost,
+	classAddEvent,
+	classAddGroup,
+	classGetPosts,
+	getClass,
+	getStudent,
+	getEvents,
+	getGroups,
+	groupAddStudent,
+	eventAddStudent,
+	groupRemoveStudent,
+	eventRemoveStudent,
+	getUserEvents,
+	getUserCourses,
+	getUserInvites,
+	getUserGroups,
+	createInvite,
+	acceptInvite,
+	declineInvite,
+	deleteCourse,
+	getUserCoursesFull,
+	classRemoveStudent,
 //liveTime,
-purgeCourse,
+	purgeCourse,
 //courseExists,
-getAllCourses,
+	getAllCourses,
 //classGetStudents,
-getClassEvents,
-getClassGroups,
-getClassStudents,
-getEventName,
-getSummary,
-getEventStudents
+	getClassEvents,
+	getClassGroups,
+	getClassStudents,
+	getEventName,
+	getSummary,
+	getEventStudents
 }; 
