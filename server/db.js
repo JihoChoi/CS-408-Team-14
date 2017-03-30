@@ -640,7 +640,24 @@ var parseStudentFull = function(students, ret, callback) {
 	});
 	}
 };
-
+var parseStudentEmail = function(students, ret, callback) {
+	var i = ret.length;
+	var ret1 = ret;
+	if(students == null) {
+		callback(null);
+	} else 	if( i==students.length) {
+		callback(ret);
+	} else {
+	Student.findById(students[i], function(err,student) {
+		if(student) {
+			ret1.push(student.email);
+		} else { 
+			ret1.push("");
+		}
+		parseStudentEmail(students, ret1, callback);
+	});
+	}
+};
 var getClassEvents = function(courseName, callback) {
 	getClass(courseName, function(course) {
 		if(course) {
@@ -668,7 +685,7 @@ var getClassStudents = function(courseName, callback) {
 var getEventStudents = function(eventid, callback) {
 	Event.findById(eventid, function(err, event1) {
 		if(event1) {
-		parseStudentFull(event1.students, [], callback);
+		parseStudentEmail(event1.students, [], callback);
 		}
 	});
 };
