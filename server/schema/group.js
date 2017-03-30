@@ -6,7 +6,7 @@ var Student = require("./student.js");
 
 var GroupSchema = new Schema({
 	name: String,
-	className: {type: mongoose.Schema.Types.ObjectId, ref:'Class'},
+	className: String,
 	students: [{type:mongoose.Schema.Types.ObjectId, ref: 'Student'}]
 
 });
