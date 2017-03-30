@@ -294,7 +294,12 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
                     user: req.user,
                     courses: req.user.courses,
                     subgroup: group,
-                    course: course
+                    course: group.name,
+
+                    room: group.name || 'global' ,
+                    email: req.user.emails[0].value,
+                    chatserver: process.env.CHATSERVER || 'http://coconutchattr.herokuapp.com'
+
                 });
                 // console.log("this is course"+course);
                 console.log('200'.green+ ' ' + req.user.emails[0].value + ' requested ' + req.url);
