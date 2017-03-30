@@ -306,7 +306,7 @@ app.get('/course/*/*', loginVerify, courseVerify, groupVerify, function(req, res
                 res.status(200);
                 res.render('subgroup', {
                     user: req.user,
-                    courses: req.user.courses,
+                    //courses: req.user.courses,
                     subgroup: group,
                     course: course,
 
@@ -528,10 +528,15 @@ app.get('/register', function(req, res) {
 
 // Logout attempt
 app.get('/logout', function(req, res) {
-    req.logout();
+    //req.logout();
     res.redirect('/');
 });
 
+// Logout attempt two
+app.get('/logout22', function(req, res) {
+	req.logout();
+	res.redirect('/');
+});
 
 /**
  * DEVELOPER SECRET PAGES

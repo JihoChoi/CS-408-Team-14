@@ -204,7 +204,7 @@ var classAddGroupHelp = function(name, course, student,callback) {
 		students: []
 	});
 	//group.ttl=liveTime();
-	group.students.push(student);
+	//group.students.push(student);
 	group.save(function(err) {
 		if(err) throw err;
 	});
@@ -555,6 +555,9 @@ var getAllCourses = function(callback) {
 	Class.find({},function(err, courses){
 		var arr = courses;
 		var ret = [];
+		if(arr.length == 0) {
+			callback(ret);
+		}
 		for (var i = 0; i < arr.length; i++) {
 			ret.push(arr[i].name);
 			if(i == arr.length-1) {
