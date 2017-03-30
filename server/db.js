@@ -56,15 +56,15 @@ var enrollUser = function(email,callback) {
 
 //Usage: addClass("class name", "semester", "full class name", "student email")
 //Create a new class
-var addClass = function(name, semester, fullName, description, email){
+var addClass = function(name, semester, fullName, description, email, callback){
 	getStudent(email,function(student){
 		if(student) {
-			addClassHelp(name,semester,fullName, description,student);
+			addClassHelp(name,semester,fullName, description,student, callback);
 		}
 	});
 };
 
-var addClassHelp = function(name, semester, fullName, description, student) {
+var addClassHelp = function(name, semester, fullName, description, student, callback) {
 	var course = new Class({
 		name: name,
 		semester: semester,
@@ -86,22 +86,23 @@ var addClassHelp = function(name, semester, fullName, description, student) {
 	student.courses.push(course);
 	student.save(function(err){
 		if(err) throw err;
+		callback();
 	});
 };
 
 //Usage: classAddStudent("course name", "student email")
 //Add a new student to a class
-var classAddStudent = function (courseName, email) {
+var classAddStudent = function (courseName, email, callback) {
 	getClass(courseName,function(course) {
 	getStudent(email,function(student){
 		if(course && student) {
-		classAddStudentHelp(course,student);
+		classAddStudentHelp(course,student, callback);
 		}
 	});
 	});
 };
 
-var classAddStudentHelp = function(course, student) {
+var classAddStudentHelp = function(course, student, callback) {
 	course.emails.push(student.email);
 	course.students.push(student);
 	course.save(function(err){
@@ -110,29 +111,31 @@ var classAddStudentHelp = function(course, student) {
 	student.courses.push(course);
 	student.save(function(err) {
 		if(err) throw err;
+		callbac();
 	});
 };
 
-var classAddPost = function(className, post) {
+var classAddPost = function(className, post, callback) {
 	getClass(className, function(course){
 		course.posts.push(post);
 		course.save(function(err){
 			if(err) throw err;
+			callbac();
 		});
 	});
 };
 //Remove a studnet from a class
-var classRemoveStudent = function(courseName, email) {
+var classRemoveStudent = function(courseName, email, callback) {
 	getClass(courseName, function(course) {
 		getStudent(email, function(student) {
 			if(course && student) {
-			classRemoveStudentHelp(course, student);
+			classRemoveStudentHelp(course, student,callback);
 			}
 		});
 	});
 };
 
-var classRemoveStudentHelp = function(course, student) {
+var classRemoveStudentHelp = function(course, student, callback) {
 	course.emails.splice(course.emails.indexOf(student.email),1);
 	course.students.splice(course.students.indexOf(student._id), 1);
 	course.save(function(err) {
@@ -141,22 +144,23 @@ var classRemoveStudentHelp = function(course, student) {
 	student.courses.splice(student.courses.indexOf(course._id), 1);
 	student.save(function(err) {
 		if(err) throw err;
+		callback();
 	});
 };
 
 //Usage: classAddEvent("event name", "event description", "event type", "course name", start time in javascript Date format)
 //Add a new event to a class
-var classAddEvent = function(name, description, type, courseName, startTime,email){
+var classAddEvent = function(name, description, type, courseName, startTime,email,callback){
 	getClass(courseName, function(course){
 	getStudent(email, function(student) {
 		if(course && student) {
-		classAddEventHelp(name,description,type,course,startTime, student);
+		classAddEventHelp(name,description,type,course,startTime, student,callback);
 		}
 		});
 	});
 };
 
-var classAddEventHelp = function(name, description, type, course, startTime, student) {
+var classAddEventHelp = function(name, description, type, course, startTime, student,callback) {
 	var event1 = new Event({
 		name: name,
 		description: description,
@@ -177,21 +181,22 @@ var classAddEventHelp = function(name, description, type, course, startTime, stu
 	student.events.push(event1);
 	student.save(function(err) {
 		if(err) throw err;
+		callback();
 	});
 };
 
 //Usage: classAddGroup("group name", "course name", "student email")
 //Add a new subgroup to a class
-var classAddGroup = function(name, courseName, email) {
+var classAddGroup = function(name, courseName, email, callback) {
 	getClass(courseName,function(course) {
 	getStudent(email,function(student){
 		if(course && student) {
-		classAddGroupHelp(name,course,student);
+		classAddGroupHelp(name,course,student, callback);
 		}
 	});
 	});
 };
-var classAddGroupHelp = function(name, course, student) {
+var classAddGroupHelp = function(name, course, student, callback) {
 	var group = new Group({
 		name: name,
 		className: course,
@@ -209,6 +214,7 @@ var classAddGroupHelp = function(name, course, student) {
 	student.subgroups.push(group);
 	student.save(function(err) {
 		if(err) throw err;
+		callback();
 	});
 };
 
@@ -291,13 +297,13 @@ var groupAddStudentHelp = function(student, group) {
 
 //Usage: eventAddStudent("student email", Event document)
 //Add a new student to an Event
-var eventAddStudent = function(email, event1) {
+var eventAddStudent = function(email, event1,callback) {
 	getStudent(email,function(student){
-		eventAddStudentHelp(event1,student);
+		eventAddStudentHelp(event1,student,callback);
 	});
 };
 
-var eventAddStudentHelp = function(event1, student) {
+var eventAddStudentHelp = function(event1, student,callback) {
 	event1.students.push(student);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -305,6 +311,7 @@ var eventAddStudentHelp = function(event1, student) {
 	student.events.push(event1);
 	student.save(function(err) {
 		if(err) throw err;
+		callback();
 	});
 };
 
@@ -329,13 +336,13 @@ var groupRemoveStudentHelp = function(group, student) {
 
 //Usage: eventRemoveStudent(Event document, "student email")
 //Remove a student from an event
-var eventRemoveStudent = function(event1, email) {
+var eventRemoveStudent = function(event1, email, callback) {
 	getStudent(email,function(student){
-		eventRemoveStudentHelp(event1,student);
+		eventRemoveStudentHelp(event1,student,callback);
 	});
 };
 
-var eventRemoveStudentHelp = function(event1, student) {
+var eventRemoveStudentHelp = function(event1, student,callback) {
 	event1.students.splice(event1.students.indexOf(student._id), 1);
 	event1.save(function(err) {
 		if(err) throw err;
@@ -343,6 +350,7 @@ var eventRemoveStudentHelp = function(event1, student) {
 	student.events.splice(student.events.indexOf(event1._id), 1);
 	student.save(function(err){
 		if(err) throw err;
+		callback();
 	});
 };
 
