@@ -192,8 +192,8 @@
 
                     {{# each user.subgroups }}
                         {{#if this}}
-                            <a href="#" class="list-group-item">
-                                <i class="fa fa-comment fa-fw"></i> {{this.name}}
+                            <a href="/course/{{this.className}}/{{this.name}}" class="list-group-item">
+                                <i class="fa fa-comment fa-fw"></i> {{this}}
                             </a>
                         {{/if}}
                     {{/each}}
