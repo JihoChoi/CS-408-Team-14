@@ -461,7 +461,7 @@ app.post('/add-rsvp', loginVerify, function(req, res) {
 })
 
 app.post('/remove-rsvp', loginVerify, function(req, res) {
-    db.eventRemoveStudent(req.user.emails[0].value, req.body.invite,
+    db.eventRemoveStudent( req.body.invite, req.user.emails[0].value,
         function() {res.redirect(req.session.eventurl)}
     );
 })

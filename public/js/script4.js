@@ -10,7 +10,7 @@ function submit_remove_rsvp() {
     console.log("Inside submit_remove_rsvp()");
     console.log("========================");
     //var eventDate = "7/111";
-    var invite = document.forms["create-antirsvp-form"]["invite2"].value;
+    var invite = document.forms["create-antirsvp-form"]["invite"].value;
     // var eventHour = document.forms["create-event-form"]["eventHour"].value;
 
 
