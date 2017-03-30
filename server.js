@@ -172,6 +172,7 @@ app.get('/', function(req, res) {
 	if (req.user) {
         var allCourse;
         db.getAllCourses(function(allCourses) {
+            console.log(req.user.subgroups);
             res.status(200);            
             res.render('dashboard', {
                 user: req.user,
@@ -381,7 +382,7 @@ app.post('/create-course', loginVerify, function(req, res) {
         req.body.create_course_full_name,
         req.body.description,
         req.user.emails[0].value,
-        res.redirect('/course/' + req.body.create_course_name) 
+        function() {res.redirect('/course/' + req.body.create_course_name)} 
         );
 });
 
@@ -391,7 +392,7 @@ app.post('/join-class', loginVerify, function(req, res) {
     db.classAddStudent(
         req.body.join_course_name,
         req.user.emails[0].value,
-        res.redirect('/course/' + req.body.join_course_name)
+        function() {res.redirect('/course/' + req.body.join_course_name)}
         ); // db stuff
     // res.redirect('/course/' + req.body.join_course_name);
     //res.redirect('/');
@@ -401,7 +402,7 @@ app.post('/delete-course', loginVerify, function(req, res) {
     db.classRemoveStudent(
         req.body.delete_course_name,
         req.user.emails[0].value,
-        res.redirect('/')
+        function() {res.redirect('/')}
     );
 });
 
@@ -410,7 +411,7 @@ app.post('/create-subgroup', loginVerify, courseVerify, function(req, res) {
         req.body.subName,
         req.session.lastCourse,
         req.user.emails[0].value,
-        res.redirect('/course/' + req.session.lastCourse)
+        function() {res.redirect('/course/' + req.session.lastCourse)}
     );
 });
 
@@ -424,7 +425,7 @@ app.post('/create-event', loginVerify, courseVerify, function(req, res) {
         req.body.courseName,
         req.body.eventDate,
         req.user.emails[0].value,
-        res.redirect('/course/' + req.session.lastCourse)
+        function() {res.redirect('/course/' + req.session.lastCourse)}
     );
 });
 
@@ -433,7 +434,7 @@ app.post('/invite-group', loginVerify, courseVerify, function(req, res) {
         db.createInvite(
             req.body.invited,
             req.body.group,
-            res.redirect('/')
+            function() {res.redirect('/')}
         );
     });
 })
@@ -449,19 +450,21 @@ app.post('/decline-invite', loginVerify, function(req, res) {
 });
 
 app.post('/add-rsvp', loginVerify, function(req, res) {
-    db.eventAddStudent(req.body.invite, req.user.emails[0].value);
-    res.redirect('/');
+    db.eventAddStudent(req.body.invite, req.user.emails[0].value,
+        function() {res.redirect('/')}
+    );
 })
 
 app.post('/remove-rsvp', loginVerify, function(req, res) {
-    db.eventRemoveStudent(req.body.invite, req.user.emails[0].value);
-    res.redirect('/');
+    db.eventRemoveStudent(req.body.invite, req.user.emails[0].value,
+        function() {res.redirect('/')}
+    );
 })
 
 app.post('/create-post', loginVerify, courseVerify, function(req, res) {
-    db.classAddPost(req.body.course_name, req.body.text_input);
-
-    res.redirect('/course/' + req.session.lastCourse);
+    db.classAddPost(req.body.course_name, req.body.text_input,
+        function() {res.redirect('/course/' + req.session.lastCourse)}
+    );
 });
 
 
