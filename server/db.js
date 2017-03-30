@@ -719,6 +719,12 @@ var getSummaryHelp = function(courses, ret, callback, i) {
 	}
 };
 
+var eventGetStudentsWrong = function(event1, callback) {
+	Event.findById(event1, function(err, event2) {
+		callback(event2.students);
+	});
+};
+
 
 module.exports = {
 	createUser,
@@ -759,5 +765,6 @@ module.exports = {
 	getClassStudents,
 	getEventName,
 	getSummary,
-	getEventStudents
+	getEventStudents,
+	eventGetStudentsWrong
 }; 

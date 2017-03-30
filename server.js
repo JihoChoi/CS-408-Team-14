@@ -253,7 +253,7 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
         req.session.eventurl = req.url;
         db.getClass(course, function(course) {
             db.getEvent(evnt, function(events) {
-                db.getEventStudents(events._id, function(students) {
+                db.eventGetStudentsWrong(events._id, function(students) {
                     res.status(200);
                     console.log(course);
                     console.log(events);
