@@ -256,11 +256,12 @@ app.get('/course/*/event/*', loginVerify, eventCourseVerify, courseVerify, funct
                         user: req.user,
                         course: course,
                         evnt: events,
-                        students: students
+                        students: students,
+                        courses: req.user.courses
                     });
                     console.log('200'.green + ' ' + req.user.emails[0].value + ' requested ' + req.url);
                     return;
-                }
+                });
             });
         });
     } else {
