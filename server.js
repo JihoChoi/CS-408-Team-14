@@ -55,15 +55,21 @@ passport.serializeUser(function(user, done) {
 
 passport.deserializeUser(function(user, done) {
 db.enrollUser(user.emails[0].value, function() {
+    console.log("!");
     db.getUserGroups(user.emails[0].value, function(groups) {
+        console.log("2");
         user.subgroups = groups;
         db.getUserCourses(user.emails[0].value, function(courses) {
+            console.log("3");
             user.courses = courses.sort();
             db.getUserEvents(user.emails[0].value, function(events) {
+                console.log("4");
                 user.events = events;
                 db.getSummary(user.emails[0].value, function (summary) {
+                    console.log("5");
                     user.summary = summary;
                     db.getUserInvites(user.emails[0].value, function(invites) {
+                        console.log("8");
                         user.invites = invites;
                         done(null, user);
                     });
