@@ -488,7 +488,7 @@ var getUserInvites = function(email, callback) {
 
 var getUserGroups = function(email, callback) {
 	getStudent(email, function(student){
-		callback(student.subgroups);
+		parseGroupFull(student.groups, [], callback);
 	});
 };
 
