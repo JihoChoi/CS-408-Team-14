@@ -24,23 +24,7 @@ https://cs408skwad.slack.com/messages/general/
 
 
 #### Contributors
-| Name               | Email                  | Phone          | Info            |
-|--------------------|------------------------|----------------|-----------------|
-| Kate Wang          | [email]                | [number]       |                 |
-|                    |                        |                |                 |
-| Dominic Valentine  |                        |                |                 |
-|                    |                        |                |                 |
-| Wilson E Husin     |                        |                |                 |
-|                    |                        |                |                 |
-| Jiho Choi          | choi296@purdue.edu     | 765 430 5585   |                 |
-|                    |                        |                |                 |
-| Kyle Leaf          |                        |                |                 |
-|                    |                        |                |                 |
-
-
-#### Important files
-
-<br />
+Wilson E Husin, Jiho Choi, Kyle Leaf, Kate Wang, Dominic Valentine
 
 
 <!--
@@ -49,14 +33,6 @@ https://cs408skwad.slack.com/messages/general/
 		Web	: http://web.ics.purdue.edu/~choi296/
 -->
 
-
-#### TODO LIST
-
-	1.
-	2.
-	3.
-	4.
-	5.
 
 
 #### References 
@@ -69,8 +45,6 @@ https://cs408skwad.slack.com/messages/general/
 			http://skarla.webkom.co/start/projects.html
 
 
-
->> etc.
 
 <!--
  Copyright 2017, Purdue Univ.
